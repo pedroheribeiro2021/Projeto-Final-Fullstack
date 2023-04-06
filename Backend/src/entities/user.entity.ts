@@ -51,9 +51,6 @@ export class User {
     @DeleteDateColumn()
     deletedAt: string
 
-    // @OneToMany(() => Contact, contacts => contacts.user)
-    // contacts: Contact[]
-
     @OneToOne(() => Address)
     @JoinColumn()
     address: Address
