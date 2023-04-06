@@ -38,3 +38,8 @@ export interface IUserUpdate {
     is_advertiser?: boolean
     // address: IAddressRequest
 }
+
+export interface IUserLogin {
+    email: string
+    password: string
+}
