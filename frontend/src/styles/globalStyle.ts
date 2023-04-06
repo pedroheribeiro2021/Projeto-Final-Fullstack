@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Lexend', sans-serif;
     text-decoration: none;
+    list-style:none;
 }
 
 :root {
@@ -20,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
 /* Grey Scale */
     --grey0: #0B0D0D;
     --grey1: #212529;
-    --grey1: #495057;
+    --grey2: #495057;
     --grey3: #868E96;
     --grey4: #ADB5BD;
     --grey5: #CED4DA;
@@ -277,4 +278,7 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 4px;
 }
 
+button{
+    cursor: pointer;
+}
 `
