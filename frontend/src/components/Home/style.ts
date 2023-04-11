@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import car from "../../assets/carro.svg"
+import carm from "../../assets/carrmobile.svg"
 
 export const HomeStyle = styled.div`
     .home_intro{
@@ -26,6 +27,8 @@ export const HomeStyle = styled.div`
     .home_container_items{
         padding:40px;
         display:flex;
+        width:100%;
+        
 
     }
 
@@ -49,7 +52,9 @@ export const HomeStyle = styled.div`
         gap:20px;
 
     }
-
+    .filter_mobile{
+        display:none;
+    }
     .aditional_filters_button button{
         width: 125px;
         height: 37px;
@@ -98,5 +103,37 @@ export const HomeStyle = styled.div`
         background-color: transparent;
         border: transparent;
         color: var(--brand2);
+    }
+
+    @media(max-width:768px){
+        .home_intro{
+            background-image: url(${carm});
+          
+        }
+        .home_filter{
+            display:none
+        }
+        .home_container_items{
+            padding:20px;
+            
+        }
+      
+        .filter_mobile{
+            display:flex;
+            width:100%;
+            justify-content:center;
+            margin:40px 0;
+        }
+       
+        .filter_mobile button{
+            width:279px;
+            height:48px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--whiteFixed);
+            background-color: var(--brand2);
+            border: transparent;
+            border-radius: 4px;
+        }
     }
 `

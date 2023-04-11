@@ -8,6 +8,7 @@ export const FooterStyle = styled.footer`
     color: var(--whiteFixed);
     justify-content: space-between;
     align-items: center;
+    width:100%;
     button{
         width: 53px;
         height: 50px;
@@ -17,5 +18,9 @@ export const FooterStyle = styled.footer`
         font-weight: 900;
         font-size: 16px;
         color: var(--whiteFixed);
+    }
+    @media(max-width:768px){
+        flex-direction:column;
+        gap:30px;
     }
 `

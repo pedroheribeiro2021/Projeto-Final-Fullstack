@@ -98,6 +98,9 @@ export const Home = ()=>{
                         <Cards/>
                     </div>
                 </div>
+                <div className="filter_mobile">
+                    <button>Filtros</button>
+                </div>
                 <div className="next_page">
                     <p>1 de 2</p>
                     <button> Seguinte  </button>

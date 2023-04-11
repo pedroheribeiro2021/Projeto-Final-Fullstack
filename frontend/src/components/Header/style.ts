@@ -9,6 +9,9 @@ export const HeaderStyle = styled.header`
     border-bottom: 2px solid var(--grey6);
     width: 100%;
     min-width: 320px;
+    position: fixed;
+    background-color: var(--whiteFixed);
+    z-index:2;
     .header_button{
         display:flex;
         gap:30px;
@@ -21,10 +24,30 @@ export const HeaderStyle = styled.header`
         border: 1.5px solid var(--grey4);
         background-color: transparent;
     }
-
+    .menu_mobile{
+            display:none;
+        }
     .header_button button:hover{
         
         border: 1.5px solid transparent;
         color: var(--brand1);
+    }
+    @media(max-width:768px){
+
+        .header_button button{
+            display:none;
+        }
+        .menu_mobile{
+            display:flex;
+           
+        }
+        .menu_mobile button{
+            background-color:transparent;
+            border:transparent;
+            font-size:30px;
+            display:flex;
+            align-items:center;
+        }
+        
     }
 `
