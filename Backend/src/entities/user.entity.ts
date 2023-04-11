@@ -23,10 +23,6 @@ export class User {
     @Exclude()
     password: string
 
-    @Column({ length: 100 })
-    @Exclude()
-    confirmPassword: string
-
     @Column({ length: 11, unique: true })
     cpf: string
 
@@ -50,9 +46,6 @@ export class User {
 
     @DeleteDateColumn()
     deletedAt: string
-
-    // @OneToMany(() => Contact, contacts => contacts.user)
-    // contacts: Contact[]
 
     @OneToOne(() => Address)
     @JoinColumn()
