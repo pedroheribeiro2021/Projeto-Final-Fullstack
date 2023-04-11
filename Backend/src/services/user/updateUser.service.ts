@@ -1,13 +1,14 @@
 import { AppDataSource } from "../../data-source"
 import { User } from "../../entities/user.entity"
 import { IUser, IUserUpdate } from "../../interfaces/user/user.interface"
+import { userWithoutPasswordSerializer } from "../../schemas/user.serializer"
 
 
 export const updateUserService = async(userData: IUserUpdate, userId: string): Promise<object> => {
 
     const userRepository = AppDataSource.getRepository(User)
 
-    const findUser = await userRepository.findOneBy({
+    const findUser: any = await userRepository.findOneBy({
         id: userId
     })
 
@@ -18,9 +19,9 @@ export const updateUserService = async(userData: IUserUpdate, userId: string): P
     
     await userRepository.save(updatedUser)
 
-    // const userWithoutPassword = await userWithoutPasswordSerializer.validate(updatedUser, {
-    //     stripUnknown: true
-    // })
+    const userWithoutPassword = await userWithoutPasswordSerializer.validate(updatedUser, {
+        stripUnknown: true
+    })
 
-    return updatedUser
+    return userWithoutPassword
 }

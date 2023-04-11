@@ -12,11 +12,11 @@ export interface ILoginResponse {
     id: string
 }
 
-export const createSessionService = async ({email, password}: IUserLogin): Promise<any> => {
+export const createSessionService = async ({email, password}: IUserLogin): Promise<ILoginResponse> => {
 
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 
-    const user: any = await userRepository.findOneBy({
+    const user = await userRepository.findOneBy({
         email: email
     })
     

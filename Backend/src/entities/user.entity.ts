@@ -23,10 +23,6 @@ export class User {
     @Exclude()
     password: string
 
-    @Column({ length: 100 })
-    @Exclude()
-    confirmPassword: string
-
     @Column({ length: 11, unique: true })
     cpf: string
 

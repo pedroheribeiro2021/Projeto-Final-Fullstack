@@ -18,7 +18,8 @@
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "0.3.10",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "yup": "0.32.11"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

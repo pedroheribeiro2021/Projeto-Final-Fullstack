@@ -7,7 +7,7 @@ export const deleteUserService = async (id: string) => {
 
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 
-    const user:any = await userRepository.findOneBy({
+    const user: any = await userRepository.findOneBy({
         id: id
     })
 

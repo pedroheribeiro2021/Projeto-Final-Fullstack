@@ -5,12 +5,15 @@ import { createUserService } from "../services/user/createUser.service"
 import { listUsersServices } from "../services/user/listUser.service"
 import { updateUserService } from "../services/user/updateUser.service"
 import { deleteUserService } from "../services/user/deleteUser.service"
+import { IAddressRequest } from "../interfaces/address/address.interface"
 
 
 export const createUserController = async (req: Request, res: Response) => {
 
     const userData: IUserRequest = req.body
-    const newUser = await createUserService(userData)
+    const addressData: IAddressRequest = req.body.address
+
+    const newUser = await createUserService(userData, addressData)
     return res.status(201).json(newUser)
 }
 
