@@ -39,15 +39,18 @@ export const HeaderStyle = styled.header`
         }
         .menu_mobile{
             display:flex;
-           
+            flex-direction:column;
+         
         }
-        .menu_mobile button{
+        .menu_button{
             background-color:transparent;
             border:transparent;
             font-size:30px;
             display:flex;
             align-items:center;
         }
+
+    
         
     }
 `

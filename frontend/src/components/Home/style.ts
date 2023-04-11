@@ -21,7 +21,7 @@ export const HomeStyle = styled.div`
         height:100%;
         color: var(--grey10);
         text-align: center;
-      
+        
     }
 
     .home_container_items{
@@ -81,6 +81,7 @@ export const HomeStyle = styled.div`
 
     .home_cards{
         width:70%;
+        min-width:320px;
 
         
     }
@@ -88,7 +89,7 @@ export const HomeStyle = styled.div`
         display:flex;
         justify-content: center;
         gap:50px;
-       
+        min-width:320px;
     }
 
     .next_page p{
@@ -117,12 +118,14 @@ export const HomeStyle = styled.div`
             padding:20px;
             
         }
+        
       
         .filter_mobile{
             display:flex;
             width:100%;
             justify-content:center;
-            margin:40px 0;
+            margin: 30px auto;
+            min-width:320px;
         }
        
         .filter_mobile button{
@@ -134,6 +137,12 @@ export const HomeStyle = styled.div`
             background-color: var(--brand2);
             border: transparent;
             border-radius: 4px;
+        }
+        .home_cards{
+            width:100%;
+           
+
+        
         }
     }
 `

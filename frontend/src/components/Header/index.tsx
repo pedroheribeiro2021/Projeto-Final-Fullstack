@@ -17,7 +17,7 @@ export const Header = () => {
           <button className="menu_button">
             <BiMenu/>
           </button>
-          
+         
         </div>
       </HeaderStyle>
     </>

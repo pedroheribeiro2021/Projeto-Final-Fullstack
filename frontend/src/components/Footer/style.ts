@@ -9,6 +9,7 @@ export const FooterStyle = styled.footer`
     justify-content: space-between;
     align-items: center;
     width:100%;
+    min-width:320px;
     button{
         width: 53px;
         height: 50px;

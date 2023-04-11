@@ -5,16 +5,17 @@ export const CardStyle = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
+    min-width:320px;
   }
   .list_cards_img img {
-    min-width: 312px;
-    max-width: 312px;
+    min-width: 320px;
+    max-width: 320px;
     min-height: 152px;
     max-height: 152px;
   }
   .list_cards {
-    min-width: 312px;
-    max-width: 312px;
+    min-width: 320px;
+    max-width: 320px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -83,26 +84,23 @@ export const CardStyle = styled.div`
     color: var(--grey1);
   }
   @media (max-width: 768px) {
+   
     .container_list_cards {
         flex-wrap: nowrap;
         overflow-x: scroll;
-        width:95vw;
+        width:100%;
+        gap:30px;
 
     }
     .container_list_cards::-webkit-scrollbar{
         display:none;
-        
+      
         
     }
-
-    .list_cards_img img {
-      min-width: 260px;
-      max-width: 260px;
-    
-    }
+   
+  
     .list_cards {
-      min-width: 260px;
-      max-width: 260px;
+    
       display: flex;
       flex-direction: column;
       gap: 10px;
