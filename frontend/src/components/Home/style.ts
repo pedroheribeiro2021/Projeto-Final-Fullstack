@@ -3,6 +3,12 @@ import car from "../../assets/carro.svg"
 import carm from "../../assets/carrmobile.svg"
 
 export const HomeStyle = styled.div`
+    width: 100%;
+    min-width:320px;
+    flex-direction:column;
+    justify-content:center;
+    display:flex;
+  
     .home_intro{
         background-image: url(${car});
         background-repeat: no-repeat;
@@ -15,6 +21,7 @@ export const HomeStyle = styled.div`
         width: 100%;
         min-width:320px;
         min-height:550px;
+        
 
     }
     .home_text{
@@ -115,8 +122,8 @@ export const HomeStyle = styled.div`
             display:none
         }
         .home_container_items{
-            padding:20px;
-            
+            padding:10px;
+            justify-content:center;
         }
         
       
@@ -140,9 +147,16 @@ export const HomeStyle = styled.div`
         }
         .home_cards{
             width:100%;
-           
+            display:flex;
+            flex-wrap:nowrap;
+            justify-content:center;
+            overflow-x:scroll;
 
         
         }
+        .home_cards::-webkit-scrollbar{
+            display:none;
+        }
+        
     }
 `

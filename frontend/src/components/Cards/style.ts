@@ -6,6 +6,7 @@ export const CardStyle = styled.div`
     flex-wrap: wrap;
     gap: 50px;
     min-width:320px;
+    
   }
   .list_cards_img img {
     min-width: 320px;
@@ -90,6 +91,7 @@ export const CardStyle = styled.div`
         overflow-x: scroll;
         width:100%;
         gap:30px;
+        align-items:center;
 
     }
     .container_list_cards::-webkit-scrollbar{
@@ -99,12 +101,17 @@ export const CardStyle = styled.div`
     }
    
   
-    .list_cards {
-    
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+   
 
+    .list_cards_img img {
+    min-width: 260px;
+    max-width: 260px;
+   
+  }
+  .list_cards {
+    min-width: 260px;
+    max-width: 260px;
+   
+  }
   }
 `;
