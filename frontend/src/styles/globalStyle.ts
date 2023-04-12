@@ -266,16 +266,36 @@ export const GlobalStyle = createGlobalStyle`
 .grey0-btn {
     background: var(--grey0);
     border-radius: 4px;
+    border: none;
+    color: #FFFFFF;
 }
 
 .grey1-btn {
     background: var(--grey1);
     border-radius: 4px;
+    border: none;
+    color: #FFFFFF;
+}
+
+.grey5-btn {
+    background: var(--grey5);
+    border-radius: 4px;
+    border: none;
+    color: var(--grey2)
 }
 
 .grey6-btn {
-    background: var(--grey1);
+    background: var(--grey6);
     border-radius: 4px;
+    border: none;
+    color: var(--grey2)
+}
+
+.brand1-btn {
+    background: var(--brand1);
+    border-radius: 4px;
+    border: none;
+    color: #FFFFFF;
 }
 
 button{

@@ -4,8 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GlobalStyle } from './styles/globalStyle';
+
 import { BrowserRouter } from 'react-router-dom';
 import { HomeProvider } from './contexts/homeContexts';
+
+
 
 
 const root = ReactDOM.createRoot(
@@ -13,13 +16,15 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <HomeProvider>
+
 
       <BrowserRouter>
+        <HomeProvider>
         <GlobalStyle/>
           <App />
+        </HomeProvider>
       </BrowserRouter>
-    </HomeProvider>
+
   </React.StrictMode>
 );
 
