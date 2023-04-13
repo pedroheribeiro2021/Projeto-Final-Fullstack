@@ -135,7 +135,7 @@ export const HomeStyle = styled.div`
             min-width:320px;
         }
        
-        .filter_mobile button{
+        #filter{
             width:279px;
             height:48px;
             font-weight: 600;

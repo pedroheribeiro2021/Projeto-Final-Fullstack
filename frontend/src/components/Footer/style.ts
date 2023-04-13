@@ -10,6 +10,7 @@ export const FooterStyle = styled.footer`
     align-items: center;
     width:100%;
     min-width:320px;
+    z-index:2;
     button{
         width: 53px;
         height: 50px;
@@ -19,8 +20,16 @@ export const FooterStyle = styled.footer`
         font-weight: 900;
         font-size: 16px;
         color: var(--whiteFixed);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+    button:hover{
+        background-color: var(--grey2);
+        transition:0.5s;
     }
     @media(max-width:768px){
+       
         flex-direction:column;
         gap:30px;
         text-align:center;
