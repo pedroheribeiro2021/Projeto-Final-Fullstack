@@ -1,9 +1,22 @@
-import styled from "styled-components";
+import styled,{  keyframes} from "styled-components";
+
+
+
+
+const slideInFromLeft = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
+
 
 
 export const FilterStyle  = styled.div<{openFilter:boolean}>`
     display:none;
-
+   
     @media(max-width:768px){
         display: ${({ openFilter }) => (openFilter? "flex" : "none")};
         width:100%;
@@ -16,15 +29,16 @@ export const FilterStyle  = styled.div<{openFilter:boolean}>`
         z-index:4;
         background-color: var(--whiteFixed);
         top:60px;
-    
-      
+        transform: translateX(-100);
+        animation: ${slideInFromLeft} 2s ease-in-out;
+
+       
+        
       
         .home_filter_mobile{
             display:flex;
             flex-direction:column;
             gap:10px;
-           
-            
            
         }
         .home_filter_mobile ul{
@@ -46,6 +60,7 @@ export const FilterStyle  = styled.div<{openFilter:boolean}>`
             display:flex;
             flex-direction: column;
             gap: 10px;
+           
         }
     
         .aditional_filters_button_mobile{
@@ -65,6 +80,8 @@ export const FilterStyle  = styled.div<{openFilter:boolean}>`
         .home_filter_close{
             display:flex;
             justify-content:space-between;
+          
+            
         }
         .home_filter_close p{
             font-weight: 500;
@@ -88,6 +105,8 @@ export const FilterStyle  = styled.div<{openFilter:boolean}>`
             background-color: var(--brand2);
             border: transparent;
             border-radius: 4px;
+          
+           
         }
     }
 `

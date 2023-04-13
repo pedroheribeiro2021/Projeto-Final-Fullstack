@@ -2,6 +2,8 @@ import styled from "styled-components";
 import car from "../../assets/carro.svg"
 import carm from "../../assets/carrmobile.svg"
 
+
+
 export const HomeStyle = styled.div`
     width: 100%;
     min-width:320px;
@@ -124,6 +126,7 @@ export const HomeStyle = styled.div`
         .home_container_items{
             padding:10px;
             justify-content:center;
+           
         }
         
       
@@ -133,6 +136,7 @@ export const HomeStyle = styled.div`
             justify-content:center;
             margin: 30px auto;
             min-width:320px;
+           
         }
        
         #filter{

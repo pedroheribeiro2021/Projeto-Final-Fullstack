@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const MenuStyle = styled.div<{ isOpen: boolean }>`
   .menu_mobile {
     display: none;
