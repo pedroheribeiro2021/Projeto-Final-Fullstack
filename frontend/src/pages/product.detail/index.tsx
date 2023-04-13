@@ -5,23 +5,27 @@ import user1 from "../../assets/user1.svg"
 import user2 from "../../assets/user2.svg"
 import ellipse from "../../assets/Ellipse 3.svg"
 import { Footer } from "../../components/Footer"
-import { ProductDetailStyle } from "./style"
+import { FirstBackGround, ProductDetailStyle } from "./style"
 
 
 export const ProductDetail = () => {
     return(
         <>
             <Header/>
+            {/* <FirstBackGround> */}
             <ProductDetailStyle>
                 <div className="vehicle-apresentation">
-                    <img src={car} alt="" />
+                    <img className="princialp-image" src={car} alt="" />
                     <div className="vehicle-detail">
                         <h3 className="heading-6-600">
                         Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200
                         </h3>
-                        <span>2013</span>
-                        <span>0 KM</span>
-                        <span>R$ 00.000,00</span>
+                        <div>
+                            <span>2013</span>
+                            <span>0 KM</span>
+                            <p className="heading-7-500">R$ 00.000,00</p>
+                        </div>
+                        <button className="brand1-btn">Comprar</button>
                     </div>
                     <div className="vehicle-description">
                         <h3 className="heading-6-600">
@@ -78,7 +82,7 @@ export const ProductDetail = () => {
                         </ul>
                     </div>
                     <div className="coment-area">
-                        <div>
+                        <div className="user-coment-header">
                             <img src={user} alt="" />
                             <span className="body-2-500">
                                 Samuel Leão
@@ -107,13 +111,14 @@ export const ProductDetail = () => {
                         </div>
                     </div>
                     <div className="seller-card">
-                    <img src={user} alt="" />
-                    <h3 className="heading-6-600">Samuel Leão</h3>
-                    <p className="body-1-400">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
-                    <button className="grey0-btn">Ver todos os anúncios</button>
+                        <img src={user} alt="" />
+                        <h3 className="heading-6-600">Samuel Leão</h3>
+                        <p className="body-1-400">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                        <button className="grey0-btn">Ver todos os anúncios</button>
                     </div>
                 </aside>
             </ProductDetailStyle>
+            {/* </FirstBackGround> */}
             <Footer/>
         </>
     )
