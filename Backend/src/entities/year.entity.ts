@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Announcement } from "./announcement.entity";
 
 
@@ -11,6 +11,6 @@ export class Year {
     @Column({ length: 4 })
     year: string
 
-    @ManyToOne(() => Announcement, announcement => announcement.years)
-    announcement: Announcement
+    @OneToMany(() => Announcement, announcement => announcement.year)
+    announcements: Announcement
 }

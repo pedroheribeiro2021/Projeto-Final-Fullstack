@@ -51,7 +51,7 @@ export class User {
     @JoinColumn()
     address: Address
 
-    @OneToMany(() => Announcement, announcement => announcement.user)
+    @OneToMany(() => Announcement, announcement => announcement.user.id)
     announcements: Announcement[]
 
     @OneToMany(() => Comment, comments => comments.user)

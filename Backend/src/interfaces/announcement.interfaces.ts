@@ -1,36 +1,37 @@
+import { User } from "../entities/user.entity";
 
-interface IAnnouncementRequest {
-    user_id: string;
-    brand_id: string;
-    model_id: string;
-    year_id: string;
-    fuel_id: string;
+export interface IAnnouncementRequest {
+    brand: string;
+    model: string;
+    year: string;
+    fuel: string;
     mileage: number;
     color: string;
     FIPE_priceTable: number;
     price: number;
 };
-interface IAnnouncement{
+export interface IAnnouncement{
     id: string;
-    user_id: string;
-    brand_id: string;
-    model_id: string;
-    year_id: string;
-    fuel_id: string;
+    user: User;
+    brand: string;
+    model: string;
+    year: string;
+    fuel: string;
     mileage: number;
     color: string;
     FIPE_priceTable: number;
     isSuperBuy: boolean;
+    isActive: boolean;
+    price: number;
     createdAt: string;
-    
     comments: ICommentList;
     images: IImageList;
-    brands: IBrandList;
-    models: IModelList;
-    year: IYearList;
-    fuels: IFuelList;
-}
 
+    // brand: IBrandList;
+    // model: IModelList;
+    // year: IYearList;
+    // fuel: IFuelList;
+}
 interface IComment {
     id: string;
     user_id: string;
@@ -38,37 +39,34 @@ interface IComment {
     created_at: Date;
     announcement_id: string;
 };
-interface ICommentList extends Array<IComment>{};
-
 interface IImage {
     id: string;
     announcement_id: string;
     imageUrl: string;
     isCoverImage: boolean;
 };
-interface IImageList extends Array<IImage>{};
-
 interface IBrand {
     id: string;
     brand: string;
+    announcements: IAnnouncement;
 };
-interface IBrandList extends Array<IBrand>{};
-
 interface IModel {
     id: string;
     model: string;
-
+    
 };
-interface IModelList extends Array<IModel>{};
-
 interface IYear {
     id: string;
     year: string;
 };
-interface IYearList extends Array<IYear>{};
-
 interface IFuel {
     id: string;
     fuel: string;
 };
+interface ICommentList extends Array<IComment>{};
+interface IImageList extends Array<IImage>{};
+interface IBrandList extends Array<IBrand>{};
+interface IModelList extends Array<IModel>{};
+interface IYearList extends Array<IYear>{};
 interface IFuelList extends Array<IFuel>{};
+
