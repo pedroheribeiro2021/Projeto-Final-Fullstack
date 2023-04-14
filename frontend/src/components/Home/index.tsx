@@ -1,14 +1,21 @@
+
+
+import { useContextFunction } from "../../contexts/homeContexts"
 import { Cards } from "../Cards"
+import { Filter } from "../Filter Mobile"
 import { Footer } from "../Footer"
 import { Header } from "../Header"
 import { HomeStyle } from "./style"
 
 
+
 export const Home = ()=>{
+    const {setOpenFilter}=useContextFunction()
+
     return(
         <>
             <Header/>
-            <HomeStyle>
+            <HomeStyle >
                 <div className="home_intro">
                     <div className="home_text">
                         <h2> Motors Shop</h2>
@@ -99,12 +106,13 @@ export const Home = ()=>{
                     </div>
                 </div>
                 <div className="filter_mobile">
-                    <button>Filtros</button>
+                    <button onClick={()=>setOpenFilter(true)} id="filter">Filtros</button>
                 </div>
                 <div className="next_page">
                     <p>1 de 2</p>
                     <button> Seguinte  </button>
                 </div>
+                <Filter />
                 <Footer/>
             </HomeStyle>
         </>

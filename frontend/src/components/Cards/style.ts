@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
+
+
+
+
 export const CardStyle = styled.div`
   .container_list_cards {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
     min-width:320px;
+   
     
   }
   .list_cards_img img {
