@@ -9,7 +9,7 @@ import { Fuel } from "./fuel.emtity";
 
 
 
-@Entity('announcements')
+@Entity('announcement')
 export class Announcement {
 
     @PrimaryGeneratedColumn('uuid')
@@ -27,7 +27,7 @@ export class Announcement {
     @Column()
     price: number
 
-    @Column()
+    @Column({default:true})
     isActive: boolean
 
     @Column()
@@ -40,20 +40,20 @@ export class Announcement {
     user: User
 
     @OneToMany(() => Comment, comment => comment.announcement)
-    comments: Comment[]
+    comments: Comment
 
     @OneToMany(() => Image, image => image.announcement)
-    images: Image[]
+    images: Image
 
-    @OneToMany(() => Brand, brand => brand.announcement)
-    brands: Brand[]
+    @ManyToOne(() => Brand, brand => brand.announcements.id)
+    brand: Brand
 
-    @OneToMany(() => Model, model => model.announcement)
-    models: Model[]
+    @ManyToOne(() => Model, model => model.announcements.id)
+    model: Model
 
-    @OneToMany(() => Year, year => year.announcement)
-    years: Year[]
+    @ManyToOne(() => Year, year => year.announcements.id)
+    year: Year
 
-    @OneToMany(() => Fuel, fuel => fuel.announcement)
-    fuels: Fuel[]
+    @ManyToOne(() => Fuel, fuel => fuel.announcements.id)
+    fuel: Fuel
 }

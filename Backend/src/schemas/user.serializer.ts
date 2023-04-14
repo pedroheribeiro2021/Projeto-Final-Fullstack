@@ -28,14 +28,14 @@ export const userWithoutPasswordSerializer: SchemaOf<IUser> = yup.object().shape
     id: yup.string().required(),
 })
 
-export const updateUserSerializer: SchemaOf<IUserUpdate> = yup.object().shape({
-    name: yup.string().notRequired(),
-    email: yup.string().email().notRequired(),
-    password: yup.string().notRequired(),
-    cpf: yup.string().notRequired(),
-    cellPhone: yup.string().notRequired(),
-    birthday: yup.string().notRequired(),
-    description: yup.string().notRequired(),
-    is_advertiser: yup.boolean().notRequired(),
-    address: yup.object(),
-})
+// export const updateUserSerializer: SchemaOf<IUserUpdate> = yup.object().shape({
+//     name: yup.string().notRequired(),
+//     email: yup.string().email().notRequired(),
+//     password: yup.string().notRequired(),
+//     cpf: yup.string().notRequired(),
+//     cellPhone: yup.string().notRequired(),
+//     birthday: yup.string().notRequired(),
+//     description: yup.string().notRequired(),
+//     is_advertiser: yup.boolean().notRequired(),
+//     address: yup.object(),
+// })
