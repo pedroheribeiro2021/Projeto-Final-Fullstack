@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const MenuStyle = styled.div<{ isOpen: boolean }>`
   .menu_mobile {
     display: none;
@@ -19,16 +18,14 @@ export const MenuStyle = styled.div<{ isOpen: boolean }>`
       border: transparent;
       font-size: 30px;
       display: flex;
-      z-index:5;
-    
+      z-index: 5;
     }
 
     .menu_items {
       display: flex;
       flex-direction: column;
       display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
-      z-index:5;
-      
+      z-index: 5;
     }
     .button_items {
       background-color: var(--whiteFixed);
