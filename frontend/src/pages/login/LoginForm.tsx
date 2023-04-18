@@ -6,10 +6,14 @@ import { sessionUser } from "../../services/api";
 import { ILoginData } from "../../types/login/loginInterface";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
 
+    const handleRegisterNavigate = () => {
+        navigate('/register');
+      };
 
     const minHeight = `calc(100vh - 60px)`;
     
@@ -36,7 +40,7 @@ const Login = () => {
                 <SubmitButton type="submit">Entrar</SubmitButton>
                 <div>
                     <span>Ainda não possui conta?</span>
-                    <SignupButton>Cadastrar</SignupButton>
+                    <SignupButton onClick={handleRegisterNavigate}>Cadastrar</SignupButton>
                 </div>
             </FormContainer>
         </>
