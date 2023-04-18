@@ -63,5 +63,6 @@ export const HeaderStyle = styled.header`
     #register {
       display: none;
     }
+    
   }
 `;

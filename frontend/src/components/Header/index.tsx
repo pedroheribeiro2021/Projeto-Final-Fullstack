@@ -18,13 +18,14 @@ export const Header = () => {
           <div className="header_button">
 
           <Link to="/login"
+          id="login"
           className="login"
-          
         >
           Fazer login
         </Link>
         <Link
           to="/register"
+          id="register"
           className="register"
         >
           Cadastrar
