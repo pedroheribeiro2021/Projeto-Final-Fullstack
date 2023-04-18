@@ -16,6 +16,10 @@ export const Header = () => {
     navigate('/login');
   };
 
+  const handleRegisterNavigate = () => {
+    navigate('/register');
+  };
+
   const handleLoginMouse = () => {
     if(loginHovered)setLoginHovered(false);
     else setLoginHovered(true);
@@ -49,6 +53,7 @@ export const Header = () => {
           onMouseEnter={handleRegisterMouse}
           onMouseLeave={handleRegisterMouse}
           className='register'
+          onClick={handleRegisterNavigate}
         >
           Cadastrar
         </button>
