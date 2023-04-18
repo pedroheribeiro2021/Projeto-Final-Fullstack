@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-between;
@@ -20,7 +21,7 @@ export const HeaderStyle = styled.header`
     justify-content: center;
   }
 
-  #login {
+  .login {
     padding: 12px 28px;
     color: var(--grey0);
     font-size: 16px;
@@ -28,7 +29,12 @@ export const HeaderStyle = styled.header`
     border: 1.5px solid var(--grey4);
     background-color: transparent;
   }
-  #register {
+  .login:hover {
+    border: 1.5px solid transparent;
+    color: var(--brand1);
+  }
+
+  .register {
     padding: 12px 28px;
     color: var(--grey0);
     font-size: 16px;
@@ -36,16 +42,20 @@ export const HeaderStyle = styled.header`
     border: 1.5px solid var(--grey4);
     background-color: transparent;
   }
-  #login:hover {
+  
+  .register:hover {
     border: 1.5px solid transparent;
     color: var(--brand1);
   }
 
-  #register:hover {
+  #active {
+    padding: 12px 28px;
+    font-size: 16px;
     border: 1.5px solid transparent;
+    background-color: transparent;
     color: var(--brand1);
   }
-
+  
   @media (max-width: 768px) {
     #login {
       display: none;
