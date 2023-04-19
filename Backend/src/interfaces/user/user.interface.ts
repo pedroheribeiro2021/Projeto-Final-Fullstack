@@ -1,4 +1,5 @@
 import { Maybe } from "yup/lib/types"
+import { IAddressRequest } from "../address/address.interface"
 
 export interface IUserRequest {
     name: string
@@ -9,14 +10,7 @@ export interface IUserRequest {
     birthday: string
     description: string
     is_advertiser: boolean
-    address: {
-        cep: string
-        state: string
-        city: string
-        street: string
-        number: string
-        complement: string
-    }
+    address: IAddressRequest
 }
 
 export interface IUser {
@@ -28,14 +22,6 @@ export interface IUser {
     birthday: string
     description: string
     is_advertiser: boolean
-    address: {
-        cep: string
-        state: string
-        city: string
-        street: string
-        number: string
-        complement: string
-    }
     createdAt: Date
     updatedAt: Date
 }
@@ -49,14 +35,6 @@ export interface IUserUpdate {
     birthday?: Maybe<string | undefined>
     description?: Maybe<string | undefined>
     is_advertiser?: Maybe<boolean | undefined>
-    address?: {
-        cep: string
-        state: string
-        city: string
-        street: string
-        number: string
-        complement: string
-    }
 }
 
 export interface IUserLogin {
