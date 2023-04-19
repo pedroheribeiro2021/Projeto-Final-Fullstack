@@ -28,6 +28,7 @@ export const HeaderStyle = styled.header`
     border-radius: 4px;
     border: 1.5px solid var(--grey4);
     background-color: transparent;
+   
   }
   .login:hover {
     border: 1.5px solid transparent;
@@ -41,6 +42,8 @@ export const HeaderStyle = styled.header`
     border-radius: 4px;
     border: 1.5px solid var(--grey4);
     background-color: transparent;
+
+   
   }
   
   .register:hover {
@@ -57,11 +60,12 @@ export const HeaderStyle = styled.header`
   }
   
   @media (max-width: 768px) {
-    #login {
+    .login {
       display: none;
     }
-    #register {
+    .register {
       display: none;
     }
+    
   }
 `;
