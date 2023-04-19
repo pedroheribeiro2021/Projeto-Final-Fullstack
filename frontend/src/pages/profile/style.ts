@@ -89,8 +89,12 @@ export const ProfileStyle = styled.div`
         
     }
 
+    @media(max-width:1100px){
+        background: linear-gradient(to bottom, var(--brand1) 10%, var(--grey8) 10%);
+    }
 
     @media(max-width:768px){
+    
       .container_list_cards{
         padding:10px;
       }
@@ -101,4 +105,5 @@ export const ProfileStyle = styled.div`
         margin-bottom:100px;
       }
     }
+
 `
