@@ -10,5 +10,5 @@ import { ensureAuthMiddleware } from "../middlewares/user.middlewares/ensureAuth
 export const announcementRoutes = Router();
 
 announcementRoutes.get("", listAnnouncementController);
-announcementRoutes.delete("", deleteAnnouncementController);
-announcementRoutes.post("", ensureAuthMiddleware, ensureDataIsValidMiddleware(annoucementSerializer), createAnnouncementController);
+announcementRoutes.delete("/:id", deleteAnnouncementController);
+announcementRoutes.post("", ensureAuthMiddleware, createAnnouncementController);
