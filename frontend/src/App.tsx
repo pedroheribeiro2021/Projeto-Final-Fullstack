@@ -4,6 +4,7 @@ import './App.css';
 import {Home} from './components/Home';
 import {ProductDetail} from './pages/product.detail/index';
 import Login from './pages/login/LoginForm';
+import { Profile } from './pages/profile';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route  path="/home" element={<Home/>}/>
         <Route path='/register' element={<h1>REGISTRO</h1>}/>
         <Route path="/product-detail" element={ <ProductDetail/>} />
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
 
   </main>
