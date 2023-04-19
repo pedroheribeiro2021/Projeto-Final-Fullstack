@@ -60,10 +60,10 @@ export const HeaderStyle = styled.header`
   }
   
   @media (max-width: 768px) {
-    #login {
+    .login {
       display: none;
     }
-    #register {
+    .register {
       display: none;
     }
     
