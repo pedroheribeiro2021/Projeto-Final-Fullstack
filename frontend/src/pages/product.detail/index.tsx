@@ -10,7 +10,7 @@ import { ProductDetailStyle } from "./style";
 export const ProductDetail = () => {
   return (
     <>
-      {/* <FirstBackGround> */}
+    
       <Header />
       <ProductDetailStyle>
         <div className="container_items">
@@ -158,7 +158,7 @@ export const ProductDetail = () => {
         </div>
         <Footer />
       </ProductDetailStyle>
-      {/* </FirstBackGround> */}
+   
     </>
   );
 };

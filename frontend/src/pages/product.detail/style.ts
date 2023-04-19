@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-export const FirstBackGround = styled.div`
-
-    background-color: var(--brand1);
-    position: absolute;
-    top: 0px;
-    /* left: 0; */
-    width: 100%;
-    height: 50%;
-
-`
 
 export const ProductDetailStyle = styled.section`
 
@@ -56,8 +46,10 @@ export const ProductDetailStyle = styled.section`
             width:100%;
             object-fit:scale-down;
             height:100%;
-            
+           
         }
+
+     
     }
 
     .vehicle-detail{
@@ -106,7 +98,7 @@ export const ProductDetailStyle = styled.section`
         display:flex;
         justify-content:space-between;
         width:100%;
-       
+        align-items:center;
     }
 
     .vehicle_detail_text_span{
