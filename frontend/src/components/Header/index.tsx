@@ -1,12 +1,34 @@
+
+import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/Logo.svg";
 import { Menu } from "../Menu Mobile";
 import { HeaderStyle } from "./style";
-
-import { Link } from "react-router-dom";
+import { useState } from "react";
 
 
 export const Header = () => {
+  const [loginHovered, setLoginHovered] = useState(false);
+  const [registerHovered, setRegisterHovered] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  const handleLoginNavigate = () => {
+    navigate('/login');
+  };
+
+  const handleRegisterNavigate = () => {
+    navigate('/register');
+  };
+
+  const handleLoginMouse = () => {
+    if(loginHovered)setLoginHovered(false);
+    else setLoginHovered(true);
+  };
+
+  const handleRegisterMouse = () => {
+    if(registerHovered)setRegisterHovered(false);
+    else setRegisterHovered(true);
+  };
 
   return (
     <>
@@ -17,23 +39,27 @@ export const Header = () => {
           </div>
           <div className="header_button">
 
-          <Link to="/login"
-          id="login"
+          <button
           className="login"
+          onMouseEnter={handleLoginMouse}
+          onMouseLeave={handleLoginMouse}
+          id={location.pathname === "/login" ? "active" : ""}
+          onClick={handleLoginNavigate}
         >
           Fazer login
-        </Link>
-        <Link
-          to="/register"
-          id="register"
-          className="register"
+        </button>
+        <button
+          id={location.pathname === "/cadastro" ? "active" : ""}
+          onMouseEnter={handleRegisterMouse}
+          onMouseLeave={handleRegisterMouse}
+          className='register'
+          onClick={handleRegisterNavigate}
         >
           Cadastrar
-        </Link>
+        </button>
         <Menu/>
           </div>
       
-
       </HeaderStyle>
     </>
   );
