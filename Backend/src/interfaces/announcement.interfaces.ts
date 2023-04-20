@@ -1,14 +1,17 @@
 import { User } from "../entities/user.entity";
 
 export interface IAnnouncementRequest {
-    brand: string;
-    model: string;
-    year: string;
-    fuel: string;
-    mileage: number;
-    color: string;
-    FIPE_priceTable: number;
-    price: number;
+    annoucementData: {
+        brand: string;
+        model: string;
+        year: string;
+        fuel: string;
+        mileage: number;
+        color: string;
+        FIPE_priceTable: number;
+        price: number;
+    }
+    userId: string
 };
 export interface IAnnouncement{
     id: string;
