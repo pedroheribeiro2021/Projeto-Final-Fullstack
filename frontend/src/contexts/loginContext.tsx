@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ILoginData } from '../types/login/loginInterface';
-import { sessionUser } from '../services/api';
+import { SessionUser } from '../services/user/userApi';
 
 type FormValues = {
   username: string;
@@ -31,7 +31,7 @@ const LoginProvider = ({ children }: ILogin) => {
 
   const { register, handleSubmit } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<ILoginData> = (data:any) => sessionUser(data);
+  const onSubmit: SubmitHandler<ILoginData> = (data:any) => SessionUser(data);
 
   return <LoginContext.Provider value={{ onSubmit, handleRegisterNavigate, register, handleSubmit }}>{children}</LoginContext.Provider>;
 };

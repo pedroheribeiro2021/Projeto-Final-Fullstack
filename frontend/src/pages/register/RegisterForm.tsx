@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import {Form, ErrorMessage, Input, InputContainer, Label, SectionTitle, Title, SectionContainer, ContainerButton, BoxTypeAccount} from "./style";
 import { Header } from "../../components/Header";
 import {} from "../../styles/globalStyle";
-import { createUser } from "../../services/api";
+import { createUser } from "../../services/user/userApi";
 import { UserRequest } from "../../types/register/registerInterface";
 import { schemaRegisterForm } from "../../schema/userRegister/schema";
 import * as yup from 'yup';
