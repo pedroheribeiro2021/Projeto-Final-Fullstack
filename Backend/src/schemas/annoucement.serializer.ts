@@ -1,9 +1,15 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { IAnnouncement, IAnnouncementRequest } from "../interfaces/announcement.interfaces";
+import { IAnnouncement, IAnnouncementRequest } from "../interfaces/annoucement/announcement.interfaces";
+import { userSerializer } from "./user.serializer";
 
 export const annoucementSerializer: SchemaOf<any> = yup.object().shape({
-    user_id: yup.string().required(),
+    mileage: yup.number().required(),
+    color: yup.string().required(),
+    FIPE_priceTable: yup.number().required(),
+    price: yup.number().required(),
+    isActive: yup.boolean().notRequired(),
+    isSuperBuy: yup.boolean().required(),
     brand: yup.string().required() || yup.object().shape({
         brand: yup.string().required()
     }),
@@ -22,23 +28,20 @@ export const annoucementSerializer: SchemaOf<any> = yup.object().shape({
         fuel: yup.string(),
         announcement: yup.string()
     }),
-    mileage: yup.number().required(),
-    color: yup.string().required(),
-    FIPE_priceTable: yup.number().required(),
-    price: yup.number().required()
 });
 
-export const annoucementWhiteoutSerializer: SchemaOf<any> = yup.object().shape({
+export const annoucementRespSerializer: SchemaOf<any> = yup.object().shape({
     id: yup.string().required(),
-    user_id: yup.string(),
-    brand: yup.object(),
-    model: yup.object(),
-    year: yup.object(),
-    fuel: yup.object(),
     mileage: yup.number().required(),
     color: yup.string().required(),
     FIPE_priceTable: yup.number().required(),
     isSuperBuy: yup.boolean().required(),
-    createdAt: yup.string().required()
-}); 
-
+    isActive: yup.boolean().required(),
+    price: yup.number().required(),
+    createdAt: yup.date().required(),
+    user: yup.object(),
+    brand: yup.object(),
+    model: yup.object(),
+    year: yup.object(),
+    fuel: yup.object(),
+}).nullable();

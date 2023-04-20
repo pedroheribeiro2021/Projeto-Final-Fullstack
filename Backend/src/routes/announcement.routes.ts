@@ -11,4 +11,4 @@ export const announcementRoutes = Router();
 
 announcementRoutes.get("", listAnnouncementController);
 announcementRoutes.delete("/:id", deleteAnnouncementController);
-announcementRoutes.post("", ensureAuthMiddleware, createAnnouncementController);
+announcementRoutes.post("", ensureAuthMiddleware, ensureDataIsValidMiddleware(annoucementSerializer), createAnnouncementController);
