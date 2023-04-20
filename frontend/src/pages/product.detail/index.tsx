@@ -5,7 +5,7 @@ import user1 from "../../assets/user1.svg"
 import user2 from "../../assets/user2.svg"
 import ellipse from "../../assets/Ellipse 3.svg"
 import { Footer } from "../../components/Footer"
-import { FirstBackGround, ProductDetailStyle } from "./style"
+import { ProductDetailStyle } from "./style"
 
 
 export const ProductDetail = () => {

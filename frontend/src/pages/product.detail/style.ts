@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FirstBackGround = styled.div`
 
-    background-color: var(--brand1);
+    background-color: var(--whiteFixed);
     position: absolute;
     top: 0px;
     /* left: 0; */

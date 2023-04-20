@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GlobalStyle } from './styles/globalStyle';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter } from 'react-router-dom';
 import { HomeProvider } from './contexts/homeContexts';
 
@@ -20,6 +21,7 @@ root.render(
 
       <BrowserRouter>
         <HomeProvider>
+        <ToastContainer/>
         <GlobalStyle/>
           <App />
         </HomeProvider>
