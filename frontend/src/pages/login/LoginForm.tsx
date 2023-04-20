@@ -1,31 +1,20 @@
 import { Header } from "../../components/Header";
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { FormContainer, InputContainer, SubmitButton, ForgotPassword, SignupButton } from "./style";
-import { sessionUser } from "../../services/api";
-import { ILoginData } from "../../types/login/loginInterface";
+import { ContainerMain, FormContainer, InputContainer, SubmitButton, ForgotPassword, SignupButton, Title, BoxButtonSubmit, BoxButtonCadastro } from "./style";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router-dom";
+import { Footer } from "../../components/Footer";
+import { useLogin } from "../../contexts/loginContext";
 
 const Login = () => {
-    const navigate = useNavigate();
-
-    const handleRegisterNavigate = () => {
-        navigate('/register');
-      };
-
-    const minHeight = `calc(100vh - 60px)`;
-    
-    const { register, handleSubmit } = useForm<ILoginData>();
-    
-    const onSubmit:SubmitHandler<ILoginData> = data => sessionUser(data);
+    const {handleRegisterNavigate, onSubmit, register,handleSubmit} = useLogin();
 
     return(
-        <>
+        <ContainerMain>
             <ToastContainer/>
             <Header/>
 
-            <FormContainer onSubmit={handleSubmit(onSubmit)} minHeight={minHeight}>
+            <FormContainer onSubmit={handleSubmit(onSubmit)} >
+                <Title>Login</Title>
                 <InputContainer>
                     <label htmlFor="username">Usuário:</label>
                     <input type="text" {...register("username")} />
@@ -35,13 +24,16 @@ const Login = () => {
                     <input type="password" {...register("password")} />
                     <ForgotPassword>Esqueci minha senha</ForgotPassword>
                 </InputContainer>
-                <SubmitButton type="submit">Entrar</SubmitButton>
-                <div>
+                <BoxButtonSubmit>
+                    <SubmitButton type="submit">Entrar</SubmitButton>
+                </BoxButtonSubmit>
+                <BoxButtonCadastro>
                     <span>Ainda não possui conta?</span>
                     <SignupButton onClick={handleRegisterNavigate}>Cadastrar</SignupButton>
-                </div>
+                </BoxButtonCadastro>
             </FormContainer>
-        </>
+            <Footer/>
+        </ContainerMain>
     );
 };
 export default Login;
