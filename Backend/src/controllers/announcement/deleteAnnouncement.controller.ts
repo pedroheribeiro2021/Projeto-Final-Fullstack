@@ -6,6 +6,6 @@ export const deleteAnnouncementController = async (
   res: Response
 ) => {
   const id: string = req.params.id;
-  const deleteAnnoucenment = deleteAnnouncementService(id);
-  return res.status(200);
+  await deleteAnnouncementService(id);
+  return res.status(204).send();
 };

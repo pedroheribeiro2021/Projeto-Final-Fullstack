@@ -158,9 +158,13 @@ export const HomeStyle = styled.div`
 
         
         }
+      
         .home_cards::-webkit-scrollbar{
-            display:none;
+            width:2px;
         }
-        
+        .home_cards::-webkit-scrollbar-thumb{
+            background-color:var(--random6);
+            border-radius:4px;
+        }
     }
 `
