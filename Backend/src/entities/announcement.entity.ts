@@ -47,7 +47,7 @@ export class Announcement {
   comments: Comment;
 
   @OneToMany(() => Image, (image) => image.announcement)
-  images: Image;
+  images: Image[];
 
   @ManyToOne(() => Brand, (brand) => brand.announcements.id)
   brand: Brand;

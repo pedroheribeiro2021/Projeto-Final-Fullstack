@@ -10,7 +10,14 @@ import { Image } from "../../entities/image.entity";
 import { User } from "../../entities/user.entity";
 import { IAnnouncementRequest } from "../../interfaces/announcement.interfaces";
 import { annoucementReturnedSerializer } from "../../schemas/annoucement.serializer";
+import { Console } from "console";
 // import { annoucementWhiteoutSerializer } from "../../schemas/annoucement.serializer";
+
+interface IImage {
+    id: string
+    imageUrl: string
+    isCoverImage: boolean
+}
 
 export const createAnnouncementService = async ({
   announcementData,
@@ -128,11 +135,6 @@ export const createAnnouncementService = async ({
     superBuy = true;
   }
 
-  const images = announcementData.images.map(async (el: any) => {
-    let image = imageRepository.create(el);
-    await imageRepository.save(image);
-  });
-
   const annoucement = announcementRepository.create({
     mileage: announcementData.mileage,
     color: announcementData.color,
@@ -144,17 +146,15 @@ export const createAnnouncementService = async ({
     model: model,
     year: year,
     fuel: fuel,
-    images: images,
   });
+
   await announcementRepository.save(annoucement);
 
-  // const annoucementReturned = await annoucementReturnedSerializer.validate(
-  //   annoucement,
-  //   {
-  //     stripUnknown: true,
-  //   }
-  // );
+    announcementData.images.map(async (el: IImage) => {
+        let image = imageRepository.create(el);
+        image.announcement = annoucement
+        await imageRepository.save(image);
+      })
 
-  // console.log(annoucementReturned);
   return annoucement;
 };
