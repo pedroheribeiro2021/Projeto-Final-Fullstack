@@ -1,17 +1,11 @@
 import styled from "styled-components";
 
-
-
-
-
 export const CardStyle = styled.div`
   .container_list_cards {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
-    min-width:320px;
-   
-    
+    min-width: 320px;
   }
   .list_cards_img img {
     min-width: 320px;
@@ -90,33 +84,24 @@ export const CardStyle = styled.div`
     color: var(--grey1);
   }
   @media (max-width: 768px) {
-   
     .container_list_cards {
-        flex-wrap: nowrap;
-        overflow-x: scroll;
-        width:100%;
-        gap:30px;
-        align-items:center;
-
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      width: 100%;
+      gap: 30px;
+      align-items: center;
     }
-    .container_list_cards::-webkit-scrollbar{
-        display:none;
-      
-        
+    .container_list_cards::-webkit-scrollbar {
+      display: none;
     }
-   
-  
-   
 
     .list_cards_img img {
-    min-width: 260px;
-    max-width: 260px;
-   
-  }
-  .list_cards {
-    min-width: 260px;
-    max-width: 260px;
-   
-  }
+      min-width: 260px;
+      max-width: 260px;
+    }
+    .list_cards {
+      min-width: 260px;
+      max-width: 260px;
+    }
   }
 `;

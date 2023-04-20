@@ -1,20 +1,17 @@
-
 import { useContextFunction } from "../../contexts/homeContexts";
 import { FilterStyle } from "./style";
 import { IoClose } from "react-icons/io5";
 
-
 export const Filter = () => {
-  const {openFilter,setOpenFilter}=useContextFunction()
+  const { openFilter, setOpenFilter } = useContextFunction();
 
-    
   return (
     <>
-      <FilterStyle  openFilter={openFilter}>
+      <FilterStyle openFilter={openFilter}>
         <div className="home_filter_mobile">
           <div className="home_filter_close">
             <p>Filtro</p>
-            <button onClick={()=>setOpenFilter(false)}>
+            <button onClick={() => setOpenFilter(false)}>
               <IoClose />
             </button>
           </div>
@@ -91,10 +88,16 @@ export const Filter = () => {
               <button>Mínimo</button>
               <button>Máximo</button>
             </div>
-            
           </div>
 
-          <button id="ads" onClick={()=>setOpenFilter(false)}>Ver anúncios</button>
+          <button
+            id="ads"
+            onClick={() => {
+              setOpenFilter(false);
+            }}
+          >
+            Ver anúncios
+          </button>
         </div>
       </FilterStyle>
     </>
