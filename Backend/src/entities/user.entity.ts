@@ -29,7 +29,7 @@ export class User {
     @Column({ length: 12 })
     cellPhone: string
 
-    @Column({ length: 8 })
+    @Column({ length: 10 })
     birthday: string
 
     @Column({ length: 255, nullable: true })
