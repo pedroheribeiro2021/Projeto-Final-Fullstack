@@ -26,8 +26,9 @@ export const listUsersController = async (req: Request, res: Response) => {
 export const updateUserController = async (req: Request, res: Response) => {
 
     const userData: IUserUpdate = req.body
+    const addressData: IAddressRequest = req.body.address
     const id: string = req.params.id
-    const updateUser = await updateUserService(userData, id)
+    const updateUser = await updateUserService(userData, addressData, id)
     return res.status(200).json(updateUser)
 }
 
