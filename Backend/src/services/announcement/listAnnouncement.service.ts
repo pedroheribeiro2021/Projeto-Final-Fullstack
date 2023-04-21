@@ -6,13 +6,13 @@ export const listAnnouncementService = async () => {
 
   const announcement = await announcementRepository.find({
     relations: {
-      user: true,
-      brands: true,
-      models: true,
-      years: true,
-      fuels: true,
+      // user: true,
+      brand: true,
+      model: true,
+      year: true,
+      fuel: true,
       images: true,
-      comments: true,
+      // comments: true,
     },
   });
 
