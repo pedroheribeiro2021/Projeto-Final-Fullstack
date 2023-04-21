@@ -4,12 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GlobalStyle } from './styles/globalStyle';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter } from 'react-router-dom';
 import { HomeProvider } from './contexts/homeContexts';
-
-
-
+import { LoginProvider } from './contexts/loginContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,10 +18,13 @@ root.render(
 
 
       <BrowserRouter>
-        <HomeProvider>
-        <GlobalStyle/>
-          <App />
-        </HomeProvider>
+        <LoginProvider>
+          <HomeProvider>
+          <ToastContainer/>
+          <GlobalStyle/>
+            <App />
+          </HomeProvider>
+        </LoginProvider>
       </BrowserRouter>
 
   </React.StrictMode>

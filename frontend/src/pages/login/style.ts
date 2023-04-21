@@ -1,125 +1,26 @@
-// import styled from 'styled-components';
-
-// const FormWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   margin-top: 20px;
-
-//   @media (min-width: 768px) {
-//     width: 50%;
-//     margin: 20px auto;
-//   }
-// `;
-
-// const InputWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   width: 100%;
-//   margin-bottom: 20px;
-
-//   label {
-//     font-size: 16px;
-//     margin-bottom: 5px;
-//   }
-
-//   input {
-//     border: none;
-//     border-radius: 5px;
-//     padding: 10px;
-//     font-size: 16px;
-//     outline: none;
-//     background-color: #f2f2f2;
-//     width: 100%;
-
-//     &:focus {
-//       box-shadow: 0 0 2px 2px #ccc;
-//     }
-//   }
-// `;
-
-// const LinkWrapper = styled.div`
-//   margin-top: 10px;
-//   font-size: 14px;
-
-//   a {
-//     color: blue;
-//     text-decoration: none;
-//   }
-// `;
-
-// const ButtonWrapper = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin-top: 20px;
-
-//   button {
-//     background-color: blue;
-//     color: #fff;
-//     border: none;
-//     border-radius: 5px;
-//     padding: 10px 20px;
-//     font-size: 16px;
-//     cursor: pointer;
-//     transition: all 0.2s ease-in-out;
-
-//     &:hover {
-//       background-color: #fff;
-//       color: blue;
-//       border: 2px solid blue;
-//     }
-//   }
-// `;
-
-// const LoginWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-
-//   h1 {
-//     font-size: 24px;
-//     margin-bottom: 20px;
-//   }
-
-//   p {
-//     font-size: 14px;
-//     margin-top: 20px;
-//   }
-
-//   button {
-//     background-color: green;
-//     color: #fff;
-//     border: none;
-//     border-radius: 5px;
-//     padding: 10px 20px;
-//     font-size: 16px;
-//     cursor: pointer;
-//     transition: all 0.2s ease-in-out;
-
-//     &:hover {
-//       background-color: #fff;
-//       color: green;
-//       border: 2px solid green;
-//     }
-//   }
-
-//   @media (min-width: 768px) {
-//     width: 50%;
-//     margin: 20px auto;
-//   }
-// `;
-
 import styled from "styled-components";
 
-export const FormContainer = styled.form<{minHeight: string}>`
+export const ContainerMain = styled.main`
+  height: 100vh;
+  background-color: var(--grey7);
+  display: flex;
+  flex-direction: column;
+  gap: 4.7rem;
+`;
+
+export const FormContainer = styled.form`
+  width: 30vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  padding: 40px;
+  align-items: flex-start;
+  height: 100vh;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0px 40px 0px 40px;
   gap: 20px;
+  background-color: var(--grey10);
+  box-sizing: border-box;
 
   label {
     font-size: 18px;
@@ -157,16 +58,28 @@ export const FormContainer = styled.form<{minHeight: string}>`
   }
 
   @media (max-width: 768px) {
-    min-height: 100vh;
+    min-height: 80vh;
+    width: 90vw;
   }
   
 `;
 
+export const Title = styled.h1`
+  font-size: 18px;
+  margin-bottom: 16px;
+  text-align: center;
+`;
+
+export const BoxButtonSubmit = styled.div`
+  width: 100%;
+`;
+
 export const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: normal;
-  gap: 0.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    gap: 0.5rem;
 
   label {
     font-weight: bold;
@@ -190,35 +103,49 @@ export const InputContainer = styled.div`
 
 export const ForgotPassword = styled.span`
   font-size: 0.9rem;
-  color: #6c63ff;
+  color: black;
   text-align: right;
   cursor: pointer;
+
+  &:hover{
+    color: var(--brand1);
+  }
 `;
 
 export const SubmitButton = styled.button`
-  background-color: #6c63ff;
-  color: #fff;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
+    width: 100%;
+    background-color: rgb(108, 99, 255);
+    color: rgb(255, 255, 255);
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
 
   &:hover {
     background-color: #524dc2;
   }
 `;
 
+export const BoxButtonCadastro = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+`;
+
 export const SignupButton = styled.button`
-  background-color: transparent;
-  color: #6c63ff;
+  width: 100%;
+  background-color: var(--grey10);
+  color: black;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
-  border: none;
+  border: 1px solid var(--grey4);
+  border-radius: 0.5rem;
   cursor: pointer;
 
   &:hover {
-    text-decoration: underline;
+    background-color: var(--grey6);
   }
 `;
-
-// export { FormWrapper, InputWrapper, LinkWrapper, ButtonWrapper, LoginWrapper };

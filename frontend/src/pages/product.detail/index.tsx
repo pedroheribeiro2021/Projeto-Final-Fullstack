@@ -1,11 +1,11 @@
-import { Header } from "../../components/Header";
-import car from "../../assets/car-detail.svg";
-import user from "../../assets/user.svg";
-import user1 from "../../assets/user1.svg";
-import user2 from "../../assets/user2.svg";
-import ellipse from "../../assets/Ellipse 3.svg";
-import { Footer } from "../../components/Footer";
-import { ProductDetailStyle } from "./style";
+import { Header } from "../../components/Header"
+import car from "../../assets/car-detail.svg"
+import user from "../../assets/user.svg"
+import user1 from "../../assets/user1.svg"
+import user2 from "../../assets/user2.svg"
+import ellipse from "../../assets/Ellipse 3.svg"
+import { Footer } from "../../components/Footer"
+import { ProductDetailStyle } from "./style"
 
 export const ProductDetail = () => {
   return (

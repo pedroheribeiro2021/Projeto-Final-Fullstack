@@ -49,7 +49,7 @@ export const Header = () => {
           Fazer login
         </button>
         <button
-          id={location.pathname === "/cadastro" ? "active" : ""}
+          id={location.pathname === "/register" ? "active" : ""}
           onMouseEnter={handleRegisterMouse}
           onMouseLeave={handleRegisterMouse}
           className='register'
