@@ -5,6 +5,7 @@ import {Home} from './components/Home';
 import {ProductDetail} from './pages/product.detail/index';
 import Login from './pages/login/LoginForm';
 import { Profile } from './pages/profile';
+import { ProfileAdmin } from './pages/profileAdmin';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/register' element={<h1>REGISTRO</h1>}/>
         <Route path="/product-detail" element={ <ProductDetail/>} />
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/profile/admin" element={<ProfileAdmin/>}/>
       </Routes>
 
   </main>

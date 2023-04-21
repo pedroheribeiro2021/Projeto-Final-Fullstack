@@ -302,6 +302,25 @@ button{
     cursor: pointer;
 }
 
+.modal-overlay {
+  background-color: rgba(0,0,0, 0.5);
+  position: fixed;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index:8;
+  transition:1s;
+}
+.modal-content {
+  background-color: var(--whiteFixed);
+  width: 100%;
+  border-radius: 4px;
+}
 
 
 `
