@@ -10,7 +10,7 @@ export const SessionUser = async (data:ILoginData) => {
         const token = response.data.token;
         localStorage.setItem('token', token);
         toast.success('Login feito com sucesso', {autoClose: 1000});
-        window.location.replace("/home");
+        window.location.replace("/");
         return response.data;
     } catch (error) {
         console.error(error);
@@ -18,10 +18,12 @@ export const SessionUser = async (data:ILoginData) => {
     }
 };
 
-export const createUser = async (data:UserRequest) => {
+export const createUser = async (data:UserRequest, setUser:any, setIsSuccessModalOpen:any) => {
     try {
         const response = await api.post('/user', data);
         toast.success('Cadastro realizado!', {autoClose: 1000});
+        setUser(true)
+        setIsSuccessModalOpen(true);
         return response.data;
     } catch (error) {
         console.error(error);

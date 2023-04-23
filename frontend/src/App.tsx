@@ -15,7 +15,7 @@ function App() {
 
       <Routes>
         <Route path="/login" element={!isAuthenticated() ? <Login/> : <Home/>} />
-        <Route  path="/home" element={<Home/>}/>
+        <Route  path="/" element={<Home/>}/>
         <Route path='/register' element={isAuthenticated() ? <Home/> : <RegisterUserPage/>}/>
         <Route path="/product-detail" element={ <ProductDetail/>} />
         <Route path="/profile" element={<Profile/>}/>
