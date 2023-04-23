@@ -4,7 +4,6 @@ export const ProductDetailStyle = styled.section`
 
     display: flex;
     background: linear-gradient(to bottom, var(--brand1) 30%, var(--grey7) 30%);
-    min-width:100%;
     flex-direction:column;
     align-items:center;
     min-width:320px;
