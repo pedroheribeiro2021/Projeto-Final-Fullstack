@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter } from 'react-router-dom';
 import { HomeProvider } from './contexts/homeContexts';
 import { LoginProvider } from './contexts/loginContext';
+import { RegisterUserProvider } from './contexts/registerContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,9 +21,11 @@ root.render(
       <BrowserRouter>
         <LoginProvider>
           <HomeProvider>
-          <ToastContainer/>
-          <GlobalStyle/>
-            <App />
+          <RegisterUserProvider>
+            <ToastContainer/>
+            <GlobalStyle/>
+              <App />
+          </RegisterUserProvider>
           </HomeProvider>
         </LoginProvider>
       </BrowserRouter>
