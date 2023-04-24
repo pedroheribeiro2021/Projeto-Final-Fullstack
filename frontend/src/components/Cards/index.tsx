@@ -18,13 +18,13 @@ export const Cards = () => {
   return (
     <>
       <CardStyle>
-        <ul className="container_list_cards">
+        {anuncios ?  <ul className="container_list_cards">
           {anuncios.map((anuncio:IAnuncio) => {
             const coverImage = anuncio.images.find(image => image);
             return (
               <li className="list_cards" key={anuncio.id}>
                 <div className="list_cards_img">
-                  <img src={coverImage?.imageURL} alt={anuncio.model.model} />
+                  <img src={coverImage?.imageUrl} alt={anuncio.model.model} />
                 </div>
                 <div className="list_cards_text">
                   <h3>{anuncio.model.model}</h3>
@@ -45,7 +45,7 @@ export const Cards = () => {
               </li>
             );
           })}
-        </ul>
+        </ul> : <h3>carregando</h3>}
       </CardStyle>
     </>
   );

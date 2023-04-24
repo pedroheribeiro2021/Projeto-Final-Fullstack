@@ -35,6 +35,6 @@ interface ImageArray extends Array<Image> {}
 
 export interface Image{
   id:string;
-  imageURL: string;
+  imageUrl: string;
   isCoverImage: boolean;
 }
