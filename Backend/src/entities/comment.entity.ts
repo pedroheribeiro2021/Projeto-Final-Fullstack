@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.entity";
 import { Announcement } from "./announcement.entity";
 
@@ -15,7 +15,10 @@ export class Comment {
     @CreateDateColumn()
     createdAt: string
 
-    @ManyToOne(() => User, user => user.comments)
+    @ManyToOne(() => User, user => user.comments, {
+        onDelete: 'CASCADE'
+    })
+    @JoinColumn()
     user: User
 
     @ManyToOne(() => Announcement, announcement => announcement.comments)
