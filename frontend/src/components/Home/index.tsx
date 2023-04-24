@@ -1,13 +1,9 @@
-
-
 import { useContextFunction } from "../../contexts/homeContexts"
 import { Cards } from "../Cards"
 import { Filter } from "../Filter Mobile"
 import { Footer } from "../Footer"
 import { Header } from "../Header"
 import { HomeStyle } from "./style"
-
-
 
 export const Home = ()=>{
     const {setOpenFilter}=useContextFunction()
@@ -102,7 +98,7 @@ export const Home = ()=>{
 
                     </div>
                     <div className="home_cards">
-                        <Cards/>
+                        <Cards />
                     </div>
                 </div>
                 <div className="filter_mobile">
