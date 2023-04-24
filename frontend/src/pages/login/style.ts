@@ -2,25 +2,30 @@ import styled from "styled-components";
 
 export const ContainerMain = styled.main`
   height: 100vh;
-  background-color: var(--grey7);
+  background-color: var(--grey8);
   display: flex;
   flex-direction: column;
-  gap: 4.7rem;
+  justify-content:center;
+  align-items:center;
+  min-width:320px;
+
 `;
 
 export const FormContainer = styled.form`
-  width: 30vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 0px 40px 0px 40px;
-  gap: 20px;
+  height: 100%;
+  max-height:542px;
+  max-width: 412px;
+  margin:auto;
+  padding: 44px 48px;
+  gap: 24px;
+  align-items:flex-start;
   background-color: var(--grey10);
-  box-sizing: border-box;
+  border-radius: 4px;
+  min-width:320px;
 
   label {
     font-size: 18px;
@@ -39,6 +44,7 @@ export const FormContainer = styled.form`
     font-size: 14px;
     color: var(--brand1);
     cursor: pointer;
+     
   }
 
   .submit-button {
@@ -58,16 +64,18 @@ export const FormContainer = styled.form`
   }
 
   @media (max-width: 768px) {
-    min-height: 80vh;
-    width: 90vw;
+    margin-top:100px;
+  }
+
+  @media (max-width:400px){
+    margin-top:200px;
   }
   
 `;
 
 export const Title = styled.h1`
-  font-size: 18px;
-  margin-bottom: 16px;
-  text-align: center;
+    font-weight: 500;
+    font-size: 24px;
 `;
 
 export const BoxButtonSubmit = styled.div`
@@ -79,19 +87,21 @@ export const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: normal;
-    gap: 0.5rem;
-
+    gap:8px;
+   
   label {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--grey1);
   }
 
   input {
-    padding: 0.5rem;
+    padding: 0px 16px;
     font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
+    border:1.5px solid var(--grey7);
+    background-color:transparent;
+    height:48px;
+    border-radius: 4px;
     width: 100%;
 
     &:focus {
@@ -102,10 +112,11 @@ export const InputContainer = styled.div`
 `;
 
 export const ForgotPassword = styled.span`
-  font-size: 0.9rem;
-  color: black;
+  color: var(--grey2);
   text-align: right;
   cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
 
   &:hover{
     color: var(--brand1);
@@ -114,16 +125,19 @@ export const ForgotPassword = styled.span`
 
 export const SubmitButton = styled.button`
     width: 100%;
-    background-color: rgb(108, 99, 255);
-    color: rgb(255, 255, 255);
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 0.5rem;
+    background-color: var(--brand1);
+    color: var(--whiteFixed);
+    font-weight: 600;
+    font-size: 16px;
+    height: 48px;
+    padding: 12px 28px;
+    border-radius:4px;
+    border:1.5px solid var(--brand1);
     cursor: pointer;
 
   &:hover {
     background-color: #524dc2;
+    transition:0.3s;
   }
 `;
 
@@ -133,19 +147,28 @@ export const BoxButtonCadastro = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+
+  span{
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--grey2);
+  }
 `;
 
 export const SignupButton = styled.button`
   width: 100%;
-  background-color: var(--grey10);
-  color: black;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border: 1px solid var(--grey4);
-  border-radius: 0.5rem;
+  background-color: transparent;
+  color: var(--grey0);
+  font-weight: 600;
+  font-size: 16px;
+  height: 48px;
+  padding: 12px 28px;
+  border: 1.5px solid var(--grey4);
+  border-radius:4px;
   cursor: pointer;
 
   &:hover {
     background-color: var(--grey6);
+    transition:0.3s;
   }
 `;
