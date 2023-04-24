@@ -30,3 +30,8 @@ export const createUser = async (data:UserRequest, setUser:any, setIsSuccessModa
         toast.error('Falha ao efetuar criar o usuario', {autoClose: 1000});
     }
 };
+
+export const searchUserId = async (userId:string) => {
+    const response = await api.get(`/user/${userId}`, {params:{id:userId}})
+    return response.data;
+};
