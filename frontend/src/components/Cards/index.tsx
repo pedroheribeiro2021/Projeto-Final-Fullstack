@@ -24,14 +24,14 @@ export const Cards = () => {
             return (
               <li className="list_cards" key={anuncio.id}>
                 <div className="list_cards_img">
-                  <img src={coverImage?.imageURL} alt={anuncio.model.model} />
+                  <img src={coverImage?.imageUrl} alt={anuncio.model.model} />
                 </div>
                 <div className="list_cards_text">
                   <h3>{anuncio.model.model}</h3>
                 </div>
                 <div className="list_cards_user">
                   <img src={user} alt={anuncio.model.model} />
-                  <span>{anuncio.user.name}</span>
+                  <span>oi</span>
                 </div>
                 <div className="list_cards_info">
                   <div className="info_car">
