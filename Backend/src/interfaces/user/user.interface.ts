@@ -41,3 +41,9 @@ export interface IUserLogin {
     email: string
     password: string
 }
+
+export interface ISendEmailRequest {
+    to: string,
+    subject: string,
+    text: string,
+}

@@ -23,6 +23,9 @@ export class User {
     @Exclude()
     password: string
 
+    @Column({ nullable: true })
+    reset_token: string
+
     @Column({ length: 11, unique: true })
     cpf: string
 
@@ -44,10 +47,9 @@ export class User {
     @UpdateDateColumn()
     updatedAt: string
 
-    @DeleteDateColumn()
-    deletedAt: string
-
-    @OneToOne(() => Address)
+    @OneToOne(() => Address, {
+        onDelete: 'CASCADE'
+    })
     @JoinColumn()
     address: Address
 
