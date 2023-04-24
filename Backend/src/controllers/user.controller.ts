@@ -6,6 +6,7 @@ import { listUsersServices } from "../services/user/listUser.service"
 import { updateUserService } from "../services/user/updateUser.service"
 import { deleteUserService } from "../services/user/deleteUser.service"
 import { IAddressRequest } from "../interfaces/address/address.interface"
+import { resetPasswordService, sendResetEmailPasswordService } from "../services/user/resetUser.service"
 
 
 export const createUserController = async (req: Request, res: Response) => {
@@ -36,4 +37,21 @@ export const deleteUserController = async (req: Request, res: Response) => {
 
     await deleteUserService(req.params.id)
     return res.status(204).json()
+}
+
+export const sendResetEmailPasswordController = async (req: Request, res: Response) => {
+
+    const { email } = req.body
+    const { protocol } = req
+    const host = req.get("host")
+    await sendResetEmailPasswordService(email, protocol, host!)
+    return res.json({message: "token send"})
+}
+
+export const resetPasswordController = async (req: Request, res: Response) => {
+
+    const { password } = req.body
+    const { token } = req.params
+    await resetPasswordService(password, token)
+    return res.json({ message: "password change with sucess" })
 }

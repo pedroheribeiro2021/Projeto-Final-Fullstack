@@ -2,7 +2,7 @@ import "express-async-errors";
 import { handleError } from "./errors/handleError"
 import express, { Application } from 'express'
 import cors from "cors";
-import { userRoutes } from "./routes/user.routes";
+import { userResetRoutes, userRoutes } from "./routes/user.routes";
 import { sessionRoutes } from "./routes/session.routes";
 import { announcementRoutes } from './routes/announcement.routes';
 
@@ -11,6 +11,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/user", userRoutes)
+app.use("/resetPassword", userResetRoutes)
 app.use("/login", sessionRoutes)
 app.use("/announcement", announcementRoutes)
 
