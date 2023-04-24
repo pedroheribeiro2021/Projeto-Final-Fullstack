@@ -6,6 +6,7 @@ import { listUsersServices } from "../services/user/listUser.service"
 import { updateUserService } from "../services/user/updateUser.service"
 import { deleteUserService } from "../services/user/deleteUser.service"
 import { IAddressRequest } from "../interfaces/address/address.interface"
+import { searchUserIdService } from "../services/user/searchUserId.service"
 
 
 export const createUserController = async (req: Request, res: Response) => {
@@ -36,3 +37,9 @@ export const deleteUserController = async (req: Request, res: Response) => {
     await deleteUserService(req.params.id)
     return res.status(204).json()
 }
+
+export const searchUserIdController = async (req: Request, res:Response) => {
+    const userId:string = req.params.id;
+    const userFounded = await searchUserIdService(userId);
+    return res.status(200).json(userFounded);
+};
