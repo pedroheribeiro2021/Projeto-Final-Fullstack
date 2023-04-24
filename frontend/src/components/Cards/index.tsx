@@ -18,7 +18,7 @@ export const Cards = () => {
   return (
     <>
       <CardStyle>
-        <ul className="container_list_cards">
+        {anuncios ?  <ul className="container_list_cards">
           {anuncios.map((anuncio:IAnuncio) => {
             const coverImage = anuncio.images.find(image => image);
             return (
@@ -45,7 +45,7 @@ export const Cards = () => {
               </li>
             );
           })}
-        </ul>
+        </ul> : <h3>carregando</h3>}
       </CardStyle>
     </>
   );
