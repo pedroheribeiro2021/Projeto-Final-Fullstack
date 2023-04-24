@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Announcement } from "./announcement.entity";
 
 
@@ -14,6 +14,9 @@ export class Image {
     @Column()
     isCoverImage: boolean
 
-    @ManyToOne(() => Announcement, announcement => announcement.images)
+    @ManyToOne(() => Announcement, announcement => announcement.images, {
+        onDelete: 'CASCADE'
+    })
+    @JoinColumn()
     announcement: Announcement
 }

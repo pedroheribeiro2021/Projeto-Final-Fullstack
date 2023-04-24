@@ -44,10 +44,9 @@ export class User {
     @UpdateDateColumn()
     updatedAt: string
 
-    @DeleteDateColumn()
-    deletedAt: string
-
-    @OneToOne(() => Address)
+    @OneToOne(() => Address, {
+        onDelete: 'CASCADE'
+    })
     @JoinColumn()
     address: Address
 

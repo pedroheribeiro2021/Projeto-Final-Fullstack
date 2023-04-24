@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -40,24 +41,39 @@ export class Announcement {
   @CreateDateColumn()
   createdAt: string;
 
-  @ManyToOne(() => User, (user) => user.announcements)
+  @ManyToOne(() => User, (user) => user.announcements, {
+    onDelete: 'CASCADE'
+  })
+  @JoinColumn()
   user: User;
 
   @OneToMany(() => Comment, (comment) => comment.announcement)
-  comments: Comment;
+  comments: Comment[];
 
   @OneToMany(() => Image, (image) => image.announcement)
   images: Image[];
 
-  @ManyToOne(() => Brand, (brand) => brand.announcements.id)
+  @ManyToOne(() => Brand, (brand) => brand.announcements.id, {
+    onDelete: 'CASCADE'
+  })
   brand: Brand;
+  @JoinColumn()
 
-  @ManyToOne(() => Model, (model) => model.announcements.id)
+  @ManyToOne(() => Model, (model) => model.announcements.id, {
+    onDelete: 'CASCADE'
+  })
   model: Model;
+  @JoinColumn()
 
-  @ManyToOne(() => Year, (year) => year.announcements.id)
+  @ManyToOne(() => Year, (year) => year.announcements.id, {
+    onDelete: 'CASCADE'
+  })
   year: Year;
+  @JoinColumn()
 
-  @ManyToOne(() => Fuel, (fuel) => fuel.announcements.id)
+  @ManyToOne(() => Fuel, (fuel) => fuel.announcements.id, {
+    onDelete: 'CASCADE'
+  })
+  @JoinColumn()
   fuel: Fuel;
 }
