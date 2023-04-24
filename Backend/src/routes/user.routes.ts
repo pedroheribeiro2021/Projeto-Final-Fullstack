@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, deleteUserController, listUsersController, updateUserController } from "../controllers/user.controller";
+import { createUserController, deleteUserController, listUsersController, resetPasswordController, sendResetEmailPasswordController, updateUserController } from "../controllers/user.controller";
 import { ensureAuthMiddleware } from "../middlewares/user.middlewares/ensureAuth.middleware";
 import { ensureOwnUserMiddleware } from "../middlewares/user.middlewares/ensureOwnUser.middleware";
 import { verifyUserEmailExistsMiddleware } from "../middlewares/user.middlewares/verifyUserEmailExists.middleware";
@@ -12,3 +12,9 @@ userRoutes.get('', listUsersController)
 userRoutes.post('', verifyUserEmailExistsMiddleware, createUserController)
 userRoutes.patch('/:id', ensureAuthMiddleware, verifyUsernotExistMiddleware, ensureOwnUserMiddleware, updateUserController)
 userRoutes.delete('/:id', ensureAuthMiddleware, verifyUsernotExistMiddleware, ensureOwnUserMiddleware, deleteUserController)
+
+
+export const userResetRoutes = Router()
+
+userResetRoutes.post('', sendResetEmailPasswordController)
+userResetRoutes.patch('/:token', resetPasswordController)
