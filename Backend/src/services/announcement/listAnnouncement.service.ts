@@ -6,7 +6,7 @@ export const listAnnouncementService = async () => {
 
   const announcement = await announcementRepository.find({
     relations: {
-      // user: true,
+      user: true,
       brand: true,
       model: true,
       year: true,
