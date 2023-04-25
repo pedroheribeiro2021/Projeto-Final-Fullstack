@@ -30,3 +30,28 @@ export const createUser = async (data:UserRequest, setUser:any, setIsSuccessModa
         toast.error('Falha ao efetuar criar o usuario', {autoClose: 1000});
     }
 };
+
+export const recoverUser = async (data: string) => {
+    try {
+        const response = await api.post('/resetPassword', data)
+        const token = response.data.resetToken
+        localStorage.setItem('resetToken', token);
+        toast.success('E-mail derecuperação enviado!', {autoClose: 1000})
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        toast.error('Falha ao enviar e-mail', {autoClose: 1000});
+    }
+}
+
+export const resetPassword = async (data: string) => {
+
+    const resetToken = localStorage.getItem('@resetToken')
+
+    try {
+        const response = await api.patch(`/resetPassword/${resetToken}`, data)
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}

@@ -8,17 +8,20 @@ import { ProfileAdmin } from './pages/profileAdmin';
 
 
 import RegisterUserPage from './pages/register/RegisterForm';
+import ReactModal from 'react-modal';
+import { ChangePassowrdPage } from './pages/changePassword';
 
 
 function App() {
   const isAuthenticated = () => localStorage.getItem('token');
+  ReactModal.setAppElement("#root");
+  const resetToken = localStorage.getItem('@resetToken')
 
   return (
-
     <main>
-
       <Routes>
         <Route path="/login" element={!isAuthenticated() ? <Login/> : <Home/>} />
+        <Route path={`/resetPassword/${resetToken}`} element={ <ChangePassowrdPage/> } />
         <Route  path="/" element={<Home/>}/>
         <Route path='/register' element={isAuthenticated() ? <Home/> : <RegisterUserPage/>}/>
         <Route path="/product-detail" element={ <ProductDetail/>} />

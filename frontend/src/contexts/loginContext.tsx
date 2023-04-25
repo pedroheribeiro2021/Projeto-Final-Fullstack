@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ILoginData } from '../types/login/loginInterface';
@@ -14,6 +14,8 @@ interface ILoginContext {
   handleRegisterNavigate: () => void;
   register: any;
   handleSubmit: any;
+  isModalOpen: boolean;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface ILogin {
@@ -24,6 +26,7 @@ const LoginContext = createContext<ILoginContext>({} as ILoginContext);
 
 const LoginProvider = ({ children }: ILogin) => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleRegisterNavigate = () => {
     navigate('/register');
@@ -33,7 +36,7 @@ const LoginProvider = ({ children }: ILogin) => {
 
   const onSubmit: SubmitHandler<ILoginData> = (data:any) => SessionUser(data);
 
-  return <LoginContext.Provider value={{ onSubmit, handleRegisterNavigate, register, handleSubmit }}>{children}</LoginContext.Provider>;
+  return <LoginContext.Provider value={{ onSubmit, isModalOpen, setIsModalOpen, handleRegisterNavigate, register, handleSubmit }}>{children}</LoginContext.Provider>;
 };
 
 const useLogin = () => {
