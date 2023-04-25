@@ -15,7 +15,7 @@ import { ChangePassowrdPage } from './pages/changePassword';
 function App() {
   const isAuthenticated = () => localStorage.getItem('token');
   ReactModal.setAppElement("#root");
-  const resetToken = localStorage.getItem('@resetToken')
+  const resetToken = localStorage.getItem('resetToken')
 
   return (
     <main>

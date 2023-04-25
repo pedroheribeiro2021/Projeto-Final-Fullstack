@@ -46,7 +46,7 @@ export const recoverUser = async (data: string) => {
 
 export const resetPassword = async (data: string) => {
 
-    const resetToken = localStorage.getItem('@resetToken')
+    const resetToken = localStorage.getItem('resetToken')
 
     try {
         const response = await api.patch(`/resetPassword/${resetToken}`, data)

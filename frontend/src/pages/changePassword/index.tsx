@@ -14,7 +14,6 @@ export const ChangePassowrdPage = () => {
 
     const onSubmit: SubmitHandler<IUserRecover> = (data:any) => {
         resetPassword(data)
-        console.log(data)
     }
 
     return (
@@ -26,8 +25,8 @@ export const ChangePassowrdPage = () => {
                     <InputContainer>
                         <label htmlFor="password">Nova Senha:</label>
                         <input type="password" {...register("password")}  placeholder="Digitar senha"/>
-                        <label htmlFor="password">Confirme a nova senha:</label>
-                        <input type="password" {...register("password")}  placeholder="Digitar senha"/>
+                        {/* <label htmlFor="password">Confirme a nova senha:</label>
+                        <input type="password" {...register("password")}  placeholder="Digitar senha"/> */}
                     </InputContainer>
                     <BoxButtonSubmit>
                         <SubmitButton type="submit">Trocar senha</SubmitButton>
