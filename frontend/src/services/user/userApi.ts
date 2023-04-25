@@ -1,5 +1,4 @@
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { ILoginData } from '../../types/login/loginInterface';
 import { UserRequest } from '../../types/register/registerInterface';
 import { api } from '../api';
@@ -58,3 +57,8 @@ export const resetPassword = async (data: string) => {
         toast.error('Falha ao atualizar senha', {autoClose: 1000});
     }
 }
+
+export const searchUserId = async (userId:string) => {
+    const response = await api.get(`/user/${userId}`, {params:{id:userId}})
+    return response.data;
+};

@@ -9,6 +9,7 @@ import {
 import { ensureDataIsValidMiddleware } from "../middlewares/user.middlewares/ensureDataIsValid.middleware";
 import { createAnnouncementController } from "../controllers/announcement/createAnnouncement";
 import { ensureAuthMiddleware } from "../middlewares/user.middlewares/ensureAuth.middleware";
+import { getAnnouncementsUserController } from "../controllers/announcement/getAnnouncementsUser.controller";
 
 export const announcementRoutes = Router();
 
@@ -20,3 +21,4 @@ announcementRoutes.post(
   ensureDataIsValidMiddleware(annoucementRequestSerializer),
   createAnnouncementController
 );
+announcementRoutes.get("/user/:id", getAnnouncementsUserController);
