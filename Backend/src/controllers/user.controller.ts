@@ -44,7 +44,7 @@ export const sendResetEmailPasswordController = async (req: Request, res: Respon
     const { email } = req.body
     const { protocol } = req
     const host = "localhost:3000"
-    console.log(req.get("Origin"))
+
     const token = await sendResetEmailPasswordService(email, protocol, host!)
     return res.json(token)
 }
