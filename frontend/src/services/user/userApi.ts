@@ -1,5 +1,4 @@
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { ILoginData } from '../../types/login/loginInterface';
 import { UserRequest } from '../../types/register/registerInterface';
 import { api } from '../api';
