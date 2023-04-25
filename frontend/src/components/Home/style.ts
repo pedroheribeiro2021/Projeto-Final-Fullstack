@@ -86,6 +86,11 @@ export const HomeStyle = styled.div`
         color: var(--grey3);
         font-weight: 500;
         font-size: 20px;
+        cursor: pointer;
+        &:hover{
+            transition:0.3s;
+            color: var(--brand1);
+        }
     }
 
     .home_cards{

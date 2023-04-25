@@ -10,6 +10,8 @@ export const Modal = () => {
     setIsModalOpen(false);
   };
 
+  
+
   return (
     <>
       <ModalStyled

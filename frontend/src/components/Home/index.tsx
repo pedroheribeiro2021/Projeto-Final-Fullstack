@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useContextFunction } from "../../contexts/homeContexts"
 import { Cards } from "../Cards"
 import { Filter } from "../Filter Mobile"
@@ -5,9 +6,85 @@ import { Footer } from "../Footer"
 import { Header } from "../Header"
 import { HomeStyle } from "./style"
 
-export const Home = ()=>{
-    const {setOpenFilter}=useContextFunction()
 
+
+export const Home = ()=>{
+    const {setOpenFilter,getAllAnnoucements}=useContextFunction()
+
+    useEffect( ()=>{
+        (async()=>{
+
+            await getAllAnnoucements()
+        })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
+ 
+    const carBrands = [
+        "Toyota",
+        "Honda",
+        "Ford",
+        "Chevrolet",
+        "Volkswagen",
+        "Nissan",
+        "BMW",
+        "Mercedes-Benz",
+        "Audi",
+        "Ferrari",
+        "Lamborghini",
+        "Porsche",
+        "Tesla"
+      ];
+      
+
+      const carModels = [
+        "Toyota Corolla",
+        "Honda Civic",
+        "Ford Mustang",
+        "Chevrolet Camaro",
+        "Volkswagen Golf",
+        "Nissan Altima",
+        "BMW 3 Series",
+        "Mercedes-Benz C-Class",
+        "Audi A4",
+        "Ferrari 488",
+        "Lamborghini Aventador",
+        "Porsche 911",
+        "Tesla Model S"
+      ];
+
+
+      const carColors = [
+        "Preto",
+        "Branco",
+        "Prata",
+        "Cinza",
+        "Azul",
+        "Verde",
+        "Vermelho",
+        "Amarelo",
+        "Laranja",
+        "Roxo"
+      ];
+
+      const carYears = [
+        "1990",
+        "1995",
+        "2000",
+        "2005",
+        "2010",
+        "2015",
+        "2020",
+        "2021",
+        "2022"
+      ];
+
+      const fuelTypes = [
+        "Gasolina",
+        "Diesel",
+        "Etanol",
+        "Elétrico",
+        "Flex"
+      ];
     return(
         <>
             <Header/>
@@ -23,62 +100,48 @@ export const Home = ()=>{
                     <div className="home_filter">
                         <div className="home_brand">
                             <h2>Marca</h2>
+
                             <ul className="list_brand">
-                                <li>General Motors</li>
-                                <li>Fiat</li>
-                                <li>Ford</li>
-                                <li>Honda</li>
-                                <li>Porshe</li>
-                                <li>Volswagen</li>
+                            {carBrands.map((brand) => (
+                                    <li>{brand}</li>
+                                ))}
+
                             </ul>
                         </div>
 
                         <div className="home_model">
                             <h2>Modelo</h2>
                             <ul className="list_model">
-                                <li>Civic</li>
-                                <li>Corolla</li>
-                                <li>Cruze</li>
-                                <li>Fit</li>
-                                <li>Gol</li>
-                                <li>Ka</li>
-                                <li>Onix</li>
-                                <li>Porsche 718</li>
+                                {carModels.map((model) => (
+                                    <li>{model}</li>
+                                ))}
                             </ul>
                         </div>
                         
                         <div className="home_color">
                             <h2>Cor</h2>
                             <ul className="list_color">
-                                <li>Azul</li>
-                                <li>Branca</li>
-                                <li>Cinza</li>
-                                <li>Prata</li>
-                                <li>Preta</li>
-                                <li>Verde</li>
+                            {carColors.map((color) => (
+                                    <li>{color}</li>
+                                ))}
                             </ul>
                         </div>
 
                         <div className="home_year">
                             <h2>Ano</h2>
                             <ul className="list_year">
-                                <li>2022</li>
-                                <li>2021</li>
-                                <li>2018</li>
-                                <li>2015</li>
-                                <li>2013</li>
-                                <li>2012</li>
-                                <li>2010</li>
+                                {carYears.map((year) => (
+                                    <li>{year}</li>
+                                ))}
                             </ul>
                         </div>
 
                         <div className="home_fuel">
                             <h2>Combustível</h2>
                             <ul className="list_fuel">
-                                <li>Diesel</li>
-                                <li>Etanol</li>
-                                <li>Gasolina</li>
-                                <li>Flex</li>
+                                {fuelTypes.map((fuel) => (
+                                    <li>{fuel}</li>
+                                ))}
                             </ul>
                         </div>
 
