@@ -32,6 +32,9 @@ export class Announcement {
   @Column()
   price: number;
 
+  @Column()
+  description: string;
+
   @Column({ default: true })
   isActive: boolean;
 
@@ -42,7 +45,7 @@ export class Announcement {
   createdAt: string;
 
   @ManyToOne(() => User, (user) => user.announcements, {
-    onDelete: 'CASCADE'
+    onDelete: "CASCADE",
   })
   @JoinColumn()
   user: User;
@@ -54,25 +57,22 @@ export class Announcement {
   images: Image[];
 
   @ManyToOne(() => Brand, (brand) => brand.announcements.id, {
-    onDelete: 'CASCADE'
+    onDelete: "CASCADE",
   })
   brand: Brand;
   @JoinColumn()
-
   @ManyToOne(() => Model, (model) => model.announcements.id, {
-    onDelete: 'CASCADE'
+    onDelete: "CASCADE",
   })
   model: Model;
   @JoinColumn()
-
   @ManyToOne(() => Year, (year) => year.announcements.id, {
-    onDelete: 'CASCADE'
+    onDelete: "CASCADE",
   })
   year: Year;
   @JoinColumn()
-
   @ManyToOne(() => Fuel, (fuel) => fuel.announcements.id, {
-    onDelete: 'CASCADE'
+    onDelete: "CASCADE",
   })
   @JoinColumn()
   fuel: Fuel;
