@@ -37,6 +37,7 @@ export const annoucementSerializer: SchemaOf<any> = yup.object().shape({
   color: yup.string().required(),
   FIPE_priceTable: yup.number().required(),
   price: yup.number().required(),
+  description: yup.string().required(),
 });
 
 export const annoucementRequestSerializer: SchemaOf<any> = yup.object().shape({
@@ -69,6 +70,7 @@ export const annoucementRequestSerializer: SchemaOf<any> = yup.object().shape({
   mileage: yup.number().required(),
   color: yup.string().required(),
   price: yup.number().required(),
+  description: yup.string().required(),
   images: yup.array(),
 });
 
@@ -85,6 +87,7 @@ export const annoucementReturnedSerializer: SchemaOf<any> = yup.object().shape({
   isSuperBuy: yup.boolean(),
   isActive: yup.boolean(),
   price: yup.number(),
+  description: yup.string(),
   createdAt: yup.string(),
   images: yup.array(),
   comments: yup.object(),
