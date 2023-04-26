@@ -28,6 +28,7 @@ export const sendResetEmailPasswordService = async(email: string, protocol: stri
 
     await emailService.sendEmail(resetPasswordTemplate)
 
+    return {resetToken, message: "token send"}
 }
 
 export const resetPasswordService = async (password: string, resetToken: string) => {

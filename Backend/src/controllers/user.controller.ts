@@ -48,10 +48,10 @@ export const sendResetEmailPasswordController = async (req: Request, res: Respon
 
     const { email } = req.body
     const { protocol } = req
-    const host = req.get("host")
-    await sendResetEmailPasswordService(email, protocol, host!)
-    return res.json({message: "token send"})
-};
+    const host = "localhost:3000"
+    const token = await sendResetEmailPasswordService(email, protocol, host!)
+    return res.json(token)
+}
 
 export const resetPasswordController = async (req: Request, res: Response) => {
 
