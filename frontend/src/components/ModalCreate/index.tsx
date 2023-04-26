@@ -1,17 +1,55 @@
 import { useContextFunction } from "../../contexts/homeContexts";
 import { ModalStyled } from "./style";
 import {AiOutlineClose} from "react-icons/ai"
-
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { IAnuncio } from "../../types/home/homeInterface";
 
 export const Modal = () => {
-  const { isModalOpen, setIsModalOpen } = useContextFunction();
+  const { isModalOpen, setIsModalOpen,createAnnouncements } = useContextFunction();
+
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
+  const imageSchema = yup.object().shape({
+    imageUrl: yup.string().required(),
+    isCoverImage: yup.boolean()
+  })
+  
+  const formSchema = yup.object().shape({
+    mileage: yup.number().required(),
+    color: yup.string().required(),
+    FIPE_priceTable: yup.number().required(),
+    price:  yup.number().required(),
+    brand:yup.object().shape({
+        brand:yup.string().required()
+    }),
+    model: yup.object().shape({
+        model:yup.string().required()
+    }),
+
+    year: yup.object().shape({
+       year: yup.string().required()
+    }),
+    fuel: yup.object().shape({
+        fuel:yup.string().required()
+    }),
+    images:yup.array(imageSchema).required()
+  });
+
+  
   
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(formSchema),
+  });
   return (
     <>
       <ModalStyled
@@ -33,33 +71,45 @@ export const Modal = () => {
         
             <div className="input_modal">
                 <label htmlFor="">Marca</label>
-                <input type="text" placeholder="Digite a Marca"/>
+                <input type="text" placeholder="Digite a Marca"
+                    {...register("brand")}
+                />
             </div>
 
             <div className="input_modal">
                 <label htmlFor="">Modelo</label>
-                <input type="text"  placeholder="Digite o Modelo"/>
+                <input type="text"  placeholder="Digite o Modelo"
+                {...register("model")}
+                />
             </div>
 
             <div className="aditional_inputs">
                 <div>
                     <label htmlFor="">Ano</label>
-                    <input type="text"  placeholder="Digite o Ano"/>
+                    <input type="text"  placeholder="Digite o Ano"
+                    {...register("year")}
+                    />
                 </div>
                 <div>
                     <label htmlFor="">Combustivel</label>
-                    <input type="text" placeholder="Digite o Tipo de Combustível"/>
+                    <input type="text" placeholder="Digite o Tipo de Combustível"
+                    {...register("fuel")}
+                    />
                 </div>
             </div>
 
             <div className="aditional_inputs">
                 <div>
                     <label htmlFor="">Quilometragem</label>
-                    <input type="text"placeholder="Digite a Quilometragem" />
+                    <input type="text"placeholder="Digite a Quilometragem" 
+                    {...register("mileage")}
+                    />
                 </div>
                 <div>
                     <label htmlFor="">Cor</label>
-                    <input type="text" placeholder="Digite a Cor" />
+                    <input type="text" placeholder="Digite a Cor" 
+                    {...register("color")}
+                    />
                 </div>
             </div>
 
@@ -67,18 +117,24 @@ export const Modal = () => {
                 <div>
 
                     <label htmlFor="">Preço tabela FIPE</label>
-                    <input type="text"  placeholder="Digite o Preço tabela FIPE"/>
+                    <input type="text"  placeholder="Digite o Preço tabela FIPE"
+                    {...register("FIPE_priceTable")}
+                    />
                 </div>
                 <div>
 
                     <label htmlFor="">Preço</label>
-                    <input type="text" placeholder="Digite o preço"/>
+                    <input type="text" placeholder="Digite o preço"
+                    {...register("price")}
+                    />
                 </div>
             </div>
 
             <div className="input_description">
                 <label htmlFor="">Descrição</label>
-                <textarea placeholder="Digite a Descrição"></textarea>
+                <input  placeholder="Digite a Descrição"
+                {...register("brand")}
+                />
             </div>
 
             <div className="input_modal">
@@ -102,7 +158,7 @@ export const Modal = () => {
             
             <div className="button_actions">
                 <button id="cancel" onClick={handleCloseModal}>Cancelar</button>
-                <button id="create">Criar Anúncio</button>
+                <button id="create" onClick={()=>handleSubmit(createAnnouncements)}>Criar Anúncio</button>
             </div>
         </div>
 

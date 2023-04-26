@@ -6,10 +6,18 @@ import { CardsAdmin } from "../../components/CardsAdmin";
 import { useContextFunction } from "../../contexts/homeContexts";
 import { Modal } from "../../components/ModalCreate";
 import { ModalEdit } from "../../components/ModalEdit";
+import { useProfile } from "../../contexts/profileContexts";
+import { useEffect } from "react";
+
 
 
 export const ProfileAdmin = () => {
   const { setIsModalOpen } = useContextFunction();
+  const{listAnnouncementsAdmin} = useProfile();
+
+  useEffect( ()=>{
+   
+},[listAnnouncementsAdmin])
 
   const handleOpenModal = () => {
     setIsModalOpen(true);

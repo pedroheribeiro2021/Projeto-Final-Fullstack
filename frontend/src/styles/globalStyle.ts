@@ -315,6 +315,8 @@ button{
   justify-content: center;
   z-index:8;
   transition:1s;
+
+ 
 }
 .modal-content {
   background-color: var(--whiteFixed);

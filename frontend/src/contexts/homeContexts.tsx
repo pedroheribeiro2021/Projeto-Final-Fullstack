@@ -13,7 +13,7 @@ export interface IHomeContext {
   announcements: IAnuncio[];
   setAnnouncements: React.Dispatch<React.SetStateAction<IAnuncio[]>>;
   getAllAnnoucements: () => Promise<void>;
-  createAnnouncements: (payload: IAnuncio) => Promise<void>;
+  createAnnouncements: (payload: any) => Promise<any>;
 }
 
 interface IHome {
@@ -50,12 +50,14 @@ export const HomeProvider = ({ children }: IHome) => {
     }
   };
 
-  const createAnnouncements = async (payload: IAnuncio): Promise<void> => {
+  const createAnnouncements = async (payload: any): Promise<any> => {
     try {
-      const { data } = await api.post("/annoncement", payload, {
+      const { data } = await api.post("/announcement", payload, {
         headers: { authorization: `Bearer ${token}` },
       });
+    
       setAnnouncements(data);
+      toast.success("Anúncio criado com Sucesso")
       return data;
     } catch (error) {
       toast.error("Falha ao criar Anúncio");
