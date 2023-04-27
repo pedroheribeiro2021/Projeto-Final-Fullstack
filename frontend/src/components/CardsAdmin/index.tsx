@@ -24,6 +24,7 @@ export const CardsAdmin = () => {
                   </div>
                   <div className="list_cards_text">
                     <h3>{announcement.model.model}</h3>
+                    <p>{announcement.description}</p>
                   </div>
                   <div className="list_cards_user">
                     <img src={user} alt={announcement.model.model} />
@@ -33,6 +34,7 @@ export const CardsAdmin = () => {
                     <div className="info_car">
                       <span>{announcement.mileage} KM</span>
                       <span>{announcement.year.year}</span>
+                     
                     </div>
                     <div className="info_car_price">
                       <span>
@@ -42,11 +44,11 @@ export const CardsAdmin = () => {
                         })}
                       </span>
                     </div>
+                  </div>
                     <div className="buttons_admin">
                       <button onClick={()=>setIsModalEdit(true)}>Editar</button>
                       <button>Ver Detalhes</button>
                     </div>
-                  </div>
                 </li>
               );
             })}

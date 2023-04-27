@@ -7,7 +7,9 @@ export const SessionUser = async (data:ILoginData) => {
     try {
         const response = await api.post('/login', data);
         const token = response.data.token;
+        const id = response.data.id
         localStorage.setItem('token', token);
+        localStorage.setItem('id',id);
         toast.success('Login feito com sucesso', {autoClose: 1000});
         window.location.replace("/");
         return response.data;

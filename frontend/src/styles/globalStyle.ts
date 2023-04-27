@@ -310,11 +310,13 @@ button{
   padding: 0;
   width: 100vw;
   height: 100vh;
+  overflow-y:scroll;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index:8;
   transition:1s;
+  
 
  
 }

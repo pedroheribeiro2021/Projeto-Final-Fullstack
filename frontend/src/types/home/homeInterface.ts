@@ -1,3 +1,4 @@
+
 export type IAnuncios = [];
 
 export interface IUser{
@@ -19,6 +20,7 @@ export interface IAnuncio{
   user:IUser;
   mileage: number;
   color: string;
+  description:string;
   FIPE_priceTable: number;
   price: number;
   isActive: boolean;

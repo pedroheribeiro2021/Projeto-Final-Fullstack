@@ -11,18 +11,24 @@ import { useEffect } from "react";
 
 
 
+
 export const ProfileAdmin = () => {
   const { setIsModalOpen } = useContextFunction();
   const{listAnnouncementsAdmin} = useProfile();
 
-  useEffect( ()=>{
-   
-},[listAnnouncementsAdmin])
 
+  const id = localStorage.getItem("id")
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+  
+  useEffect( ()=>{
+    (async()=>{
 
+        await listAnnouncementsAdmin(id!)
+    })()
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[])
 
   return (
     <>

@@ -12,6 +12,8 @@ export const CardAdminStyle = styled.div`
     max-width: 320px;
     min-height: 152px;
     max-height: 152px;
+
+    background-color:var(--grey7);
   }
   .list_cards {
     min-width: 320px;
@@ -19,6 +21,8 @@ export const CardAdminStyle = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    justify-content:center;
+    align-items:flex-start;
   }
 
   .list_cards_text {
@@ -61,7 +65,8 @@ export const CardAdminStyle = styled.div`
   .list_cards_info {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
+    
     
   }
 

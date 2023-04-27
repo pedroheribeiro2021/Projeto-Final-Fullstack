@@ -14,19 +14,14 @@ export interface IHomeContext {
   setAnnouncements: React.Dispatch<React.SetStateAction<IAnuncio[]>>;
   getAllAnnoucements: () => Promise<void>;
   createAnnouncements: (payload: any) => Promise<any>;
+  
 }
 
 interface IHome {
   children: ReactNode;
 }
 
-interface Announcement {
-  id: number;
-  title: string;
-  body: string;
-  date: Date;
-}
-
+ 
 
 export const HomeContext = createContext<IHomeContext>({} as IHomeContext);
 export const HomeProvider = ({ children }: IHome) => {
@@ -37,6 +32,8 @@ export const HomeProvider = ({ children }: IHome) => {
   const [isModalEdit, setIsModalEdit] = useState(false);
 
   const [announcements, setAnnouncements] = useState<IAnuncio[]>([]);
+
+ 
 
   const token = localStorage.getItem("token");
 
@@ -51,13 +48,15 @@ export const HomeProvider = ({ children }: IHome) => {
   };
 
   const createAnnouncements = async (payload: any): Promise<any> => {
+    
     try {
       const { data } = await api.post("/announcement", payload, {
         headers: { authorization: `Bearer ${token}` },
       });
-    
       setAnnouncements(data);
+      setIsModalOpen(false) 
       toast.success("Anúncio criado com Sucesso")
+      console.log(data)
       return data;
     } catch (error) {
       toast.error("Falha ao criar Anúncio");
@@ -77,6 +76,7 @@ export const HomeProvider = ({ children }: IHome) => {
         setAnnouncements,
         getAllAnnoucements,
         createAnnouncements,
+       
       }}
     >
       {children}

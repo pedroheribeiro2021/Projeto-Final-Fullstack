@@ -20,7 +20,7 @@ function App() {
   return (
     <main>
       <Routes>
-        <Route path="/login" element={!isAuthenticated() ? <Login/> : <Home/>} />
+        <Route path="/login" element={ <Login/>} />
         <Route path={`/resetPassword/${resetToken}`} element={ <ChangePassowrdPage/> } />
         <Route  path="/" element={<Home/>}/>
         <Route path='/register' element={isAuthenticated() ? <Home/> : <RegisterUserPage/>}/>
