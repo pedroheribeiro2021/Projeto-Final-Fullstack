@@ -20,13 +20,12 @@ interface IHome {
   children: ReactNode;
 }
 
-interface Announcement {
-  id: number;
-  title: string;
-  body: string;
-  date: Date;
-}
-
+// interface Announcement {
+//   id: number;
+//   title: string;
+//   body: string;
+//   date: Date;
+// }
 
 export const HomeContext = createContext<IHomeContext>({} as IHomeContext);
 export const HomeProvider = ({ children }: IHome) => {
