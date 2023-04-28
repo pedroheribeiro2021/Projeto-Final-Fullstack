@@ -11,7 +11,7 @@ export class Image {
     @Column()
     imageUrl: string
 
-    @Column()
+    @Column({nullable:true,default:false})
     isCoverImage: boolean
 
     @ManyToOne(() => Announcement, announcement => announcement.images, {

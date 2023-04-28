@@ -8,15 +8,27 @@ import { Modal } from "../../components/ModalCreate";
 import { ModalEdit } from "../../components/ModalEdit";
 import { ModalEditProfile } from "../../components/ModalEditProfile";
 import { ModalEditAddress } from "../../components/ModalEditAddress";
+import { useProfile } from "../../contexts/profileContexts";
+import { useEffect } from "react";
 
 
 export const ProfileAdmin = () => {
   const { setIsModalOpen } = useContextFunction();
+  const{listAnnouncementsAdmin} = useProfile();
 
+
+  const id = localStorage.getItem("id")
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+  
+  useEffect( ()=>{
+    (async()=>{
 
+        await listAnnouncementsAdmin(id!)
+    })()
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[])
 
   return (
     <>
