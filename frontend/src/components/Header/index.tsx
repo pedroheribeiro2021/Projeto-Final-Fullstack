@@ -68,60 +68,53 @@ export const Header = () => {
 
   return (
     <>
-      <HeaderStyle>
-
-          <div>
-            <img src={logo} alt="" />
-          </div>
-          <div className="header_button">
-          {user ? (
-
-            <ContainerUser onClick={handleMenuOpen} className="user-info">
-              <img src={user1} alt="Foto do usuário" />
-              <span>{user.name}</span>
-              {
-                menuOpen && (
-                  <ContainerMenu>
-                    <button onClick={handleEditUser}>Editar usuário</button>
-                    <button onClick={handleEditAddress}>Editar endereço</button>
-                    <button onClick={logOut}>Sair</button>
-                  </ContainerMenu>
-                )
-              }
-
-            <ContainerUser className="user-info">
-              <img className="img" src={user1} alt="Foto do usuário" />
-              <span className="nameUser">{user.name}</span>
-
-            </ContainerUser>) 
-            :
-             (
-            <div className="header_button">
-              <button
-                className="login"
-                onMouseEnter={handleLoginMouse}
-                onMouseLeave={handleLoginMouse}
-                id={location.pathname === "/login" ? "active" : ""}
-                onClick={handleLoginNavigate}
-              >
-                Fazer login
-              </button>
-              <button
-                id={location.pathname === "/register" ? "active" : ""}
-                onMouseEnter={handleRegisterMouse}
-                onMouseLeave={handleRegisterMouse}
-                className="register"
-                onClick={handleRegisterNavigate}
-              >
-                Cadastrar
-              </button>
-              <Menu />
+            <HeaderStyle>
+            <div>
+              <img src={logo} alt="" />
             </div>
-          )}
-        <Menu/>
-          </div>
-      
-      </HeaderStyle>
+            <div className="header_button">
+            {user ? (
+              <ContainerUser onClick={handleMenuOpen} className="user-info">
+                <img src={user1} alt="Foto do usuário" />
+                <span>{user.name}</span>
+                {
+                  menuOpen && (
+                    <ContainerMenu>
+                      <button onClick={handleEditUser}>Editar usuário</button>
+                      <button onClick={handleEditAddress}>Editar endereço</button>
+                      <button onClick={logOut}>Sair</button>
+                    </ContainerMenu>
+                  )
+                }
+              </ContainerUser>) 
+              :
+              (
+              <div className="header_button">
+                <button
+                  className="login"
+                  onMouseEnter={handleLoginMouse}
+                  onMouseLeave={handleLoginMouse}
+                  id={location.pathname === "/login" ? "active" : ""}
+                  onClick={handleLoginNavigate}
+                >
+                  Fazer login
+                </button>
+                <button
+                  id={location.pathname === "/register" ? "active" : ""}
+                  onMouseEnter={handleRegisterMouse}
+                  onMouseLeave={handleRegisterMouse}
+                  className="register"
+                  onClick={handleRegisterNavigate}
+                >
+                  Cadastrar
+                </button>
+                <Menu />
+              </div>
+            )}
+            <Menu/>
+            </div>
+
+          </HeaderStyle>
     </>
   );
 };
