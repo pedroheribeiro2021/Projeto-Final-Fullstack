@@ -298,6 +298,13 @@ export const GlobalStyle = createGlobalStyle`
     color: #FFFFFF;
 }
 
+.alert1-btn {
+    background: var(--alert2);
+    border-radius: 4px;
+    border: none;
+    color: var(--alert1);
+}
+
 button{
     cursor: pointer;
 }
@@ -325,6 +332,4 @@ button{
   width: 100%;
   border-radius: 4px;
 }
-
-
 `
