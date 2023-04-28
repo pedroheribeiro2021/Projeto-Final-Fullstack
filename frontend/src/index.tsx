@@ -11,6 +11,7 @@ import { HomeProvider } from "./contexts/homeContexts";
 import { LoginProvider } from "./contexts/loginContext";
 import { RegisterUserProvider } from "./contexts/registerContext";
 import { HomeFilterProvider } from "./contexts/homeFilterContext";
+import { ProfileProvider } from './contexts/profileContexts';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,15 +20,17 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <LoginProvider>
-        <HomeProvider>
-          <HomeFilterProvider>
-            <RegisterUserProvider>
-              <ToastContainer />
-              <GlobalStyle />
-              <App />
-            </RegisterUserProvider>
-          </HomeFilterProvider>
-        </HomeProvider>
+        <ProfileProvider>
+          <HomeProvider>
+            <HomeFilterProvider>
+              <RegisterUserProvider>
+                <ToastContainer />
+                <GlobalStyle />
+                  <App />
+              </RegisterUserProvider>
+            </HomeFilterProvider>
+          </HomeProvider>
+        </ProfileProvider>
       </LoginProvider>
     </BrowserRouter>
   </React.StrictMode>

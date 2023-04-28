@@ -6,25 +6,17 @@ import { IUser, IUserUpdate } from "../../interfaces/user/user.interface"
 import { userWithoutPasswordSerializer } from "../../schemas/user.serializer"
 
 
-export const updateUserService = async(userData: IUserUpdate, addressData: IAddressRequest, userId: string): Promise<object> => {
+export const updateUserService = async(userData: IUserUpdate, userId: string): Promise<object> => {
 
     const userRepository = AppDataSource.getRepository(User)
-    const addressRepository = AppDataSource.getRepository(Address)
 
     const findUser: any = await userRepository.findOneBy({
         id: userId
     })
 
-    const updateAddress = addressRepository.create({
-        ...addressData
-    })
-
-    await addressRepository.save(updateAddress)
-
     const updatedUser = userRepository.create({
         ...findUser,
-        ...userData,
-        address: updateAddress
+        ...userData
     })
     
     await userRepository.save(updatedUser)

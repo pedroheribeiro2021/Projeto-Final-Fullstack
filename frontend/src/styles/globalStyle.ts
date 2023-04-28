@@ -298,6 +298,13 @@ export const GlobalStyle = createGlobalStyle`
     color: #FFFFFF;
 }
 
+.alert1-btn {
+    background: var(--alert2);
+    border-radius: 4px;
+    border: none;
+    color: var(--alert1);
+}
+
 button{
     cursor: pointer;
 }
@@ -310,17 +317,19 @@ button{
   padding: 0;
   width: 100vw;
   height: 100vh;
+  overflow-y:scroll;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index:8;
   transition:1s;
+  
+
+ 
 }
 .modal-content {
   background-color: var(--whiteFixed);
   width: 100%;
   border-radius: 4px;
 }
-
-
 `

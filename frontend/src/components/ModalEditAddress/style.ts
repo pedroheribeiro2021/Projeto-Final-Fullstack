@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import ReactModal  from "react-modal";
 
-export const ModalStyled = styled(ReactModal)`
+export const ModalEditAddressStyled = styled(ReactModal)`
 
- 
     background-color: var(--whiteFixed);
     width: 100%;
     max-width: 520px;
+    /* height: 80%; */
     position:absolute;
     top: 50%;
     left: 50%;
@@ -15,9 +15,8 @@ export const ModalStyled = styled(ReactModal)`
     display:flex;
     flex-direction:column;
     margin-top:10px;
+    /* gap: 12px; */
 
-
-    
     .container_modal_items{
         width:100%;
         padding:12px 20px;
@@ -25,11 +24,23 @@ export const ModalStyled = styled(ReactModal)`
         display:flex;
         flex-direction:column;
         justify-content:center;
-      
+
+        .close_modal {
+            display:flex;
+            justify-content:space-between;
+            /* max-height: 56px; */
+
+            button{
+                font-size:20px;
+                background-color: transparent;
+                border:transparent;
+                color: var(--grey4);
+            }
+        }
 
         p{
-            font-weight: 500;
             font-size: 14px;
+            padding: 18px 0 24px;
         }
     }
 
@@ -37,6 +48,7 @@ export const ModalStyled = styled(ReactModal)`
         display:flex;
         flex-direction:column;
         gap:8px;
+        padding-bottom: 20px;
 
         input{
             padding: 0px 16px;
@@ -45,55 +57,23 @@ export const ModalStyled = styled(ReactModal)`
             height:40px;
             border-radius: 4px; 
         }
+
+        .brand1-btn {
+            width: 30%;
+            height: 38px;
+        }
     }
 
-    .input_description{
+    .side {
+        display: flex;
+        gap: 15px;
+    }
+
+    .aditional_inputs {
         display:flex;
         flex-direction:column;
         gap:8px;
-
-        input{
-            resize:none;
-            border-radius:4px;
-            border: 1.5px solid var(--grey7);
-            padding:10px;
-            outline:none;
-        }
-    }
-    label{
-        font-weight: 500;
-        font-size: 14px;
-        color: var(--grey1);
-    }
-
-    .close_modal{
-        display:flex;
-        justify-content:space-between;
-
-        h3{
-            font-weight: 500;
-            font-size: 16px; 
-            color: var(--grey1);   
-        }
-
-        button{
-            font-size:20px;
-            background-color: transparent;
-            border:transparent;
-            color: var(--grey4);
-
-        }
-    }
-    .aditional_inputs{
-        display:flex;
-        gap:14px;
-        width:100%;
-        div{
-            display:flex;
-            flex-direction:column;
-            gap:8px;
-            width:50%;
-        }
+        padding-bottom: 20px;
 
         input{
             padding: 0px 16px;
@@ -101,20 +81,11 @@ export const ModalStyled = styled(ReactModal)`
             border: 1.5px solid var(--grey7);
             height:40px;
             border-radius: 4px; 
-           
         }
-    }
 
-    #add_photo{
-        padding: 12px 20px;
-        border: 1.5px solid var(--brand4);
-        border-radius: 4px;
-        background-color: var(--brand4);
-        color: var(--brand1);
-      
-        &:hover{
-            opacity:0.8;
-            transition:0.3s;
+        .brand1-btn {
+            width: 30%;
+            height: 38px;
         }
     }
 
@@ -122,6 +93,7 @@ export const ModalStyled = styled(ReactModal)`
         display:flex;
         gap:10px;
         justify-content:flex-end;
+        padding-top: 18px;
 
         button{
             padding: 12px 20px;
@@ -130,7 +102,7 @@ export const ModalStyled = styled(ReactModal)`
             border-radius:4px;
         }
 
-        #cancel{
+        /* #exclude{
             background-color:var(--grey6);
             border:transparent;
             color: var(--grey2);
@@ -139,10 +111,9 @@ export const ModalStyled = styled(ReactModal)`
                 background-color: var(--grey5);
                 transition:0.3s;
             }
-        }
-
-        #create{
-            background-color:var(--brand3);
+        } */
+        
+        #save{
             color: var(--brand4);
             border:transparent;
             
@@ -154,21 +125,21 @@ export const ModalStyled = styled(ReactModal)`
         }
     }
 
-    @media (max-width:400px){
+    @media (max-width:400px) {
 
-        #add_photo{
-            font-size:12px;
+        width: 90%;
+
+        input {
+            max-width: 80%;
         }
-            .button_actions{
-        
 
-            button{
-                padding: 10px 20px;
-                font-weight: 600;
-                font-size: 12px;
-                border-radius:4px;
-               
-            }
-        }   
+        .aditional_inputs {
+            width: 150px;
+        }
+
+        .side {
+            gap: 0px;
+        }
     }
-`;
+
+`

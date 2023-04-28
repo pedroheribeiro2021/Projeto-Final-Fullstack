@@ -2,17 +2,20 @@ import { Header } from "../../components/Header";
 import { ContainerMain, FormContainer, InputContainer, SubmitButton, ForgotPassword, SignupButton, Title, BoxButtonSubmit, BoxButtonCadastro } from "./style";
 import { Footer } from "../../components/Footer";
 import { useLogin } from "../../contexts/loginContext";
+import { ModalRecoverPassword } from "../../components/ModalRecoverPassword";
 
 const Login = () => {
-    const {handleRegisterNavigate, onSubmit, register,handleSubmit} = useLogin();
+    const {handleRegisterNavigate, setIsModalOpen, onSubmit, register,handleSubmit} = useLogin();
+
+    const handleModalOpen = () => {
+        setIsModalOpen(true);
+      };
 
     return(
         <>
-        
-        
             <Header/>
             <ContainerMain>
-            
+            <ModalRecoverPassword/>
                 <FormContainer onSubmit={handleSubmit(onSubmit)} >
                     
                     <Title>Login</Title>
@@ -23,7 +26,7 @@ const Login = () => {
                     <InputContainer>
                         <label htmlFor="password">Senha:</label>
                         <input type="password" {...register("password")}  placeholder="Digitar senha"/>
-                        <ForgotPassword>Esqueci minha senha</ForgotPassword>
+                        <ForgotPassword onClick={handleModalOpen}>Esqueci minha senha</ForgotPassword>
                     </InputContainer>
                     <BoxButtonSubmit>
                         <SubmitButton type="submit">Entrar</SubmitButton>
