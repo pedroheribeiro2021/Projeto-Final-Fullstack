@@ -21,8 +21,6 @@ interface IHome {
   children: ReactNode;
 }
 
- 
-
 export const HomeContext = createContext<IHomeContext>({} as IHomeContext);
 export const HomeProvider = ({ children }: IHome) => {
   const [openFilter, setOpenFilter] = useState(false);

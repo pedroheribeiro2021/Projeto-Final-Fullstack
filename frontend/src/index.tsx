@@ -1,40 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { GlobalStyle } from './styles/globalStyle';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { BrowserRouter } from 'react-router-dom';
-import { HomeProvider } from './contexts/homeContexts';
-import { LoginProvider } from './contexts/loginContext';
-import { RegisterUserProvider } from './contexts/registerContext';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { GlobalStyle } from "./styles/globalStyle";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter } from "react-router-dom";
+import { HomeProvider } from "./contexts/homeContexts";
+import { LoginProvider } from "./contexts/loginContext";
+import { RegisterUserProvider } from "./contexts/registerContext";
+import { HomeFilterProvider } from "./contexts/homeFilterContext";
 import { ProfileProvider } from './contexts/profileContexts';
 
-
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-
-
-      <BrowserRouter>
-        <LoginProvider>
-          <ProfileProvider>
+    <BrowserRouter>
+      <LoginProvider>
+        <ProfileProvider>
           <HomeProvider>
-          <RegisterUserProvider>
-            <ToastContainer/>
-            <GlobalStyle/>
-              <App />
-          </RegisterUserProvider>
+            <HomeFilterProvider>
+              <RegisterUserProvider>
+                <ToastContainer />
+                <GlobalStyle />
+                  <App />
+              </RegisterUserProvider>
+            </HomeFilterProvider>
           </HomeProvider>
-
-          </ProfileProvider>
-        </LoginProvider>
-      </BrowserRouter>
-
+        </ProfileProvider>
+      </LoginProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

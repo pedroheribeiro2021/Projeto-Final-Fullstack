@@ -2,8 +2,10 @@ import { CardStyle } from "./style";
 // import { getAllAnnoucements } from "../../services/annoucement/annoucementApi";
 // import { useState, useEffect } from "react";
 
-import user from "../../assets/user1.png"
+import user from "../../assets/user1.png";
 import { useContextFunction } from "../../contexts/homeContexts";
+import { useContext } from "react";
+import { HomeFilterContext } from "../../contexts/homeFilterContext";
 
 export const Cards = () => {
   // const [announcements, setannouncements] = useState<IAnuncio[]>([]);
@@ -15,19 +17,24 @@ export const Cards = () => {
   //   };
   //  fetchData()
   // }, []);
-  const {announcements} = useContextFunction()
+
+  const { announcements } = useContextFunction();
+  const { filteredAnnouncements } = useContext(HomeFilterContext);
 
   return (
     <>
       <CardStyle>
-        {announcements ? (
+        {filteredAnnouncements ? (
           <ul className="container_list_cards">
-            {announcements.map((announcement) => {
+            {filteredAnnouncements.map((announcement) => {
               const coverImage = announcement.images.find((image) => image);
               return (
                 <li className="list_cards" key={announcement.id}>
                   <div className="list_cards_img">
-                    <img src={coverImage?.imageUrl} alt={announcement.model.model} />
+                    <img
+                      src={coverImage?.imageUrl}
+                      alt={announcement.model.model}
+                    />
                   </div>
                   <div className="list_cards_text">
                     <h3>{announcement.model.model}</h3>
