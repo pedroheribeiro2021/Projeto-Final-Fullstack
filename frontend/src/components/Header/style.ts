@@ -60,6 +60,10 @@ export const HeaderStyle = styled.header`
   }
   
   @media (max-width: 768px) {
+    display: none;
+    gap: 0.5rem;
+    padding-left: 0.6rem;
+    margin-top: 0.7rem;
     .login {
       display: none;
     }
@@ -73,11 +77,32 @@ export const ContainerUser = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-
-  @media(max-width:768px){
-    display: none;
-    gap: 0.5rem;
-    padding-left: 0.6rem;
-    margin-top: 0.7rem;
-  }
+  cursor: pointer;
 `;
+
+export const ContainerMenu = styled.div`
+    background-color: var(--whiteFixed);
+    height: 10%;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 1rem; */
+    cursor: pointer;
+    position: fixed;
+    top: 7.5%;
+
+    button {
+      width: 100%;
+      height: 100%;
+      padding: 5px 0;
+      background-color: var(--whiteFixed);
+      border: 1px solid var(--grey6);
+      /* border-bottom: 2px solid var(--grey6); */
+    }
+
+    button:hover {
+    border: 1px solid transparent;
+    color: var(--grey4);
+  }
+`

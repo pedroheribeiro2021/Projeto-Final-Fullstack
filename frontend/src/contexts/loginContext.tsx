@@ -16,6 +16,10 @@ interface ILoginContext {
   handleSubmit: any;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isEditUserModalOpen: boolean;
+  setIsEditUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isEditAddressModalOpen: boolean;
+  setIsEditAddressModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface ILogin {
@@ -27,6 +31,9 @@ const LoginContext = createContext<ILoginContext>({} as ILoginContext);
 const LoginProvider = ({ children }: ILogin) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isEditUserModalOpen, setIsEditUserModalOpen] = useState(false)
+  const [isEditAddressModalOpen, setIsEditAddressModalOpen] = useState(false)
+
 
   const handleRegisterNavigate = () => {
     navigate('/register');
@@ -36,7 +43,7 @@ const LoginProvider = ({ children }: ILogin) => {
 
   const onSubmit: SubmitHandler<ILoginData> = (data:any) => SessionUser(data);
 
-  return <LoginContext.Provider value={{ onSubmit, isModalOpen, setIsModalOpen, handleRegisterNavigate, register, handleSubmit }}>{children}</LoginContext.Provider>;
+  return <LoginContext.Provider value={{ onSubmit, isModalOpen, setIsModalOpen, isEditUserModalOpen, setIsEditUserModalOpen, isEditAddressModalOpen, setIsEditAddressModalOpen, handleRegisterNavigate, register, handleSubmit }}>{children}</LoginContext.Provider>;
 };
 
 const useLogin = () => {

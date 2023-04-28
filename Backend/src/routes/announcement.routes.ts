@@ -10,6 +10,12 @@ import { ensureDataIsValidMiddleware } from "../middlewares/user.middlewares/ens
 import { createAnnouncementController } from "../controllers/announcement/createAnnouncement";
 import { ensureAuthMiddleware } from "../middlewares/user.middlewares/ensureAuth.middleware";
 import { getAnnouncementsUserController } from "../controllers/announcement/getAnnouncementsUser.controller";
+import {
+  listAnnouncementBrandsController,
+  listAnnouncementFuelsController,
+  listAnnouncementModelsController,
+  listAnnouncementYearsController,
+} from "../controllers/announcement/listFiltersAnnouncements.controller";
 
 export const announcementRoutes = Router();
 
@@ -22,3 +28,8 @@ announcementRoutes.post(
   createAnnouncementController
 );
 announcementRoutes.get("/user/:id", getAnnouncementsUserController);
+
+announcementRoutes.get("/brand", listAnnouncementBrandsController);
+announcementRoutes.get("/model", listAnnouncementModelsController);
+announcementRoutes.get("/year", listAnnouncementYearsController);
+announcementRoutes.get("/fuel", listAnnouncementFuelsController);

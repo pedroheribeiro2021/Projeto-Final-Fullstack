@@ -1,5 +1,4 @@
 import { AiOutlineClose } from "react-icons/ai";
-import ReactModal from "react-modal"
 import { useLogin } from "../../contexts/loginContext";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IAddressUpdate } from "../../types/editAddress/editAddressInterface";
@@ -8,11 +7,11 @@ import { ModalEditAddressStyled } from "./style";
 
 
 export const ModalEditAddress = () => {
-    const { isModalOpen, setIsModalOpen } = useLogin();
+    const { isEditAddressModalOpen, setIsEditAddressModalOpen } = useLogin();
 
     const { register, handleSubmit } = useForm<IAddressUpdate>();
 
-    const closeModal = () => setIsModalOpen(false)
+    const closeModal = () => setIsEditAddressModalOpen(false)
 
     const onSubmit: SubmitHandler<IAddressUpdate> = (data:any) => {
         EditAddress(data)
@@ -22,7 +21,7 @@ export const ModalEditAddress = () => {
     return (
         <>
             <ModalEditAddressStyled
-                isOpen={isModalOpen}
+                isOpen={isEditAddressModalOpen}
                 onRequestClose={closeModal}
                 overlayClassName="modal-overlay"
                 className="modal-content"
@@ -69,7 +68,7 @@ export const ModalEditAddress = () => {
                 
                 
                 <div className="button_actions">
-                    <button className="grey6-btn" id="cancel" >Cancelar</button>
+                    <button className="grey6-btn" onClick={closeModal} id="cancel" >Cancelar</button>
                     <button className="brand1-btn" type="submit" id="save">Salvar Alterações</button>
                 </div>
             </form>
