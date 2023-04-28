@@ -2,12 +2,16 @@ import { toast } from 'react-toastify';
 import { ILoginData } from '../../types/login/loginInterface';
 import { UserRequest } from '../../types/register/registerInterface';
 import { api } from '../api';
+import { IUserUpdate } from '../../types/editProfile/editProfileInterface';
 
 export const SessionUser = async (data:ILoginData) => {
+
     try {
         const response = await api.post('/login', data);
         const token = response.data.token;
+        const id = response.data.id;
         localStorage.setItem('token', token);
+        localStorage.setItem('id', id);
         toast.success('Login feito com sucesso', {autoClose: 1000});
         window.location.replace("/");
         return response.data;
@@ -58,7 +62,45 @@ export const resetPassword = async (data: string) => {
     }
 }
 
-export const searchUserId = async (userId:string) => {
-    const response = await api.get(`/user/${userId}`, {params:{id:userId}})
-    return response.data;
+export const SearchUserId = async () => {
+
+    const userId = localStorage.getItem('id')
+
+    const response = await api.get(`/user/${userId}`)
+    .then((resp:any) => {
+        localStorage.setItem('id_address', resp.data.address.id);
+        console.log(resp.data.address)
+    })
+    return response;
 };
+
+export const editUser = async (data:IUserUpdate) => {
+
+    const token = localStorage.getItem('token')
+    const id = localStorage.getItem('id')
+
+    try {
+        await api.patch(`/user/${id}`, data, {
+            headers: {Authorization:'Bearer ' + token}
+        })
+        .then((resp: any) => console.log(resp))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteUser = async () => {
+
+    const token = localStorage.getItem('token')
+    const id = localStorage.getItem('id')
+
+    try {
+        await api.delete(`/user/${id}`, {
+            headers: {Authorization:'Bearer ' + token}
+        })
+        .then((resp: any) => console.log(resp))
+        localStorage.clear()
+    } catch (error) {
+        console.log(error)
+    }
+}

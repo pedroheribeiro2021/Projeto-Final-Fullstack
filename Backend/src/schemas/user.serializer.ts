@@ -17,14 +17,6 @@ export const userSerializer: SchemaOf<IUserRequest> = yup.object().shape({
 export const userWithoutPasswordSerializer: SchemaOf<IUser> = yup.object().shape({
     updatedAt: yup.date().required(),
     createdAt: yup.date().required(),
-    address: yup.object().shape({
-        cep: yup.string().required(),
-        state: yup.string().required(),
-        city: yup.string().required(),
-        street: yup.string().required(),
-        number: yup.string().required(),
-        complement: yup.string()
-    }),
     is_advertiser: yup.boolean().required(),
     description: yup.string().required(),
     birthday: yup.string().required(),
