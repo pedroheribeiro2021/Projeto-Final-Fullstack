@@ -5,8 +5,6 @@ import {Home} from './components/Home';
 import {ProductDetail} from './pages/product.detail/index';
 import Login from './pages/login/LoginForm';
 import { ProfileAdmin } from './pages/profileAdmin';
-
-
 import RegisterUserPage from './pages/register/RegisterForm';
 import ReactModal from 'react-modal';
 import { ChangePassowrdPage } from './pages/changePassword';

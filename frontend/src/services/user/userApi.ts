@@ -2,19 +2,21 @@ import { toast } from 'react-toastify';
 import { ILoginData } from '../../types/login/loginInterface';
 import { UserRequest } from '../../types/register/registerInterface';
 import { api } from '../api';
+import { useNavigate } from 'react-router-dom';
 import { IUserUpdate } from '../../types/editProfile/editProfileInterface';
+
 
 export const SessionUser = async (data:ILoginData) => {
 
     try {
+        const navigate = useNavigate();
         const response = await api.post('/login', data);
         const token = response.data.token;
         const id = response.data.id;
         localStorage.setItem('token', token);
         localStorage.setItem('id', id);
         toast.success('Login feito com sucesso', {autoClose: 1000});
-        window.location.replace("/");
-        return response.data;
+        return response.data && navigate('/');
     } catch (error) {
         console.error(error);
         toast.error('Falha ao efetuar login', {autoClose: 1000});
