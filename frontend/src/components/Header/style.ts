@@ -66,7 +66,6 @@ export const HeaderStyle = styled.header`
     .register {
       display: none;
     }
-    
   }
 `;
 
@@ -103,3 +102,10 @@ export const ContainerMenu = styled.div`
     color: var(--grey4);
   }
 `
+  @media(max-width:768px){
+    display: none;
+    gap: 0.5rem;
+    padding-left: 0.6rem;
+    margin-top: 0.7rem;
+  }
+`;

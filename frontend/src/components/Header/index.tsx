@@ -75,6 +75,7 @@ export const Header = () => {
           </div>
           <div className="header_button">
           {user ? (
+
             <ContainerUser onClick={handleMenuOpen} className="user-info">
               <img src={user1} alt="Foto do usuário" />
               <span>{user.name}</span>
@@ -87,6 +88,11 @@ export const Header = () => {
                   </ContainerMenu>
                 )
               }
+
+            <ContainerUser className="user-info">
+              <img className="img" src={user1} alt="Foto do usuário" />
+              <span className="nameUser">{user.name}</span>
+
             </ContainerUser>) 
             :
              (

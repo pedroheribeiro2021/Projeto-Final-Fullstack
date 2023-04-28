@@ -5,6 +5,18 @@ export const MenuStyle = styled.div<{ isOpen: boolean }>`
     display: none;
   }
   @media (max-width: 768px) {
+      .boxUser{margin-top: 0.7rem;
+        font-family: Lexend, sans-serif;
+        background-color: var(--whiteFixed);
+        border: transparent;
+        display: flex;
+        gap: 0.1rem;
+        padding: 10px;
+        white-space: nowrap;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--grey3);
+        align-items: center;}
     .menu_mobile {
       display: flex;
       flex-direction: column;
