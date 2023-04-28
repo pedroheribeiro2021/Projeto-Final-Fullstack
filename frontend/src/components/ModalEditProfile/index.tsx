@@ -8,23 +8,27 @@ import { ModalEditProfileStyled } from "./style";
 
 
 export const ModalEditProfile = () => {
-    const { isModalOpen, setIsModalOpen } = useLogin();
+    const { isEditUserModalOpen, setIsEditUserModalOpen } = useLogin();
 
     const { register, handleSubmit } = useForm<IUserUpdate>();
 
-    const closeModal = () => setIsModalOpen(false)
+    const closeModal = () => setIsEditUserModalOpen(false)
 
     const onSubmit: SubmitHandler<IUserUpdate> = (data:any) => {
         editUser(data)
-        // closeModal()
+        closeModal()
     }
 
-    const onDelete = () => deleteUser()
+    const onDelete = () => {
+        deleteUser()
+        closeModal()
+        window.location.reload()
+    }
 
     return (
         <>
             <ModalEditProfileStyled
-                isOpen={isModalOpen}
+                isOpen={isEditUserModalOpen}
                 onRequestClose={closeModal}
                 overlayClassName="modal-overlay"
                 className="modal-content"
@@ -69,7 +73,7 @@ export const ModalEditProfile = () => {
                     <textarea id="description" placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" {...register('description')}></textarea>
                 </div>
                 <div className="button_actions">
-                    <a className="grey6-btn" id="cancel" >Cancelar</a>
+                    <a className="grey6-btn" onClick={closeModal} id="cancel" >Cancelar</a>
                     <a className="alert1-btn" onClick={onDelete} id="exclude">Excluir Perfil</a>
                     <button className="brand1-btn" type="submit" id="save">Salvar Alterações</button>
                 </div>
