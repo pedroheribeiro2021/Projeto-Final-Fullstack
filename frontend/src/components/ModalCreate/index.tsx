@@ -5,13 +5,26 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../pages/register/style";
+import { useProfile } from "../../contexts/profileContexts";
 /* import { IAnuncio } from "../../types/home/homeInterface"; */
 
 export const Modal = () => {
   const { isModalOpen, setIsModalOpen, createAnnouncements } =
     useContextFunction();
+
+  const { brandCreate, listBrand, modelList, listCars } = useProfile();
+
+  const [selectedBrand, setSelectedBrand] = useState("");
+
+
+
+  useEffect(() => {
+    (async () => {
+      await listCars(selectedBrand);
+    })();
+  }, [selectedBrand]);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -48,6 +61,13 @@ export const Modal = () => {
     setNumberOfImages((prev) => prev + 1);
   };
 
+  useEffect(() => {
+    (async () => {
+      await listBrand();
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <ModalStyled
@@ -68,42 +88,49 @@ export const Modal = () => {
 
             <div className="input_modal">
               <label htmlFor="">Marca</label>
-              <input
-                type="text"
-                placeholder="Digite a Marca"
-                {...register("brand")}
-              />
+              <select {...register("brand")} onChange={(ev)=>setSelectedBrand(ev.target.value)}>
+                {brandCreate.map((el) => (
+                  <option key={el} value={el}>
+                    {el}
+                  </option>
+                ))}
+              </select>
               {errors.brand && <ErrorMessage>Campo obrigatório</ErrorMessage>}
-              
             </div>
 
             <div className="input_modal">
               <label htmlFor="">Modelo</label>
-              <input
-                type="text"
-                placeholder="Digite o Modelo"
-                {...register("model")}
-              />
+
+              <select {...register("model")} >
+                {[...new Set(modelList.map((el) => el.name))].map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+
               {errors.model && <ErrorMessage>Campo obrigatório</ErrorMessage>}
             </div>
 
             <div className="aditional_inputs">
               <div>
                 <label htmlFor="">Ano</label>
-                <input
-                  type="text"
-                  placeholder="Digite o Ano"
-                  {...register("year")}
-                />
+                <select {...register("year")}>
+                  {[...new Set(modelList.map((el) => el.year))].map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
                 {errors.year && <ErrorMessage>Campo obrigatório</ErrorMessage>}
               </div>
-              <div>
+              <div className="select_fuel">
                 <label htmlFor="">Combustivel</label>
-                <input
-                  type="text"
-                  placeholder="Digite o Tipo de Combustível"
-                  {...register("fuel")}
-                />
+                <select {...register("fuel")}>
+                  <option value="1">Flex</option>
+                  <option value="2">Híbrido</option>
+                  <option value="3">Elétrico</option>
+                </select>
                 {errors.fuel && <ErrorMessage>Campo obrigatório</ErrorMessage>}
               </div>
             </div>
@@ -116,7 +143,9 @@ export const Modal = () => {
                   placeholder="Digite a Quilometragem"
                   {...register("mileage")}
                 />
-                {errors.mileage && <ErrorMessage>Campo obrigatório</ErrorMessage>}
+                {errors.mileage && (
+                  <ErrorMessage>Campo obrigatório</ErrorMessage>
+                )}
               </div>
               <div>
                 <label htmlFor="">Cor</label>
@@ -155,7 +184,9 @@ export const Modal = () => {
                 placeholder="Digite a Descrição"
                 {...register("description")}
               />
-              {errors.description && <ErrorMessage>Campo obrigatório</ErrorMessage>}
+              {errors.description && (
+                <ErrorMessage>Campo obrigatório</ErrorMessage>
+              )}
             </div>
 
             <div className="input_modal">
@@ -165,7 +196,6 @@ export const Modal = () => {
                 placeholder="Link da imagem"
                 {...register(`images.0.imageUrl`)}
               />
-              
             </div>
 
             {[...Array(numberOfImages)].map((_, index) => (
@@ -176,12 +206,15 @@ export const Modal = () => {
                   placeholder="Link da imagem"
                   {...register(`images.${index + 1}.imageUrl`)}
                 />
-          
               </div>
             ))}
 
             <div>
-              <button id="add_photo" onClick={handleAddImageField}>
+              <button
+                id="add_photo"
+                type="button"
+                onClick={handleAddImageField}
+              >
                 Adicionar campo para imagem da galeria
               </button>
             </div>
