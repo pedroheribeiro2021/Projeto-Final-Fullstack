@@ -69,3 +69,9 @@ export const HeaderStyle = styled.header`
     
   }
 `;
+
+export const ContainerUser = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;

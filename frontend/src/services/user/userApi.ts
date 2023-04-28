@@ -2,11 +2,9 @@ import { toast } from 'react-toastify';
 import { ILoginData } from '../../types/login/loginInterface';
 import { UserRequest } from '../../types/register/registerInterface';
 import { api } from '../api';
-<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
-=======
 import { IUserUpdate } from '../../types/editProfile/editProfileInterface';
->>>>>>> f17b177d90301d2660fd85e8a1ef966424ba860a
+
 
 export const SessionUser = async (data:ILoginData) => {
 
