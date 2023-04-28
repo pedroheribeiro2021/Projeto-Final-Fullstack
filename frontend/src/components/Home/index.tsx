@@ -6,6 +6,8 @@ import { Footer } from "../Footer";
 import { Header } from "../Header";
 import { HomeStyle } from "./style";
 import { HomeFilterContext } from "../../contexts/homeFilterContext";
+import { ModalEditProfile } from "../ModalEditProfile";
+import { ModalEditAddress } from "../ModalEditAddress";
 
 export const Home = () => {
   const { setOpenFilter, getAllAnnoucements } = useContextFunction();
@@ -50,6 +52,8 @@ export const Home = () => {
     <>
       <Header />
       <HomeStyle>
+      <ModalEditProfile/>
+      <ModalEditAddress/>
         <div className="home_intro">
           <div className="home_text">
             <h2> Motors Shop</h2>

@@ -2,21 +2,21 @@ import { toast } from 'react-toastify';
 import { ILoginData } from '../../types/login/loginInterface';
 import { UserRequest } from '../../types/register/registerInterface';
 import { api } from '../api';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { IUserUpdate } from '../../types/editProfile/editProfileInterface';
 
 
 export const SessionUser = async (data:ILoginData) => {
 
     try {
-        const navigate = useNavigate();
         const response = await api.post('/login', data);
         const token = response.data.token;
         const id = response.data.id;
         localStorage.setItem('token', token);
         localStorage.setItem('id', id);
         toast.success('Login feito com sucesso', {autoClose: 1000});
-        return response.data && navigate('/');
+        window.location.replace('/');
+        return response.data
     } catch (error) {
         console.error(error);
         toast.error('Falha ao efetuar login', {autoClose: 1000});
@@ -86,6 +86,7 @@ export const editUser = async (data:IUserUpdate) => {
             headers: {Authorization:'Bearer ' + token}
         })
         .then((resp: any) => console.log(resp))
+        toast.success('perfil atualizado com sucesso!', {autoClose: 1000})
     } catch (error) {
         console.log(error)
     }
@@ -101,6 +102,7 @@ export const deleteUser = async () => {
             headers: {Authorization:'Bearer ' + token}
         })
         .then((resp: any) => console.log(resp))
+        toast.success('perfil deletado com sucesso!', {autoClose: 1000})
         localStorage.clear()
     } catch (error) {
         console.log(error)
