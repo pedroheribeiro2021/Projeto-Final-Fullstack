@@ -140,17 +140,22 @@ export const createAnnouncementService = async ({
     color: announcementData.color,
     FIPE_priceTable: fipeValue,
     price: announcementData.price,
+    description: announcementData.description,
     isSuperBuy: superBuy,
     user: userId,
     brand: brand,
     model: model,
     year: year,
-    fuel: fuel,
+    fuel: fuel
+    
   });
 
   await announcementRepository.save(annoucement);
 
-    announcementData.images.map(async (el: IImage) => {
+    announcementData.images.map(async (el: IImage,index:number) => {
+        if(index == 0){
+          el.isCoverImage = true
+        }
         let image = imageRepository.create(el);
         image.announcement = annoucement
         await imageRepository.save(image);

@@ -7,8 +7,7 @@ export const ProfileAdminStyle = styled.div`
     flex-direction:column;
     align-items:center;
     min-width:320px;
-
-
+    
 
     .container_profile{
         margin-top: 100px;

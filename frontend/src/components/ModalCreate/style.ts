@@ -15,7 +15,7 @@ export const ModalStyled = styled(ReactModal)`
     display:flex;
     flex-direction:column;
     margin-top:10px;
-   
+
 
     
     .container_modal_items{
@@ -52,7 +52,7 @@ export const ModalStyled = styled(ReactModal)`
         flex-direction:column;
         gap:8px;
 
-        textarea{
+        input{
             resize:none;
             border-radius:4px;
             border: 1.5px solid var(--grey7);
