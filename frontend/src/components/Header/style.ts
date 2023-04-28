@@ -66,7 +66,6 @@ export const HeaderStyle = styled.header`
     .register {
       display: none;
     }
-    
   }
 `;
 
@@ -74,4 +73,11 @@ export const ContainerUser = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media(max-width:768px){
+    display: none;
+    gap: 0.5rem;
+    padding-left: 0.6rem;
+    margin-top: 0.7rem;
+  }
 `;

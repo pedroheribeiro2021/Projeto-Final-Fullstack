@@ -54,8 +54,8 @@ export const Header = () => {
           <div className="header_button">
           {user ? (
             <ContainerUser className="user-info">
-              <img src={user1} alt="Foto do usuário" />
-              <span>{user.name}</span>
+              <img className="img" src={user1} alt="Foto do usuário" />
+              <span className="nameUser">{user.name}</span>
             </ContainerUser>) 
             :
              (
