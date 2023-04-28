@@ -3,8 +3,18 @@ import { ProfileStyle } from "./style";
 import user from "../../assets/user.svg";
 import { Footer } from "../../components/Footer";
 import { Cards } from "../../components/Cards";
+import { useEffect } from "react";
+import { useContextFunction } from "../../contexts/homeContexts";
 
 export const Profile = () => {
+  const {getAllAnnoucements}=useContextFunction()
+  useEffect( ()=>{
+    (async()=>{
+
+        await getAllAnnoucements()
+    })()
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[])
   return (
     <>
       <Header />
@@ -31,7 +41,7 @@ export const Profile = () => {
           </div>
             <div className="container_cards">
                 <h3>Anúncios</h3>
-                <Cards/> 
+                  <Cards/> 
             </div>
         </div>
       <Footer/>

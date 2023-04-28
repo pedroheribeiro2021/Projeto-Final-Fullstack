@@ -6,20 +6,36 @@ import { CardsAdmin } from "../../components/CardsAdmin";
 import { useContextFunction } from "../../contexts/homeContexts";
 import { Modal } from "../../components/ModalCreate";
 import { ModalEdit } from "../../components/ModalEdit";
+import { ModalEditProfile } from "../../components/ModalEditProfile";
+import { ModalEditAddress } from "../../components/ModalEditAddress";
+import { useProfile } from "../../contexts/profileContexts";
+import { useEffect } from "react";
 
 
 export const ProfileAdmin = () => {
   const { setIsModalOpen } = useContextFunction();
+  const{listAnnouncementsAdmin} = useProfile();
 
+
+  const id = localStorage.getItem("id")
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+  
+  useEffect( ()=>{
+    (async()=>{
 
+        await listAnnouncementsAdmin(id!)
+    })()
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[])
 
   return (
     <>
       <Header />
       <ProfileAdminStyle>
+      <ModalEditProfile/>
+      <ModalEditAddress/>
         <div className="container_profile">
           <div className="profile_user_items">
             <div className="profile_img">

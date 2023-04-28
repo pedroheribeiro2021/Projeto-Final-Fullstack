@@ -8,13 +8,14 @@ export const getAnnouncementsUserService = async (userId: string) => {
   });
   try {
     const response = await AppDataSource.getRepository(Announcement).find({
-      where: { user: !user },
+     
       relations: {
         brand: true,
         model: true,
         fuel: true,
         year: true,
         images: true,
+        user:true
       },
     });
     return response;

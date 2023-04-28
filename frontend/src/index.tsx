@@ -10,6 +10,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { HomeProvider } from './contexts/homeContexts';
 import { LoginProvider } from './contexts/loginContext';
 import { RegisterUserProvider } from './contexts/registerContext';
+import { ProfileProvider } from './contexts/profileContexts';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,6 +22,7 @@ root.render(
 
       <BrowserRouter>
         <LoginProvider>
+          <ProfileProvider>
           <HomeProvider>
           <RegisterUserProvider>
             <ToastContainer/>
@@ -27,6 +30,8 @@ root.render(
               <App />
           </RegisterUserProvider>
           </HomeProvider>
+
+          </ProfileProvider>
         </LoginProvider>
       </BrowserRouter>
 

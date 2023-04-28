@@ -31,6 +31,7 @@ export const Cards = () => {
                   </div>
                   <div className="list_cards_text">
                     <h3>{announcement.model.model}</h3>
+                    <p>{announcement.description}</p>
                   </div>
                   <div className="list_cards_user">
                     <img src={user} alt={announcement.model.model} />
