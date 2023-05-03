@@ -12,7 +12,7 @@ export const listAnnouncementService = async () => {
       year: true,
       fuel: true,
       images: true,
-      // comments: true,
+      comments: true,
     },
   });
 

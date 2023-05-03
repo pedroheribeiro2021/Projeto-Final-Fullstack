@@ -21,6 +21,9 @@ export class Comment {
     @JoinColumn()
     user: User
 
-    @ManyToOne(() => Announcement, announcement => announcement.comments)
+    @ManyToOne(() => Announcement, announcement => announcement.comments, {
+        onDelete: 'CASCADE'
+    })
+    @JoinColumn()
     announcement: Announcement
 }

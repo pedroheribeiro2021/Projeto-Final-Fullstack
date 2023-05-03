@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, deleteUserController, listUsersController, searchUserIdController, resetPasswordController, sendResetEmailPasswordController, updateUserController } from "../controllers/user.controller";
+import { createUserController, deleteUserController, listUsersController, searchUserIdController, resetPasswordController, sendResetEmailPasswordController, updateUserController } from "../controllers/user/user.controller";
 import { ensureAuthMiddleware } from "../middlewares/user.middlewares/ensureAuth.middleware";
 import { ensureOwnUserMiddleware } from "../middlewares/user.middlewares/ensureOwnUser.middleware";
 import { verifyUserEmailExistsMiddleware } from "../middlewares/user.middlewares/verifyUserEmailExists.middleware";

@@ -14,6 +14,10 @@ export const HeaderStyle = styled.header`
   background-color: var(--whiteFixed);
   z-index: 6;
 
+  .logo {
+    cursor: pointer;
+  }
+
   .header_button {
     display: flex;
     gap: 30px;

@@ -13,9 +13,9 @@ import { toast } from "react-toastify";
 export const Header = () => {
   const [loginHovered, setLoginHovered] = useState(false);
   const [registerHovered, setRegisterHovered] = useState(false);
-  const [ user, setUser ] = useState<IUser>();
+  // const [ user, setUser ] = useState<IUser>();
   const [menuOpen, setMenuOpen] = useState(false);
-  const { setIsEditUserModalOpen, setIsEditAddressModalOpen } = useLogin();
+  const { user, setUser, setIsEditUserModalOpen, setIsEditAddressModalOpen } = useLogin();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -63,6 +63,7 @@ export const Header = () => {
   const logOut = () => {
     setUser(undefined)
     localStorage.clear()
+    navigate('/')
     toast('bye bye!')
 }
 
@@ -70,7 +71,7 @@ export const Header = () => {
     <>
             <HeaderStyle>
             <div>
-              <img src={logo} alt="" />
+              <img className="logo" src={logo} alt="logo marca" onClick={() => navigate('/')}/>
             </div>
             <div className="header_button">
             {user ? (
@@ -80,6 +81,7 @@ export const Header = () => {
                 {
                   menuOpen && (
                     <ContainerMenu>
+                      <button onClick={() => user.is_advertiser ? navigate('/profile/admin') : navigate('/profile')}>Meu perfil</button>
                       <button onClick={handleEditUser}>Editar usuário</button>
                       <button onClick={handleEditAddress}>Editar endereço</button>
                       <button onClick={logOut}>Sair</button>

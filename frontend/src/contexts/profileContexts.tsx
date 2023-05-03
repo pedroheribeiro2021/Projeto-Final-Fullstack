@@ -1,6 +1,7 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 import { IAnuncio } from "../types/home/homeInterface";
 import { api, apiCars } from "../services/api";
+import { ListComment } from "../services/comment/commentApi";
 
 export interface IProfileContext {
   announcementsAdmin: IAnuncio[];
@@ -12,6 +13,8 @@ export interface IProfileContext {
   modelList: any[];
   setModelList: React.Dispatch<React.SetStateAction<any[]>>;
   listCars:(brand:string) => Promise<void>;
+  comments: any[] 
+  setComments: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 interface IProfile {
@@ -23,6 +26,7 @@ export const ProfileContext = createContext<IProfileContext>(
 );
 export const ProfileProvider = ({ children }: IProfile) => {
   const [announcementsAdmin, setAnnouncementsAdmin] = useState<IAnuncio[]>([]);
+  const [comments, setComments] = useState<any>([]);
 
   const [brandCreate, setBrandCreate] = useState<any>([]);
 
@@ -89,6 +93,8 @@ export const ProfileProvider = ({ children }: IProfile) => {
         announcementsAdmin,
         setAnnouncementsAdmin,
         listAnnouncementsAdmin,
+        comments, 
+        setComments,
         brandCreate,
         setBrandCreate,
         listBrand,

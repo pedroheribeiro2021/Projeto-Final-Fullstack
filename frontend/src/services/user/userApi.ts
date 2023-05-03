@@ -16,6 +16,7 @@ export const SessionUser = async (data:ILoginData) => {
         localStorage.setItem('id', id);
         toast.success('Login feito com sucesso', {autoClose: 1000});
         window.location.replace('/');
+        console.log(response.data)
         return response.data
     } catch (error) {
         console.error(error);
