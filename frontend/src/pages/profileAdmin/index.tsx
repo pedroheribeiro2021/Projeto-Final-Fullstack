@@ -10,11 +10,13 @@ import { ModalEditProfile } from "../../components/ModalEditProfile";
 import { ModalEditAddress } from "../../components/ModalEditAddress";
 import { useProfile } from "../../contexts/profileContexts";
 import { useEffect } from "react";
+import { useLogin } from "../../contexts/loginContext";
 
 
 export const ProfileAdmin = () => {
   const { setIsModalOpen } = useContextFunction();
   const{listAnnouncementsAdmin} = useProfile();
+  const { user } = useLogin();
 
 
   const id = localStorage.getItem("id")
@@ -43,15 +45,12 @@ export const ProfileAdmin = () => {
             </div>
             <div className="profile_text">
               <div className="info_profile">
-                <h3>Samuel Leão</h3>
-                <span>Anunciante</span>
+                {/* <h3>{user.name}</h3> */}
+                {/* <span>{user.is_advertiser ? "Anunciante": "Comprador"}</span> */}
               </div>
               <div className="create_announcement">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-                  nemo eligendi, fuga quasi voluptatem cumque. Temporibus sint
-                  quo aperiam praesentium commodi iusto, cum suscipit iure
-                  reprehenderit ducimus, atque ab rerum?
+                  {/* {user.description} */}
                 </p>
                 <div>
                   <button id="create" onClick={handleOpenModal}>

@@ -1,3 +1,4 @@
+import ReactModal from "react-modal";
 import styled from "styled-components";
 
 export const ProductDetailStyle = styled.section`
@@ -271,7 +272,8 @@ export const ProductDetailStyle = styled.section`
          
         }
 
-        button{
+        span{
+            cursor: pointer;
             padding:  8px;
             background-color: var(--grey7);
             border-radius:24px;
@@ -281,7 +283,7 @@ export const ProductDetailStyle = styled.section`
             border:transparent;
         }
 
-        button:hover{
+        span:hover{
             background-color: var(--grey5);
             transition:0.5s;
         }
@@ -485,4 +487,56 @@ export const ProductDetailStyle = styled.section`
             right:18%;
         }
     }
+`
+
+export const ModalImageStyled = styled(ReactModal)`
+    background-color: var(--whiteFixed);
+    width: 100%;
+    max-width: 520px;
+    /* height: 80%; */
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius:8px;
+    display:flex;
+    flex-direction:column;
+    margin-top:10px;
+    /* gap: 12px; */
+
+    img {
+        width: 95%;
+        margin: 2%;
+    }
+
+    .close_modal {
+        display:flex;
+        justify-content:space-between;
+        padding: 10px;
+
+        button{
+            font-size:20px;
+            background-color: transparent;
+            border:transparent;
+            color: var(--grey4);
+            }
+    }
+
+    @media (max-width:400px) {
+
+        width: 90%;
+
+        input {
+            max-width: 80%;
+        }
+
+        .aditional_inputs {
+            width: 150px;
+        }
+
+        .side {
+            gap: 0px;
+        }
+}
+
 `

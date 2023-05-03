@@ -1,13 +1,13 @@
 import { Request, Response } from "express"
 import { instanceToPlain } from "class-transformer"
-import { IUserRequest, IUserUpdate } from "../interfaces/user/user.interface"
-import { createUserService } from "../services/user/createUser.service"
-import { listUsersServices } from "../services/user/listUser.service"
-import { updateUserService } from "../services/user/updateUser.service"
-import { deleteUserService } from "../services/user/deleteUser.service"
-import { IAddressRequest } from "../interfaces/address/address.interface"
-import { searchUserIdService } from "../services/user/searchUserId.service"
-import { resetPasswordService, sendResetEmailPasswordService } from "../services/user/resetUser.service"
+import { IUserRequest, IUserUpdate } from "../../interfaces/user/user.interface"
+import { createUserService } from "../../services/user/createUser.service"
+import { listUsersServices } from "../../services/user/listUser.service"
+import { updateUserService } from "../../services/user/updateUser.service"
+import { deleteUserService } from "../../services/user/deleteUser.service"
+import { IAddressRequest } from "../../interfaces/address/address.interface"
+import { searchUserIdService } from "../../services/user/searchUserId.service"
+import { resetPasswordService, sendResetEmailPasswordService } from "../../services/user/resetUser.service"
 
 export const createUserController = async (req: Request, res: Response) => {
 

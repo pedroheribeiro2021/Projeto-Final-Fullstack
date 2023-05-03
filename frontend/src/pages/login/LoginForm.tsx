@@ -20,8 +20,8 @@ const Login = () => {
                     
                     <Title>Login</Title>
                     <InputContainer>
-                        <label htmlFor="username">Usuário:</label>
-                        <input type="text" {...register("username")} placeholder="Digitar usuário" />
+                        <label htmlFor="email">Email:</label>
+                        <input type="text" {...register("email")} placeholder="Digitar email" />
                     </InputContainer>
                     <InputContainer>
                         <label htmlFor="password">Senha:</label>

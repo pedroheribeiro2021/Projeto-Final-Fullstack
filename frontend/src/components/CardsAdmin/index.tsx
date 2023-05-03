@@ -1,14 +1,13 @@
 import { CardAdminStyle } from "./style";
-import car1 from "../../assets/carro1.svg";
-
 import user from "../../assets/user1.png";
 import { useContextFunction } from "../../contexts/homeContexts";
 import { useProfile } from "../../contexts/profileContexts";
+import { useNavigate } from "react-router-dom";
 
 export const CardsAdmin = () => {
   const { setIsModalEdit } = useContextFunction();
   const {announcementsAdmin} = useProfile()
-
+  const navigate = useNavigate()
 
   return (
     <>
@@ -47,7 +46,10 @@ export const CardsAdmin = () => {
                   </div>
                     <div className="buttons_admin">
                       <button onClick={()=>setIsModalEdit(true)}>Editar</button>
-                      <button>Ver Detalhes</button>
+                      <button onClick={() => {
+                        localStorage.setItem('announcement_id', announcement.id)
+                        navigate('/product-detail')
+                      }}>Ver Detalhes</button>
                     </div>
                 </li>
               );

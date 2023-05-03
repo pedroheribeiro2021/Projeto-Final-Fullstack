@@ -1,13 +1,15 @@
 import { Header } from "../../components/Header";
 import { ProfileStyle } from "./style";
-import user from "../../assets/user.svg";
 import { Footer } from "../../components/Footer";
 import { Cards } from "../../components/Cards";
 import { useEffect } from "react";
 import { useContextFunction } from "../../contexts/homeContexts";
+import { useLogin } from "../../contexts/loginContext";
 
 export const Profile = () => {
   const {getAllAnnoucements}=useContextFunction()
+  const { user } = useLogin();
+
   useEffect( ()=>{
     (async()=>{
 
@@ -26,15 +28,12 @@ export const Profile = () => {
             </div>
             <div className="profile_text">
               <div className="info_profile">
-                <h3>Samuel Leão</h3>
-                <span>Anunciante</span>
+                <h3>{user.name}</h3>
+                <span>Comprador</span>
               </div>
               <div>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-                  nemo eligendi, fuga quasi voluptatem cumque. Temporibus sint
-                  quo aperiam praesentium commodi iusto, cum suscipit iure
-                  reprehenderit ducimus, atque ab rerum?
+                {user.description}
                 </p>
               </div>
             </div>

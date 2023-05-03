@@ -25,6 +25,10 @@ export const CardStyle = styled.div`
     display: flex;
     flex-direction: column;
     gap: 15px;
+
+    h3 {
+      cursor: pointer;
+    }
   }
 
   .list_cards_text h3 {
