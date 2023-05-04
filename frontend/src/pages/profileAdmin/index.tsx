@@ -1,6 +1,5 @@
 import { Header } from "../../components/Header";
 import { ProfileAdminStyle } from "./style";
-import user from "../../assets/user.svg";
 import { Footer } from "../../components/Footer";
 import { CardsAdmin } from "../../components/CardsAdmin";
 import { useContextFunction } from "../../contexts/homeContexts";
@@ -12,32 +11,30 @@ import { useProfile } from "../../contexts/profileContexts";
 import { useEffect } from "react";
 import { useLogin } from "../../contexts/loginContext";
 
-
 export const ProfileAdmin = () => {
   const { setIsModalOpen } = useContextFunction();
-  const{listAnnouncementsAdmin} = useProfile();
+  const { listAnnouncementsAdmin, getUserLogged, userLogged } = useProfile();
   const { user } = useLogin();
 
-
-  const id = localStorage.getItem("id")
+  const id = localStorage.getItem("id");
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
-  
-  useEffect( ()=>{
-    (async()=>{
 
-        await listAnnouncementsAdmin(id!)
-    })()
-// eslint-disable-next-line react-hooks/exhaustive-deps
-},[])
+  useEffect(() => {
+    (async () => {
+      await listAnnouncementsAdmin(id!);
+      await getUserLogged(id!);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
       <Header />
       <ProfileAdminStyle>
-      <ModalEditProfile/>
-      <ModalEditAddress/>
+        <ModalEditProfile />
+        <ModalEditAddress />
         <div className="container_profile">
           <div className="profile_user_items">
             <div className="profile_img">
@@ -45,13 +42,13 @@ export const ProfileAdmin = () => {
             </div>
             <div className="profile_text">
               <div className="info_profile">
-                {/* <h3>{user.name}</h3> */}
-                {/* <span>{user.is_advertiser ? "Anunciante": "Comprador"}</span> */}
+                <h3>{userLogged?.name}</h3>
+                <span>
+                  {userLogged?.is_advertiser ? "Anunciante" : "Comprador"}
+                </span>
               </div>
               <div className="create_announcement">
-                <p>
-                  {/* {user.description} */}
-                </p>
+                <p>{userLogged?.description}</p>
                 <div>
                   <button id="create" onClick={handleOpenModal}>
                     Criar Anúncio
@@ -66,11 +63,8 @@ export const ProfileAdmin = () => {
           </div>
         </div>
         <Modal />
-        <ModalEdit/>
+        <ModalEdit />
         <Footer />
-        
-
-      
       </ProfileAdminStyle>
     </>
   );

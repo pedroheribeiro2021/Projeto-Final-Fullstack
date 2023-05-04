@@ -8,23 +8,41 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../pages/register/style";
 import { useProfile } from "../../contexts/profileContexts";
-/* import { IAnuncio } from "../../types/home/homeInterface"; */
 
 export const Modal = () => {
   const { isModalOpen, setIsModalOpen, createAnnouncements } =
     useContextFunction();
 
-  const { brandCreate, listBrand, modelList, listCars } = useProfile();
+  const {
+    brandCreate,
+    listBrand,
+    modelList,
+    listCars,
+    getModelInfo,
+    modelInfoYear,
+    modelInfoFuel,
+    modelInfoFuelText,
+    modelInfoFipePrice,
+  } = useProfile();
 
   const [selectedBrand, setSelectedBrand] = useState("");
 
-
+  const [selectedModel, setSelectedModel] = useState("");
 
   useEffect(() => {
     (async () => {
       await listCars(selectedBrand);
+      await getModelInfo(selectedBrand, selectedModel);
     })();
-  }, [selectedBrand]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    selectedBrand,
+    selectedModel,
+    modelInfoYear,
+    modelInfoFuel,
+    modelInfoFuelText,
+    modelInfoFipePrice,
+  ]);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -88,7 +106,10 @@ export const Modal = () => {
 
             <div className="input_modal">
               <label htmlFor="">Marca</label>
-              <select {...register("brand")} onChange={(ev)=>setSelectedBrand(ev.target.value)}>
+              <select
+                {...register("brand")}
+                onChange={(ev) => setSelectedBrand(ev.target.value)}
+              >
                 {brandCreate.map((el) => (
                   <option key={el} value={el}>
                     {el}
@@ -101,7 +122,10 @@ export const Modal = () => {
             <div className="input_modal">
               <label htmlFor="">Modelo</label>
 
-              <select {...register("model")} >
+              <select
+                {...register("model")}
+                onChange={(el) => setSelectedModel(el.target.value)}
+              >
                 {[...new Set(modelList.map((el) => el.name))].map((name) => (
                   <option key={name} value={name}>
                     {name}
@@ -115,22 +139,21 @@ export const Modal = () => {
             <div className="aditional_inputs">
               <div>
                 <label htmlFor="">Ano</label>
-                <select {...register("year")}>
-                  {[...new Set(modelList.map((el) => el.year))].map((year) => (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  ))}
-                </select>
+                <input
+                  type="text"
+                  placeholder="Ano"
+                  value={modelInfoYear}
+                  {...register("year")}
+                />
                 {errors.year && <ErrorMessage>Campo obrigatório</ErrorMessage>}
               </div>
               <div className="select_fuel">
                 <label htmlFor="">Combustivel</label>
-                <select {...register("fuel")}>
-                  <option value="1">Flex</option>
-                  <option value="2">Híbrido</option>
-                  <option value="3">Elétrico</option>
-                </select>
+                {
+                  <select {...register("fuel")}>
+                    <option value={modelInfoFuel}>{modelInfoFuelText}</option>
+                  </select>
+                }
                 {errors.fuel && <ErrorMessage>Campo obrigatório</ErrorMessage>}
               </div>
             </div>
@@ -164,6 +187,7 @@ export const Modal = () => {
                 <input
                   type="text"
                   placeholder="Digite o Preço tabela FIPE"
+                  value={modelInfoFipePrice}
                   {...register("FIPE_priceTable")}
                 />
               </div>
