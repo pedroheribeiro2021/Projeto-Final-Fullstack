@@ -1,7 +1,7 @@
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
 import { IAnuncio } from "../types/home/homeInterface";
 import { api, apiCars } from "../services/api";
-import { ListComment } from "../services/comment/commentApi";
+import { IUser } from "../types/home/homeInterface";
 
 export interface IProfileContext {
   announcementsAdmin: IAnuncio[];
@@ -12,9 +12,21 @@ export interface IProfileContext {
   listBrand: () => Promise<void>;
   modelList: any[];
   setModelList: React.Dispatch<React.SetStateAction<any[]>>;
-  listCars:(brand:string) => Promise<void>;
-  comments: any[] 
+  modelInfoYear: any;
+  setModelInfoYear: React.Dispatch<React.SetStateAction<any>>;
+  modelInfoFuel: any;
+  setModelInfoFuel: React.Dispatch<React.SetStateAction<any>>;
+  modelInfoFuelText: any;
+  setModelInfoFuelText: React.Dispatch<React.SetStateAction<any>>;
+  modelInfoFipePrice: any;
+  setModelInfoFipePrice: React.Dispatch<React.SetStateAction<any>>;
+  listCars: (brand: string) => Promise<void>;
+  getModelInfo: (brand: string, model: string) => Promise<void>;
+  comments: any[];
   setComments: React.Dispatch<React.SetStateAction<any[]>>;
+  userLogged: IUser | null;
+  setUserLogged: React.Dispatch<React.SetStateAction<IUser | null>>;
+  getUserLogged: (id: string) => Promise<void>;
 }
 
 interface IProfile {
@@ -32,6 +44,13 @@ export const ProfileProvider = ({ children }: IProfile) => {
 
   const [modelList, setModelList] = useState<any>([]);
 
+  const [modelInfoYear, setModelInfoYear] = useState<any>();
+  const [modelInfoFuel, setModelInfoFuel] = useState<any>();
+  const [modelInfoFuelText, setModelInfoFuelText] = useState<any>();
+  const [modelInfoFipePrice, setModelInfoFipePrice] = useState<any>();
+
+  const [userLogged, setUserLogged] = useState<IUser | null>(null);
+
   const token = localStorage.getItem("token");
 
   const listAnnouncementsAdmin = async (id: string): Promise<void> => {
@@ -43,6 +62,15 @@ export const ProfileProvider = ({ children }: IProfile) => {
       return data;
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const getUserLogged = async (id: string): Promise<void> => {
+    try {
+      const { data } = await api.get(`/user/${id}`);
+      setUserLogged(data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -60,10 +88,27 @@ export const ProfileProvider = ({ children }: IProfile) => {
     try {
       const { data } = await apiCars.get(`cars?brand=${brand}`);
       const car = data.map((el: any) => modelList.push(el));
-     
       setModelList(data);
-
       return data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getModelInfo = async (brand: string, model: string): Promise<void> => {
+    try {
+      const { data } = await apiCars.get(`cars?brand=${brand}`);
+      const car = data.find((el: any) => el.name === model);
+      setModelInfoYear(car.year);
+      setModelInfoFuel(car.fuel);
+      if (car.fuel === 1) {
+        setModelInfoFuelText("Flex");
+      } else if (car.fuel === 2) {
+        setModelInfoFuelText("Hibrido");
+      } else if (car.fuel === 3) {
+        setModelInfoFuelText("Eletrico");
+      }
+      setModelInfoFipePrice(car.value);
     } catch (error) {
       console.error(error);
     }
@@ -93,14 +138,26 @@ export const ProfileProvider = ({ children }: IProfile) => {
         announcementsAdmin,
         setAnnouncementsAdmin,
         listAnnouncementsAdmin,
-        comments, 
+        comments,
         setComments,
         brandCreate,
         setBrandCreate,
         listBrand,
         modelList,
         setModelList,
-        listCars
+        modelInfoYear,
+        setModelInfoYear,
+        modelInfoFuel,
+        setModelInfoFuel,
+        modelInfoFuelText,
+        setModelInfoFuelText,
+        modelInfoFipePrice,
+        setModelInfoFipePrice,
+        listCars,
+        getModelInfo,
+        userLogged,
+        setUserLogged,
+        getUserLogged,
       }}
     >
       {children}
