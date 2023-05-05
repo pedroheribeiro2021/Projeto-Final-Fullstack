@@ -12,7 +12,10 @@ export const ModalEditProfile = () => {
 
     const { register, handleSubmit } = useForm<IUserUpdate>();
 
-    const closeModal = () => setIsEditUserModalOpen(false)
+    const closeModal = () => {
+        setIsEditUserModalOpen(false)
+        localStorage.removeItem('announcement_id')
+    }
 
     const onSubmit: SubmitHandler<IUserUpdate> = (data:any) => {
         editUser(data)

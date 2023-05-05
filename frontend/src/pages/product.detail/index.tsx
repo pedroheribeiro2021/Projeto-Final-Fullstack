@@ -12,7 +12,7 @@ import { IComment } from "../../types/comment/commentInterface";
 import { useEffect, useState } from "react";
 import { useProfile } from "../../contexts/profileContexts";
 import { api } from "../../services/api";
-// import moment from "moment";
+import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../contexts/loginContext";
 import ReactModal from "react-modal";
@@ -149,7 +149,7 @@ export const ProductDetail = () => {
                                   </span>
                                   <img src={ellipse} alt="" />
                                   <span className="past_time">
-                                    {/* {moment(comment.createdAt).fromNow()} */}
+                                    {moment(comment.createdAt).fromNow()}
                                   </span>
                                 </div>
                                 <p className="body-2-400">

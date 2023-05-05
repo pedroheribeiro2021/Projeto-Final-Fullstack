@@ -45,7 +45,11 @@ export const CardsAdmin = () => {
                     </div>
                   </div>
                     <div className="buttons_admin">
-                      <button onClick={()=>setIsModalEdit(true)}>Editar</button>
+                      <button onClick={()=> {
+                        setIsModalEdit(true)
+                        localStorage.setItem('announcement_id', announcement.id)
+                      } 
+                      }>Editar</button>
                       <button onClick={() => {
                         localStorage.setItem('announcement_id', announcement.id)
                         navigate('/product-detail')

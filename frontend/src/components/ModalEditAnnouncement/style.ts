@@ -129,6 +129,14 @@ export const ModalEditStyled = styled(ReactModal)`
             border-radius:4px;
         }
 
+        a{
+            cursor: pointer;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius:4px;
+        }
+
         #exclude{
             background-color:var(--grey6);
             border:transparent;
