@@ -10,6 +10,7 @@ import { ModalEditProfile } from "../ModalEditProfile";
 import { ModalEditAddress } from "../ModalEditAddress";
 
 export const Home = () => {
+  localStorage.removeItem('announcement_id')
   const { setOpenFilter, getAllAnnoucements } = useContextFunction();
   const {
     getAnnoucements,
