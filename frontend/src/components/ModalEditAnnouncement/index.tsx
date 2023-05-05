@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { useProfile } from "../../contexts/profileContexts";
 import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../pages/register/style";
-import { deleteAnnouncement } from "../../services/annoucement/annoucementApi";
+import { deleteAnnouncement, updateAnnouncement } from "../../services/annoucement/annoucementApi";
 
 
 export const ModalEdit = () => {
@@ -73,10 +73,6 @@ export const ModalEdit = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const edit = (data:any) => {
-    console.log(data)
-  }
-
   const [numberOfImages, setNumberOfImages] = useState(2);
 
   const handleAddImageField = () => {
@@ -105,10 +101,10 @@ export const ModalEdit = () => {
         className="modal-content"
       
       >
-        <form onSubmit={handleSubmit(edit)}>
+        <form onSubmit={handleSubmit(updateAnnouncement)}>
         <div className="container_modal_items">
             <div className="close_modal">
-              <h3>Criar anúncio</h3>
+              <h3>Editar anúncio</h3>
               <button onClick={handleCloseModalEdit}>{<AiOutlineClose />}</button>
             </div>
             <div>
@@ -127,7 +123,7 @@ export const ModalEdit = () => {
                   </option>
                 ))}
               </select>
-              {errors.brand && <ErrorMessage>Campo obrigatório</ErrorMessage>}
+              {/* {errors.brand && <ErrorMessage>Campo obrigatório</ErrorMessage>} */}
             </div>
 
             <div className="input_modal">
@@ -144,7 +140,7 @@ export const ModalEdit = () => {
                 ))}
               </select>
 
-              {errors.model && <ErrorMessage>Campo obrigatório</ErrorMessage>}
+              {/* {errors.model && <ErrorMessage>Campo obrigatório</ErrorMessage>} */}
             </div>
 
             <div className="aditional_inputs">
@@ -156,7 +152,7 @@ export const ModalEdit = () => {
                   value={modelInfoYear}
                   {...register("year")}
                 />
-                {errors.year && <ErrorMessage>Campo obrigatório</ErrorMessage>}
+                {/* {errors.year && <ErrorMessage>Campo obrigatório</ErrorMessage>} */}
               </div>
               <div className="select_fuel">
                 <label htmlFor="">Combustivel</label>
@@ -165,7 +161,7 @@ export const ModalEdit = () => {
                     <option value={modelInfoFuel}>{modelInfoFuelText}</option>
                   </select>
                 }
-                {errors.fuel && <ErrorMessage>Campo obrigatório</ErrorMessage>}
+                {/* {errors.fuel && <ErrorMessage>Campo obrigatório</ErrorMessage>} */}
               </div>
             </div>
 
@@ -177,9 +173,6 @@ export const ModalEdit = () => {
                   placeholder="Digite a Quilometragem"
                   {...register("mileage")}
                 />
-                {errors.mileage && (
-                  <ErrorMessage>Campo obrigatório</ErrorMessage>
-                )}
               </div>
               <div>
                 <label htmlFor="">Cor</label>
@@ -188,7 +181,6 @@ export const ModalEdit = () => {
                   placeholder="Digite a Cor"
                   {...register("color")}
                 />
-                {errors.color && <ErrorMessage>Campo obrigatório</ErrorMessage>}
               </div>
             </div>
 
@@ -209,7 +201,6 @@ export const ModalEdit = () => {
                   placeholder="Digite o preço"
                   {...register("price")}
                 />
-                {errors.price && <ErrorMessage>Campo obrigatório</ErrorMessage>}
               </div>
             </div>
 
@@ -219,9 +210,6 @@ export const ModalEdit = () => {
                 placeholder="Digite a Descrição"
                 {...register("description")}
               />
-              {errors.description && (
-                <ErrorMessage>Campo obrigatório</ErrorMessage>
-              )}
             </div>
 
             <div className="input_modal">

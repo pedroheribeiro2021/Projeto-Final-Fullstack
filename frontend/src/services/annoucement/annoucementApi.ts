@@ -18,6 +18,22 @@ import { AxiosResponse } from "axios";
 //     }
 // };
 
+export const updateAnnouncement = async (data:any) => {
+
+    const token = localStorage.getItem('token')
+    const id = localStorage.getItem('announcement_id')
+
+    try {
+        await api.patch(`/announcement/${id}`, data, {
+            headers: {Authorization:'Bearer ' + token}
+        })
+        .then((resp: any) => console.log(resp))
+        toast.success('anúncio atualizado com sucesso!', {autoClose: 1000})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const deleteAnnouncement = async () => {
 
     const token = localStorage.getItem('token')
