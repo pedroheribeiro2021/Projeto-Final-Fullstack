@@ -1,14 +1,21 @@
 import { useContextFunction } from "../../contexts/homeContexts";
-import {AiOutlineClose} from "react-icons/ai"
+import { AiOutlineClose } from "react-icons/ai";
 import { ModalEditStyled } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { useProfile } from "../../contexts/profileContexts";
-import { useEffect, useState } from "react";
+import {
+  IProfileContext,
+  ProfileContext,
+  useProfile,
+} from "../../contexts/profileContexts";
+import { useContext, useEffect, useState } from "react";
 import { ErrorMessage } from "../../pages/register/style";
-import { deleteAnnouncement, updateAnnouncement } from "../../services/annoucement/annoucementApi";
-
+import {
+  deleteAnnouncement,
+  updateAnnouncement,
+} from "../../services/annoucement/annoucementApi";
+import { api } from "../../services/api";
 
 export const ModalEdit = () => {
   const { isModalEdit, setIsModalEdit } = useContextFunction();
@@ -23,11 +30,17 @@ export const ModalEdit = () => {
     modelInfoFuel,
     modelInfoFuelText,
     modelInfoFipePrice,
+    announcementModalEdit,
   } = useProfile();
 
   const [selectedBrand, setSelectedBrand] = useState("");
 
   const [selectedModel, setSelectedModel] = useState("");
+
+  const { listAnnouncementsAdmin }: IProfileContext =
+    useContext(ProfileContext);
+
+  const id = localStorage.getItem("id");
 
   useEffect(() => {
     (async () => {
@@ -87,10 +100,10 @@ export const ModalEdit = () => {
   }, []);
 
   const onDelete = () => {
-    deleteAnnouncement()
+    deleteAnnouncement();
     setIsModalEdit(false);
-    // window.location.reload()
-}
+    listAnnouncementsAdmin(id!);
+  };
 
   return (
     <>
@@ -99,13 +112,14 @@ export const ModalEdit = () => {
         onRequestClose={handleCloseModalEdit}
         overlayClassName="modal-overlay"
         className="modal-content"
-      
       >
         <form onSubmit={handleSubmit(updateAnnouncement)}>
-        <div className="container_modal_items">
+          <div className="container_modal_items">
             <div className="close_modal">
               <h3>Editar anúncio</h3>
-              <button onClick={handleCloseModalEdit}>{<AiOutlineClose />}</button>
+              <button onClick={handleCloseModalEdit}>
+                {<AiOutlineClose />}
+              </button>
             </div>
             <div>
               <p>Informações do veículo</p>
@@ -243,8 +257,10 @@ export const ModalEdit = () => {
             </div>
 
             <div className="button_actions">
-                <a className="alert1-btn" onClick={onDelete} id="exclude" >Excluir Anúncio</a>
-                <button id="save">Salvar Alterações</button>
+              <a className="alert1-btn" onClick={onDelete} id="exclude">
+                Excluir Anúncio
+              </a>
+              <button id="save">Salvar Alterações</button>
             </div>
           </div>
         </form>
