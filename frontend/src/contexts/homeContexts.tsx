@@ -2,6 +2,7 @@ import { ReactNode, createContext, useContext, useState } from "react";
 import { IAnuncio } from "../types/home/homeInterface";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
+import { IProfileContext, ProfileContext } from "./profileContexts";
 
 export interface IHomeContext {
   openFilter: boolean;
@@ -14,7 +15,6 @@ export interface IHomeContext {
   setAnnouncements: React.Dispatch<React.SetStateAction<IAnuncio[]>>;
   getAllAnnoucements: () => Promise<void>;
   createAnnouncements: (payload: any) => Promise<any>;
-  
 }
 
 interface IHome {
@@ -31,9 +31,11 @@ export const HomeProvider = ({ children }: IHome) => {
 
   const [announcements, setAnnouncements] = useState<IAnuncio[]>([]);
 
- 
+  const { listAnnouncementsAdmin }: IProfileContext =
+    useContext(ProfileContext);
 
   const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
 
   const getAllAnnoucements = async (): Promise<void> => {
     try {
@@ -46,15 +48,15 @@ export const HomeProvider = ({ children }: IHome) => {
   };
 
   const createAnnouncements = async (payload: any): Promise<any> => {
-    
     try {
       const { data } = await api.post("/announcement", payload, {
         headers: { authorization: `Bearer ${token}` },
       });
       setAnnouncements(data);
-      setIsModalOpen(false) 
-      toast.success("Anúncio criado com Sucesso")
-      console.log(data)
+      setIsModalOpen(false);
+      listAnnouncementsAdmin(id!);
+      toast.success("Anúncio criado com Sucesso");
+      console.log(data);
       return data;
     } catch (error) {
       toast.error("Falha ao criar Anúncio");
@@ -74,7 +76,6 @@ export const HomeProvider = ({ children }: IHome) => {
         setAnnouncements,
         getAllAnnoucements,
         createAnnouncements,
-       
       }}
     >
       {children}

@@ -16,16 +16,26 @@ import {
   listAnnouncementModelsController,
   listAnnouncementYearsController,
 } from "../controllers/announcement/listFiltersAnnouncements.controller";
+import { updateAnnouncementController } from "../controllers/announcement/editAnnouncement.controller";
 
 export const announcementRoutes = Router();
 
 announcementRoutes.get("", listAnnouncementController);
-announcementRoutes.delete("/:id", deleteAnnouncementController);
+announcementRoutes.delete(
+  "/:id",
+  ensureAuthMiddleware,
+  deleteAnnouncementController
+);
 announcementRoutes.post(
   "",
   ensureAuthMiddleware,
   ensureDataIsValidMiddleware(annoucementRequestSerializer),
   createAnnouncementController
+);
+announcementRoutes.patch(
+  "/:id",
+  ensureAuthMiddleware,
+  updateAnnouncementController
 );
 announcementRoutes.get("/user/:id", getAnnouncementsUserController);
 

@@ -114,24 +114,6 @@ export const ProfileProvider = ({ children }: IProfile) => {
     }
   };
 
-  /* const fipePrice = async (brand:string): Promise<void> => {
-   
-      try {
-      
-        const req = await fetch(
-          `https://kenzie-kars.herokuapp.com/cars?brand=${brand}`
-        );
-        const resp = await req.json();
-        const modelsList: any = [];
-        resp.forEach((el: any) => modelsList.push(el.name));
-        console.log(modelsList)
-        return modelsList;
-
-      } catch (err) {
-        console.log(err);
-      }
-  }; */
-
   return (
     <ProfileContext.Provider
       value={{
