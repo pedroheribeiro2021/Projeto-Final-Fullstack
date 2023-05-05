@@ -1,0 +1,624 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Motors Shop",
+        "description": "Documentation from api Motors Shop",
+        "version": "1.0.0"
+    },
+    "basePath": "/",
+
+    "components":{
+        "securitySchemes":{
+            "BearerAuth":{
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+
+    "paths":{
+
+        "/login":{
+            "post": {
+                "tags":["Users"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "email":{
+                                        "type":"string"
+                                    },
+                                    "password":{
+                                        "type":"string"
+                                    }
+                                },
+                                "example":{
+                                    "email": "fulano@live.com",
+                                    "password": "123456"
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses":{
+                    "200":{
+                        "description":{
+                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc19hZHZlcnRpc2VyIjp0cnVlLCJpYXQiOjE2ODMyMjY4ODcsImV4cCI6MTY4MzMxMzI4Nywic3ViIjoiODYxZDRlYTEtMDgwNC00MGIxLTk2YWUtNmUxZjE3ZTE5NDE1In0.MnwjWhVww26pOdxqTlmJbgr8DFlqlttOg2y_ikY0yZo",
+                            "id": "861d4ea1-0804-40b1-96ae-6e1f17e19415"
+                        }
+                    },
+                    "403":{
+                        "description": {
+                            "message": "User or password invalid"
+                        }
+                    }
+                }
+
+            }
+        },
+
+        "/user": {
+            "post":{
+                "tags":["Users"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type":"string"
+                                    },
+                                    "cpf":{
+                                        "type":"string"
+                                    },
+                                    "cellPhone":{
+                                        "type":"string"
+                                    },
+                                    "birthday":{
+                                        "type":"string"
+                                    },
+                                    "description":{
+                                        "type":"string"
+                                    },
+                                    "is_advertiser":{
+                                        "type":"boolean"
+                                    },
+                                    "address":{
+                                        "type":"object",
+                                        "properties":{
+                                            "cep":{
+                                                "type":"string"
+                                            },
+                                            "state":{
+                                                "type":"string"
+                                            },
+                                            "city":{
+                                                "type":"string"
+                                            },
+                                            "street":{
+                                                "type":"string"
+                                            },
+                                            "number":{
+                                                "type":"string"
+                                            },
+                                            "complement":{
+                                                "type":"string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example":{
+                                    "name": "Fulano",
+                                    "email": "fulano@live.com",
+                                    "password": "123456",
+                                    "cpf": "03992750109",
+                                    "cellPhone": "061992514713",
+                                    "birthday": "04/11/92",
+                                    "description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                    "is_advertiser": true,
+                                        "address": {
+                                            "cep": "71996050",
+                                            "state": "DF",
+                                            "city": "Brasilia",
+                                            "street": "Taguatinga",
+                                            "number": "20",
+                                            "complement": "abcde"
+                                        }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses":{
+                    "409":{
+                        "description": "Address already exists"
+                    },
+                    "400":{
+                        "description": "User already exist"
+                    },
+                    "401":{
+                        "description": "invalid signature"
+                    },
+                    "200":{
+                        "description": "OK"
+                    }
+                }
+            } 
+        },
+
+        "/user/{id}":{
+            "patch":{
+                "description": "Route updates a user",
+                "summary": "Route updates a user by customer id",
+                "security": [{"BearerAuth":[]}],
+                "tags":["Users"],
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "type": "string",
+                    "required": true
+                }],
+                "requestBody":{
+                    "content": {
+                        "application/json": {
+
+                            "schema": {
+                                "type":"object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "email":{
+                                        "type" : "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "cpf":{
+                                        "type": "string"
+                                    },
+                                    "cellPhone":{
+                                        "type": "string"
+                                    },
+                                    "birthday":{
+                                        "type": "string"
+                                    },
+                                    "description":{
+                                        "type": "string"
+                                    },
+                                    "is_advertiser":{
+                                        "type": "boolean"
+                                    }
+                                },
+                                "example": {
+                                    "name": "Pedro sem params",
+                                    "email": "pedrohenriquesilva29@live.com",
+                                    "password": "123456",
+                                    "cpf": "03992750108",
+                                    "cellPhone": "061992514712",
+                                    "birthday": "04-11-98",
+                                    "description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                    "is_advertiser": true
+                                }
+                            }
+                            
+                        }
+                    }
+                },
+                "responses": {
+                    "401":{
+                        "description": "invalid signature"  
+                    },
+                    "404":{
+                        "description": "User not found"
+                    },
+                    "400":{
+                        "description":  "User already registred"
+                    },
+                    "200":{
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/user-all":{
+            "get":{
+                "description":"Route get all users from api",
+                "security": [{"BearerAuth":[]}],
+                "tags":["Users"],
+                "responses":{
+                    "200": {
+                        "description":"OK"
+                    },
+                    "401":{
+                        "description": "invalid signature"
+                    }
+                }
+            }
+
+        },
+
+        "/user/{userId}":{
+            "delete":{
+                "parameters":[{
+                    "in":"path",
+                    "name": "userId",
+                    "type": "string",
+                    "required": true
+                }],
+                "security": [{"BearerAuth":[]}],
+                "tags":["Users"],
+                "responses":{
+                    "204":{
+                        "description": ""
+                    },
+                    "401":{
+                        "description": "invalid signature"
+                    },
+                    "404":{
+                        "description":"User not found"
+                    }
+                }
+            }
+        },
+
+        "/resetPassword/{id}":{
+            "patch":{
+                "description":"Route created for update password from user",
+                "security":[{"BearerAuth":[]}],
+                "tags":["Users"],
+                "parameters":[{
+                    "in":"path",
+                    "name":"id",
+                    "type":"string",
+                    "required": true
+                }],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "password":{
+                                        "type":"string"
+                                    }
+                                },
+                                "example":{
+                                    "password": "1234"
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses":{
+                    "200":{
+                        "description":"password change with sucess"
+                    },
+                    "401":{
+                        "description":"invalid signature"
+                    },
+                    "500":{
+                        "description":"internal server error"
+                    }
+                }
+
+            }
+        },
+
+        "/resetPassword":{
+            "post":{
+                "tags":["Users"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "email":{
+                                        "type":"string"
+                                    }
+                                },
+                                "example":{
+                                    "email": "pedrohenriquesilva29@live.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "OK"
+                    },
+                    "401":{
+                        "description":"invalid signature"
+                    },
+                    "404":{
+                        "description":"user not found"
+                    }
+                }
+            }
+        },
+
+        "/announcement":{
+            "post":{
+                "tags":["Annoucement"],
+                "security": [{"BearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "brand":{
+                                        "type":"string"
+                                    },
+                                    "model":{
+                                        "type":"string"
+                                    },
+                                    "year":{
+                                        "type":"string"
+                                    },
+                                    "fuel":{
+                                        "type":"string"
+                                    },
+                                    "price":{
+                                        "type":"string"
+                                    },
+                                    "mileage":{
+                                        "type":"string"
+                                    },
+                                    "color":{
+                                        "type":"string"
+                                    },
+                                    "description":{
+                                        "type":"string"
+                                    },
+                                    "images":{
+                                        "schema":{
+                                            "type":"array",
+                                            "properties":{
+                                                "imageUrl":{
+                                                    "type":"string"
+                                                },
+                                                "isCoverImage":{
+                                                    "type":"boolean"
+                                                }
+                                            }
+                                        }
+                                        
+                                    }
+                                },
+                                "example":{
+                                    "brand": "fiat",
+                                    "model": "argo drive 1.3 8v flex",
+                                    "year": "2021",
+                                    "fuel": "1",
+                                    "price": 25000,
+                                    "mileage": 100,
+                                    "color": "red",
+                                    "description": "anuncio teste 2",
+                                    "images": [
+                                        {
+                                            "imageUrl": "https://argo.fiat.com.br/assets/images/img-argo-trekking-13-principal.png",
+                                            "isCoverImage": true
+                                        },
+                                        {
+                                            "imageUrl": "https://argo.fiat.com.br/assets/images/about/img-design-personalidade.jpg",
+                                            "isCoverImage": false
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses":{
+                    "201": {
+                        "description": "OK"
+                    },
+                    "401":{
+                        "description":"invalid signature"
+                    },
+                    "404":{
+                        "description":"not found"
+                    }
+                }
+
+            }
+        },
+
+        "/announcement-all":{
+            "get":{
+                "security": [{"BearerAuth":[]}],
+                "tags":["Annoucement"],
+                "responses":{
+                    "200":{
+                        "description": "OK"
+                    },
+                    "401":{
+                        "description":"invalid signature"
+                    },
+                    "500":{
+                        "description":"internal server error"
+                    }
+                }
+            }
+        },
+
+        "/announcement/{id}":{
+            "delete":{
+                "tags":["Annoucement"],
+                "parameters":[{
+                    "in":"path",
+                    "name":"id",
+                    "type":"string",
+                    "required": true
+                }],
+                "security": [{"BearerAuth":[]}],
+                "responses":{
+                    "201":{
+                        "description":"OK"
+                    },
+                    "401":{
+                        "description":"invalid signature"
+                    },
+                    "500":{
+                        "description":"internal server error"
+                    }
+                }
+            }
+        },
+
+        "/cars":{
+            "get":{
+                "description":"Get all cars from Api kenzie cars",
+                "summary": "Route get all cars cadastred's in api kenzie cars",
+                "security": [{"BearerAuth":[]}],
+                "tags":["Api Kenzie Cars"],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "401":{
+                        "description":"invalid signature"
+                    }
+                }
+            }
+        },
+
+        "/user/address/{userId}":{
+            "patch":{
+                "description":"Route updates address in client cadastred",
+                "security": [{"BearerAuth":[]}],
+                "tags":["Address"],
+                "parameters":[{
+                    "in":"path",
+                    "name": "userId",
+                    "type":"string",
+                    "required": true
+                }],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "cep":{
+                                        "type":"string"
+                                    },
+                                    "state":{
+                                        "type":"string"
+                                    },
+                                    "city":{
+                                        "type":"string"
+                                    },
+                                    "street":{
+                                        "type":"string"
+                                    },
+                                    "number":{
+                                        "type":"string"
+                                    },
+                                    "complement":{
+                                        "type":"string"
+                                    }
+                                },
+                                "example":{
+                                    "cep": "71996020",
+                                    "state": "DF",
+                                    "city": "Brasilia",
+                                    "street": "Arniqueira",
+                                    "number": "25",
+                                    "complement": "nova rota"
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses":{
+                    "200":{
+                        "description": "OK"
+                    },
+                    "401":{
+                        "description":"invalid signature"
+                    }
+                }
+            }
+        },
+
+        "/comments/{id}":{
+            "post":{
+                "tags":["Comments"],
+                "security": [{"BearerAuth":[]}],
+                "parameters":[{
+                    "in":"path",
+                    "name":"id",
+                    "type":"string",
+                    "required": true
+                }],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "description":{
+                                        "type":"string"
+                                    }
+                                },
+                                "example":{
+                                    "description": "comentario feito por um novo usuário parte 2"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description":"OK"
+                    },
+                    "401":{
+                        "description":"invalid signature"
+                    }
+                }
+            }
+        },
+
+        "/comments/{annoucementId}":{
+            "get":{
+                "tags":["Comments"],
+                "security": [{"BearerAuth":[]}],
+                "parameters": [{
+                    "in": "path",
+                    "name": "annoucementId",
+                    "type": "string",
+                    "required": true
+                }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "401":{
+                        "description":"invalid signature"
+                    }
+                }
+            }
+        }
+
+    }
+}
