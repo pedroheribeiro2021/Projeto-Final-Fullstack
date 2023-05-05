@@ -2,6 +2,8 @@ import { ReactNode, createContext, useContext, useState } from "react";
 import { IAnuncio } from "../types/home/homeInterface";
 import { api, apiCars } from "../services/api";
 import { IUser } from "../types/home/homeInterface";
+import { IComment } from "../types/comment/commentInterface";
+import { toast } from "react-toastify";
 
 export interface IProfileContext {
   announcementsAdmin: IAnuncio[];
@@ -27,6 +29,11 @@ export interface IProfileContext {
   userLogged: IUser | null;
   setUserLogged: React.Dispatch<React.SetStateAction<IUser | null>>;
   getUserLogged: (id: string) => Promise<void>;
+  getComments: () => Promise<void>;
+  createComment: (data: IComment) => Promise<void>;
+  getAnnouncementId: (id: string) => Promise<void>;
+  announcementModalEdit: any;
+  setAnnouncementModalEdit: any;
 }
 
 interface IProfile {
@@ -49,6 +56,8 @@ export const ProfileProvider = ({ children }: IProfile) => {
   const [modelInfoFuelText, setModelInfoFuelText] = useState<any>();
   const [modelInfoFipePrice, setModelInfoFipePrice] = useState<any>();
 
+  const [announcementModalEdit, setAnnouncementModalEdit] = useState<any>();
+
   const [userLogged, setUserLogged] = useState<IUser | null>(null);
 
   const token = localStorage.getItem("token");
@@ -59,6 +68,19 @@ export const ProfileProvider = ({ children }: IProfile) => {
         headers: { authorization: `Bearer ${token}` },
       });
       setAnnouncementsAdmin(data);
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getAnnouncementId = async (id: string) => {
+    try {
+      const { data } = await api.get(`/announcement`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      const announcementFiltered = data.filter((el: any) => el.id === id);
+      setAnnouncementModalEdit(announcementFiltered);
       return data;
     } catch (error) {
       console.error(error);
@@ -114,6 +136,33 @@ export const ProfileProvider = ({ children }: IProfile) => {
     }
   };
 
+  const getComments = async () => {
+    const id = localStorage.getItem("announcement_id");
+    try {
+      const response = await api.get(`announcement/comments/${id}`);
+      setComments(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const createComment = async (data: IComment) => {
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("announcement_id");
+
+    try {
+      const response = await api.post(`announcement/comments/${id}`, data, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      getComments();
+      toast.success("Comentário enviado!", { autoClose: 1000 });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      toast.error("Falha ao enviar o comentário", { autoClose: 1000 });
+    }
+  };
+
   return (
     <ProfileContext.Provider
       value={{
@@ -140,6 +189,11 @@ export const ProfileProvider = ({ children }: IProfile) => {
         userLogged,
         setUserLogged,
         getUserLogged,
+        getComments,
+        createComment,
+        getAnnouncementId,
+        announcementModalEdit,
+        setAnnouncementModalEdit,
       }}
     >
       {children}

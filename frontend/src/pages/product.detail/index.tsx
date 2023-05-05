@@ -7,12 +7,11 @@ import ellipse from "../../assets/Ellipse 3.svg";
 import { Footer } from "../../components/Footer";
 import { ModalImageStyled, ProductDetailStyle } from "./style";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ListComment, createComment } from "../../services/comment/commentApi";
 import { IComment } from "../../types/comment/commentInterface";
 import { useEffect, useState } from "react";
 import { useProfile } from "../../contexts/profileContexts";
 import { api } from "../../services/api";
-import moment from "moment";
+// import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../contexts/loginContext";
 import ReactModal from "react-modal";
@@ -20,7 +19,8 @@ import { AiOutlineClose } from "react-icons/ai";
 
 export const ProductDetail = () => {
   const { register, handleSubmit } = useForm();
-  const { announcementsAdmin, comments, setComments } = useProfile();
+  const { announcementsAdmin, comments, setComments, createComment } =
+    useProfile();
   const { user } = useLogin();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -120,10 +120,10 @@ export const ProductDetail = () => {
                     <div className="seller-card">
                       <img src={user} alt="" />
                       <h3 className="heading-6-600">
-                        {announcement.user.name}
+                        {/* {announcement.user.name} */}
                       </h3>
                       <p className="body-1-400">
-                        {announcement.user.description}
+                        {/* {announcement.user.description} */}
                       </p>
                       <button
                         className="grey0-btn"
@@ -149,7 +149,7 @@ export const ProductDetail = () => {
                                   </span>
                                   <img src={ellipse} alt="" />
                                   <span className="past_time">
-                                    {moment(comment.createdAt).fromNow()}
+                                    {/* {moment(comment.createdAt).fromNow()} */}
                                   </span>
                                 </div>
                                 <p className="body-2-400">
