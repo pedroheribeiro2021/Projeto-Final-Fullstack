@@ -23,6 +23,7 @@ export const ProductDetail = () => {
     useProfile();
   const { user } = useLogin();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const navigate = useNavigate();
 
   // ListComment(id!)
@@ -76,7 +77,10 @@ export const ProductDetail = () => {
                         <p className="heading-7-500">R$ {announcement.price}</p>
                       </div>
                     </div>
-                    <button className="brand1-btn">Comprar</button>
+                    <a 
+                    className="brand1-btn"
+                    target="_blank"
+                    href={`https://wa.me/55${announcement.user.cellPhone}?text=Ol%C3%A1,%20estou%20interessado%20em%20negociar%20o%20carro%20${announcement.model.model}`} rel="noreferrer">Comprar</a>
                   </div>
                   <div className="vehicle-description">
                     <h3 className="heading-6-600">Descrição</h3>
@@ -92,7 +96,11 @@ export const ProductDetail = () => {
                           return (
                             <>
                               <img
-                                onClick={() => setModalIsOpen(true)}
+                                onClick={() => {
+                                  setSelectedImageIndex(i)
+                                  setModalIsOpen(true)
+                                  }
+                                }
                                 src={image.imageUrl}
                                 alt=""
                               />
@@ -109,7 +117,7 @@ export const ProductDetail = () => {
                                       {<AiOutlineClose />}
                                     </button>
                                   </div>
-                                  <img src={image.imageUrl} alt="" />
+                                  <img src={announcement.images[selectedImageIndex].imageUrl} alt="" />
                                 </div>
                               </ModalImageStyled>
                             </>
