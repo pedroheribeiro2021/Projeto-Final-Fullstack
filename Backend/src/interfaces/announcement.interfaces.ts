@@ -37,6 +37,15 @@ export interface IAnnouncement {
   // year: IYearList;
   // fuel: IFuelList;
 }
+
+export interface IAnnouncementUpdate {
+  mileage?: number;
+  price?: number;
+  description?: string;
+  isActive?: boolean;
+  images?: IImageList;
+}
+
 interface IComment {
   id: string;
   user_id: string;
@@ -44,12 +53,18 @@ interface IComment {
   created_at: Date;
   announcement_id: string;
 }
-interface IImage {
+export interface IImage {
   id: string;
   announcement_id: string;
   imageUrl: string;
   isCoverImage: boolean;
 }
+export interface IImageUpdate {
+  announcement_id?: string;
+  imageUrl?: string;
+  isCoverImage?: boolean;
+}
+
 interface IBrand {
   id: string;
   brand: string;
