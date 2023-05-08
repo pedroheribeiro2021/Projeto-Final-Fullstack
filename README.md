@@ -31,6 +31,8 @@ Motor Shop é uma plataforma de comércio eletrônico para compra e venda de ve�
 - [@pedroheribeiro2021](https://github.com/pedroheribeiro2021)
 - [@marcosm02](https://github.com/marcosm02)
 - [@GabrielCosta01](https://github.com/GabrielCosta01)
+- [@felipesantosdd](https://github.com/felipesantosdd)
+- [@TawanAlencar](https://github.com/TawanAlencar)
 
 ## Instalação
 
