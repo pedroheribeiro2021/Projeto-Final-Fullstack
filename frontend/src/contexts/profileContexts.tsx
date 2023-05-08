@@ -33,7 +33,10 @@ export interface IProfileContext {
   createComment: (data: IComment) => Promise<void>;
   getAnnouncementId: (id: string) => Promise<void>;
   announcementModalEdit: any;
-  setAnnouncementModalEdit: any;
+  setAnnouncementModalEdit: React.Dispatch<React.SetStateAction<any>>;
+  announcementModalEditFuel: any;
+  setAnnouncementModalEditFuel: React.Dispatch<React.SetStateAction<any>>;
+  timePastComment: (time: any) => string | undefined;
 }
 
 interface IProfile {
@@ -57,6 +60,8 @@ export const ProfileProvider = ({ children }: IProfile) => {
   const [modelInfoFipePrice, setModelInfoFipePrice] = useState<any>();
 
   const [announcementModalEdit, setAnnouncementModalEdit] = useState<any>();
+  const [announcementModalEditFuel, setAnnouncementModalEditFuel] =
+    useState<any>();
 
   const [userLogged, setUserLogged] = useState<IUser | null>(null);
 
@@ -79,8 +84,15 @@ export const ProfileProvider = ({ children }: IProfile) => {
       const { data } = await api.get(`/announcement`, {
         headers: { authorization: `Bearer ${token}` },
       });
-      const announcementFiltered = data.filter((el: any) => el.id === id);
+      const announcementFiltered = data.find((el: any) => el.id === id);
       setAnnouncementModalEdit(announcementFiltered);
+      if (announcementFiltered.fuel.fuel === "1") {
+        setAnnouncementModalEditFuel("Flex");
+      } else if (announcementFiltered.fuel.fuel === "2") {
+        setAnnouncementModalEditFuel("Hibrido");
+      } else if (announcementFiltered.fuel.fuel === "3") {
+        setAnnouncementModalEditFuel("Eletrico");
+      }
       return data;
     } catch (error) {
       console.error(error);
@@ -163,6 +175,29 @@ export const ProfileProvider = ({ children }: IProfile) => {
     }
   };
 
+  const timePastComment = (time: any) => {
+    const commentTime = new Date(time);
+    const now = new Date();
+    const diff = now.getTime() - commentTime.getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+    if (days > 0) {
+      return `${days} dia${days === 1 ? "" : "s"}, ${hours} hora${
+        hours === 1 ? "" : "s"
+      }, e ${minutes} minuto${minutes === 1 ? "" : "s"} atrás.`;
+    } else if (hours > 0) {
+      return `${hours} hora${hours === 1 ? "" : "s"}, e ${minutes} minuto${
+        minutes === 1 ? "" : "s"
+      } atrás.`;
+    } else if (minutes > 0) {
+      return `${minutes} minuto${minutes === 1 ? "" : "s"} atrás.`;
+    } else {
+      return "agora";
+    }
+  };
+
   return (
     <ProfileContext.Provider
       value={{
@@ -194,6 +229,9 @@ export const ProfileProvider = ({ children }: IProfile) => {
         getAnnouncementId,
         announcementModalEdit,
         setAnnouncementModalEdit,
+        announcementModalEditFuel,
+        setAnnouncementModalEditFuel,
+        timePastComment,
       }}
     >
       {children}

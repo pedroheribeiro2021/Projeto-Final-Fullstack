@@ -11,11 +11,9 @@ import {
 } from "../../contexts/profileContexts";
 import { useContext, useEffect, useState } from "react";
 import { ErrorMessage } from "../../pages/register/style";
-import {
-  deleteAnnouncement,
-  updateAnnouncement,
-} from "../../services/annoucement/annoucementApi";
+import { deleteAnnouncement } from "../../services/annoucement/annoucementApi";
 import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
 export const ModalEdit = () => {
   const { isModalEdit, setIsModalEdit } = useContextFunction();
@@ -31,6 +29,7 @@ export const ModalEdit = () => {
     modelInfoFuelText,
     modelInfoFipePrice,
     announcementModalEdit,
+    announcementModalEditFuel,
   } = useProfile();
 
   const [selectedBrand, setSelectedBrand] = useState("");
@@ -55,6 +54,8 @@ export const ModalEdit = () => {
     modelInfoFuel,
     modelInfoFuelText,
     modelInfoFipePrice,
+    announcementModalEdit,
+    announcementModalEditFuel,
   ]);
 
   const handleCloseModalEdit = () => {
@@ -105,6 +106,24 @@ export const ModalEdit = () => {
     listAnnouncementsAdmin(id!);
   };
 
+  const updateAnnouncement = async (data: any) => {
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("announcement_id");
+
+    try {
+      await api
+        .patch(`/announcement/${id}`, data, {
+          headers: { Authorization: "Bearer " + token },
+        })
+        .then((resp: any) => console.log(resp));
+      toast.success("anúncio atualizado com sucesso!", { autoClose: 1000 });
+      setIsModalEdit(false);
+      listAnnouncementsAdmin(id!);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <ModalEditStyled
@@ -127,34 +146,20 @@ export const ModalEdit = () => {
 
             <div className="input_modal">
               <label htmlFor="">Marca</label>
-              <select
-                {...register("brand")}
-                onChange={(ev) => setSelectedBrand(ev.target.value)}
-              >
-                {brandCreate.map((el) => (
-                  <option key={el} value={el}>
-                    {el}
-                  </option>
-                ))}
-              </select>
-              {/* {errors.brand && <ErrorMessage>Campo obrigatório</ErrorMessage>} */}
+              <input
+                type="text"
+                value={announcementModalEdit?.brand.brand}
+                disabled
+              />
             </div>
 
             <div className="input_modal">
               <label htmlFor="">Modelo</label>
-
-              <select
-                {...register("model")}
-                onChange={(el) => setSelectedModel(el.target.value)}
-              >
-                {[...new Set(modelList.map((el) => el.name))].map((name) => (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ))}
-              </select>
-
-              {/* {errors.model && <ErrorMessage>Campo obrigatório</ErrorMessage>} */}
+              <input
+                type="text"
+                value={announcementModalEdit?.model.model}
+                disabled
+              />
             </div>
 
             <div className="aditional_inputs">
@@ -162,20 +167,13 @@ export const ModalEdit = () => {
                 <label htmlFor="">Ano</label>
                 <input
                   type="text"
-                  placeholder="Ano"
-                  value={modelInfoYear}
-                  {...register("year")}
+                  value={announcementModalEdit?.year.year}
+                  disabled
                 />
-                {/* {errors.year && <ErrorMessage>Campo obrigatório</ErrorMessage>} */}
               </div>
               <div className="select_fuel">
                 <label htmlFor="">Combustivel</label>
-                {
-                  <select {...register("fuel")}>
-                    <option value={modelInfoFuel}>{modelInfoFuelText}</option>
-                  </select>
-                }
-                {/* {errors.fuel && <ErrorMessage>Campo obrigatório</ErrorMessage>} */}
+                <input type="text" value={announcementModalEditFuel} disabled />
               </div>
             </div>
 
@@ -184,7 +182,7 @@ export const ModalEdit = () => {
                 <label htmlFor="">Quilometragem</label>
                 <input
                   type="text"
-                  placeholder="Digite a Quilometragem"
+                  defaultValue={announcementModalEdit?.mileage}
                   {...register("mileage")}
                 />
               </div>
@@ -192,8 +190,8 @@ export const ModalEdit = () => {
                 <label htmlFor="">Cor</label>
                 <input
                   type="text"
-                  placeholder="Digite a Cor"
-                  {...register("color")}
+                  value={announcementModalEdit?.color}
+                  disabled
                 />
               </div>
             </div>
@@ -203,16 +201,15 @@ export const ModalEdit = () => {
                 <label htmlFor="">Preço tabela FIPE</label>
                 <input
                   type="text"
-                  placeholder="Digite o Preço tabela FIPE"
-                  value={modelInfoFipePrice}
-                  {...register("FIPE_priceTable")}
+                  value={announcementModalEdit?.FIPE_priceTable}
+                  disabled
                 />
               </div>
               <div>
                 <label htmlFor="">Preço</label>
                 <input
                   type="text"
-                  placeholder="Digite o preço"
+                  defaultValue={announcementModalEdit?.price}
                   {...register("price")}
                 />
               </div>
@@ -221,7 +218,7 @@ export const ModalEdit = () => {
             <div className="input_description">
               <label htmlFor="">Descrição</label>
               <input
-                placeholder="Digite a Descrição"
+                defaultValue={announcementModalEdit?.description}
                 {...register("description")}
               />
             </div>
@@ -230,7 +227,7 @@ export const ModalEdit = () => {
               <label htmlFor="">Imagem da capa</label>
               <input
                 type="text"
-                placeholder="Link da imagem"
+                defaultValue={announcementModalEdit?.images[0].imageUrl}
                 {...register(`images.0.imageUrl`)}
               />
             </div>
@@ -240,7 +237,9 @@ export const ModalEdit = () => {
                 <label htmlFor="">{`${index + 1}° Imagem da galeria`}</label>
                 <input
                   type="text"
-                  placeholder="Link da imagem"
+                  defaultValue={
+                    announcementModalEdit?.images[`${index + 1}`]?.imageUrl
+                  }
                   {...register(`images.${index + 1}.imageUrl`)}
                 />
               </div>
