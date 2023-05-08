@@ -10,7 +10,7 @@ import { ModalEditProfile } from "../ModalEditProfile";
 import { ModalEditAddress } from "../ModalEditAddress";
 
 export const Home = () => {
-  localStorage.removeItem('announcement_id')
+  localStorage.removeItem("announcement_id");
   const { setOpenFilter, getAllAnnoucements } = useContextFunction();
   const {
     getAnnoucements,
@@ -24,6 +24,7 @@ export const Home = () => {
     filterColor,
     filterYear,
     filterFuel,
+    filteredAnnouncements,
     brands,
     filteredBrands,
     models,
@@ -53,8 +54,8 @@ export const Home = () => {
     <>
       <Header />
       <HomeStyle>
-      <ModalEditProfile/>
-      <ModalEditAddress/>
+        <ModalEditProfile />
+        <ModalEditAddress />
         <div className="home_intro">
           <div className="home_text">
             <h2> Motors Shop</h2>
@@ -165,7 +166,11 @@ export const Home = () => {
             </div>
           </div>
           <div className="home_cards">
-            <Cards />
+            {filteredAnnouncements.length === 0 ? (
+              <span id="noAnnoucements">Não há anúncios cadastrados</span>
+            ) : (
+              <Cards />
+            )}
           </div>
         </div>
         <div className="filter_mobile">

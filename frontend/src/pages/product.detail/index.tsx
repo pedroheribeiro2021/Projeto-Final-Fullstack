@@ -1,31 +1,25 @@
 import { Header } from "../../components/Header";
-import car from "../../assets/car-detail.svg";
-import user from "../../assets/user.svg";
-import user1 from "../../assets/user1.svg";
-import user2 from "../../assets/user2.svg";
 import ellipse from "../../assets/Ellipse 3.svg";
 import { Footer } from "../../components/Footer";
 import { ModalImageStyled, ProductDetailStyle } from "./style";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { IComment } from "../../types/comment/commentInterface";
 import { useEffect, useState } from "react";
 import { useProfile } from "../../contexts/profileContexts";
 import { api } from "../../services/api";
-// import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../contexts/loginContext";
-import ReactModal from "react-modal";
 import { AiOutlineClose } from "react-icons/ai";
+import defaultUser from "../../assets/user1.png";
 
 export const ProductDetail = () => {
   const { register, handleSubmit } = useForm();
-  const { announcementsAdmin, comments, setComments, createComment } = useProfile();
+
+  const { announcementsAdmin, comments, setComments, createComment, timePastComment } =
+    useProfile();
   const { user } = useLogin();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const navigate = useNavigate();
-
-  // ListComment(id!)
 
   useEffect(() => {
     const getComments = async () => {
@@ -38,6 +32,7 @@ export const ProductDetail = () => {
       }
     };
     getComments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmit: SubmitHandler<any> = (data: any) => {
@@ -125,12 +120,12 @@ export const ProductDetail = () => {
                       </div>
                     </div>
                     <div className="seller-card">
-                      <img src={user} alt="" />
+                      <img src={defaultUser} alt="" />
                       <h3 className="heading-6-600">
-                        {/* {announcement.user.name} */}
+                        {announcement.user?.name}
                       </h3>
                       <p className="body-1-400">
-                        {/* {announcement.user.description} */}
+                        {announcement.user?.description}
                       </p>
                       <button
                         className="grey0-btn"
@@ -154,13 +149,13 @@ export const ProductDetail = () => {
                             (comment: any, i: number) => (
                               <li key={i}>
                                 <div className="header-coment">
-                                  <img id="user" src={user1} alt="" />
+                                  <img id="user" src={defaultUser} alt="" />
                                   <span className="body-2-500">
                                     {comment.user.name}
                                   </span>
                                   <img src={ellipse} alt="" />
                                   <span className="past_time">
-                                    {/* {moment(comment.createdAt).fromNow()} */}
+                                    {timePastComment(comment.createdAt)}
                                   </span>
                                 </div>
                                 <p className="body-2-400">
@@ -177,8 +172,8 @@ export const ProductDetail = () => {
                   </div>
                   <div className="coment-area">
                     <div className="user-coment-header">
-                      <img src={user} alt="" />
-                      <span className="body-2-500">{user.name}</span>
+                      <img src={defaultUser} alt="" />
+                      <span className="body-2-500">{user?.name}</span>
                     </div>
 
                     <div>

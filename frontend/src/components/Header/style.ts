@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-between;
@@ -32,7 +31,6 @@ export const HeaderStyle = styled.header`
     border-radius: 4px;
     border: 1.5px solid var(--grey4);
     background-color: transparent;
-   
   }
   .login:hover {
     border: 1.5px solid transparent;
@@ -46,10 +44,8 @@ export const HeaderStyle = styled.header`
     border-radius: 4px;
     border: 1.5px solid var(--grey4);
     background-color: transparent;
-
-   
   }
-  
+
   .register:hover {
     border: 1.5px solid transparent;
     color: var(--brand1);
@@ -62,7 +58,12 @@ export const HeaderStyle = styled.header`
     background-color: transparent;
     color: var(--brand1);
   }
-  
+
+  #profileImg {
+    width: 32px;
+    height: 32px;
+  }
+
   @media (max-width: 768px) {
     display: none;
     gap: 0.5rem;
@@ -85,28 +86,28 @@ export const ContainerUser = styled.div`
 `;
 
 export const ContainerMenu = styled.div`
+  background-color: var(--whiteFixed);
+  height: 10%;
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 1rem; */
+  cursor: pointer;
+  position: fixed;
+  top: 7.5%;
+
+  button {
+    width: 100%;
+    height: 100%;
+    padding: 5px 0;
     background-color: var(--whiteFixed);
-    height: 10%;
-    width: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* gap: 1rem; */
-    cursor: pointer;
-    position: fixed;
-    top: 7.5%;
+    border: 1px solid var(--grey6);
+    /* border-bottom: 2px solid var(--grey6); */
+  }
 
-    button {
-      width: 100%;
-      height: 100%;
-      padding: 5px 0;
-      background-color: var(--whiteFixed);
-      border: 1px solid var(--grey6);
-      /* border-bottom: 2px solid var(--grey6); */
-    }
-
-    button:hover {
+  button:hover {
     border: 1px solid transparent;
     color: var(--grey4);
   }
-`
+`;

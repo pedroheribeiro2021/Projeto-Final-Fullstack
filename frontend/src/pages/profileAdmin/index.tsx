@@ -9,12 +9,16 @@ import { ModalEditProfile } from "../../components/ModalEditProfile";
 import { ModalEditAddress } from "../../components/ModalEditAddress";
 import { useProfile } from "../../contexts/profileContexts";
 import { useEffect } from "react";
-import { useLogin } from "../../contexts/loginContext";
+import defaultUser from "../../assets/user1.png";
 
 export const ProfileAdmin = () => {
   const { setIsModalOpen } = useContextFunction();
-  const { listAnnouncementsAdmin, getUserLogged, userLogged } = useProfile();
-  const { user } = useLogin();
+  const {
+    listAnnouncementsAdmin,
+    announcementsAdmin,
+    getUserLogged,
+    userLogged,
+  } = useProfile();
 
   const id = localStorage.getItem("id");
   const handleOpenModal = () => {
@@ -38,7 +42,7 @@ export const ProfileAdmin = () => {
         <div className="container_profile">
           <div className="profile_user_items">
             <div className="profile_img">
-              <img src={user} alt="" />
+              <img src={defaultUser} alt="" />
             </div>
             <div className="profile_text">
               <div className="info_profile">
@@ -59,7 +63,13 @@ export const ProfileAdmin = () => {
           </div>
           <div className="container_cards">
             <h3>Anúncios</h3>
-            <CardsAdmin />
+            {announcementsAdmin.length === 0 ? (
+              <span id="noAnnoucements">
+                Não há anúncios cadastrados para esse usuário
+              </span>
+            ) : (
+              <CardsAdmin />
+            )}
           </div>
         </div>
         <Modal />
