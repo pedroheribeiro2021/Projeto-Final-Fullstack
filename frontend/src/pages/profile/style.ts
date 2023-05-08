@@ -220,7 +220,6 @@ export const ProfileStyle = styled.div`
       max-width: 260px;
     }
 
-  @media (max-width: 768px) {
     .container_list_cards {
       padding: 10px;
 
@@ -231,5 +230,6 @@ export const ProfileStyle = styled.div`
       margin-top: 40px;
       margin-bottom: 100px;
     }
-  }
+    }
+}
 `;

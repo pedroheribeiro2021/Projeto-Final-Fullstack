@@ -7,6 +7,7 @@ import { useLogin } from "../../contexts/loginContext";
 import { useProfile } from "../../contexts/profileContexts";
 import { useNavigate } from "react-router-dom";
 import defaultUser from "../../assets/user1.png";
+import { useContextFunction } from "../../contexts/homeContexts";
         
 
 export const Profile = () => {
@@ -98,7 +99,6 @@ announcements.map((announcement) => setUser(announcement.user))
             </div>
 
           <div className="container_cards">
-            <h3>Anúncios</h3>
             {announcementsAdmin.length === 0 ? (
               <span id="noAnnoucements">
                 Não há anúncios cadastrados para esse usuário
