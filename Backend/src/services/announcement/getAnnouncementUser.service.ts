@@ -12,6 +12,11 @@ export const getAnnouncementsUserService = async (userId: string) => {
         images: true,
         user: true,
       },
+      where: {
+        user: {
+          id: userId
+        }
+      }
     });
     const userAnnouncements = response.filter((el) => el.user.id === userId);
     return userAnnouncements;

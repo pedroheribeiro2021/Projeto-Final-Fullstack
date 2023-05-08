@@ -13,7 +13,8 @@ import defaultUser from "../../assets/user1.png";
 
 export const ProductDetail = () => {
   const { register, handleSubmit } = useForm();
-  const { comments, setComments, createComment, timePastComment } =
+
+  const { announcementsAdmin, comments, setComments, createComment, timePastComment } =
     useProfile();
   const { user } = useLogin();
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -128,7 +129,11 @@ export const ProductDetail = () => {
                       </p>
                       <button
                         className="grey0-btn"
-                        onClick={() => navigate("/profile")}
+                        onClick={() => {
+                          navigate("/profile")
+                          localStorage.setItem('userPublished_id', announcement.user.id)
+                        }
+                      }
                       >
                         Ver todos os anúncios
                       </button>
