@@ -38,4 +38,12 @@ Motor Shop é uma plataforma de comércio eletrônico para compra e venda de ve�
 
 Para executar o projeto localmente, siga as instruções abaixo:
 
-1. Clone o repositório:
+1. Instale as dependências do projeto:
+
+  `yarn install ou npm install`
+
+2. Configure as variáveis de ambiente:
+
+crie um arquivo .env na pasta raiz do projeto e configure as variáveis de ambiente de acordo com o arquivo .env.example
+
+3. Rode as migrations
