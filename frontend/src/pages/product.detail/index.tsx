@@ -19,8 +19,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 export const ProductDetail = () => {
   const { register, handleSubmit } = useForm();
-  const { announcementsAdmin, comments, setComments, createComment } =
-    useProfile();
+  const { announcementsAdmin, comments, setComments, createComment } = useProfile();
   const { user } = useLogin();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -135,7 +134,11 @@ export const ProductDetail = () => {
                       </p>
                       <button
                         className="grey0-btn"
-                        onClick={() => navigate("/profile")}
+                        onClick={() => {
+                          navigate("/profile")
+                          localStorage.setItem('userPublished_id', announcement.user.id)
+                        }
+                      }
                       >
                         Ver todos os anúncios
                       </button>

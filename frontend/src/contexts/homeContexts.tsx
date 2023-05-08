@@ -15,6 +15,7 @@ export interface IHomeContext {
   setAnnouncements: React.Dispatch<React.SetStateAction<IAnuncio[]>>;
   getAllAnnoucements: () => Promise<void>;
   createAnnouncements: (payload: any) => Promise<any>;
+  getAnnoucementsByUserPublished: () => Promise<any>;
 }
 
 interface IHome {
@@ -47,6 +48,18 @@ export const HomeProvider = ({ children }: IHome) => {
     }
   };
 
+  const getAnnoucementsByUserPublished = async () => {
+  const id = localStorage.getItem("userPublished_id");
+    try {
+      const { data } = await api.get(`/announcement/user/${id}`);
+      setAnnouncements(data);
+      console.log(data)
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const createAnnouncements = async (payload: any): Promise<any> => {
     try {
       const { data } = await api.post("/announcement", payload, {
@@ -76,6 +89,7 @@ export const HomeProvider = ({ children }: IHome) => {
         setAnnouncements,
         getAllAnnoucements,
         createAnnouncements,
+        getAnnoucementsByUserPublished
       }}
     >
       {children}
