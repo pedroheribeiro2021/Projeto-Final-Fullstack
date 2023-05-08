@@ -3,20 +3,22 @@ import { ProfileStyle } from "./style";
 import { Footer } from "../../components/Footer";
 import { Cards } from "../../components/Cards";
 import { useEffect } from "react";
-import { useContextFunction } from "../../contexts/homeContexts";
 import { useLogin } from "../../contexts/loginContext";
+import defaultUser from "../../assets/user1.png";
+import { useProfile } from "../../contexts/profileContexts";
 
 export const Profile = () => {
-  const {getAllAnnoucements}=useContextFunction()
+  const { listAnnouncementsAdmin, announcementsAdmin } = useProfile();
   const { user } = useLogin();
 
-  useEffect( ()=>{
-    (async()=>{
+  const id = localStorage.getItem("id");
+  useEffect(() => {
+    (async () => {
+      await listAnnouncementsAdmin(id!);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-        await getAllAnnoucements()
-    })()
-// eslint-disable-next-line react-hooks/exhaustive-deps
-},[])
   return (
     <>
       <Header />
@@ -24,26 +26,30 @@ export const Profile = () => {
         <div className="container_profile">
           <div className="profile_user_items">
             <div className="profile_img">
-              <img src={user} alt="" />
+              <img src={defaultUser} alt="" />
             </div>
             <div className="profile_text">
               <div className="info_profile">
-                <h3>{user.name}</h3>
+                <h3>{user?.name}</h3>
                 <span>Comprador</span>
               </div>
               <div>
-                <p>
-                {user.description}
-                </p>
+                <p>{user?.description}</p>
               </div>
             </div>
           </div>
-            <div className="container_cards">
-                <h3>Anúncios</h3>
-                  <Cards/> 
-            </div>
+          <div className="container_cards">
+            <h3>Anúncios</h3>
+            {announcementsAdmin.length === 0 ? (
+              <span id="noAnnoucements">
+                Não há anúncios cadastrados para esse usuário
+              </span>
+            ) : (
+              <Cards />
+            )}
+          </div>
         </div>
-      <Footer/>
+        <Footer />
       </ProfileStyle>
     </>
   );

@@ -1,24 +1,20 @@
 import { AppDataSource } from "../../data-source";
 import { Announcement } from "../../entities/announcement.entity";
-import { User } from "../../entities/user.entity";
 
 export const getAnnouncementsUserService = async (userId: string) => {
-  const user = await AppDataSource.getRepository(User).findOneBy({
-    id: userId,
-  });
   try {
     const response = await AppDataSource.getRepository(Announcement).find({
-     
       relations: {
         brand: true,
         model: true,
         fuel: true,
         year: true,
         images: true,
-        user:true
+        user: true,
       },
     });
-    return response;
+    const userAnnouncements = response.filter((el) => el.user.id === userId);
+    return userAnnouncements;
   } catch (err) {
     console.log(err);
   }
