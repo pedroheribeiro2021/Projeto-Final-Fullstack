@@ -1,15 +1,27 @@
-import { useContext, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect, useState } from "react";
 import { useContextFunction } from "../../contexts/homeContexts";
 import { Cards } from "../Cards";
 import { Filter } from "../Filter Mobile";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
-import { HomeStyle } from "./style";
+import { ButtonCleanFilter, HomeStyle, InputFilter } from "./style";
 import { HomeFilterContext } from "../../contexts/homeFilterContext";
 import { ModalEditProfile } from "../ModalEditProfile";
 import { ModalEditAddress } from "../ModalEditAddress";
 
 export const Home = () => {
+  const [km, setKm] = useState(0);
+
+  const handleKmChange = async (event:any) => {
+    setKm(event.target.value.split(",").map(Number));
+    await filterKM(Number(event.target.value));
+  };
+
+  const handlePriceChange = async(event:any) => {
+    await filterPrice(Number(event.target.value));
+  };
+
   localStorage.removeItem("announcement_id");
   const { setOpenFilter, getAllAnnoucements } = useContextFunction();
   const {
@@ -35,6 +47,14 @@ export const Home = () => {
     filteredFuels,
     colors,
     filteredColors,
+    filterKM,
+    setFilteredBrands,
+    setFilteredColors,
+    setFilteredFuels,
+    setFilteredModels,
+    setFilteredYears,
+    filterPrice
+
   } = useContext(HomeFilterContext);
 
   useEffect(() => {
@@ -47,8 +67,16 @@ export const Home = () => {
       await getAllFuels();
       await getColors();
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const cleanFilters = async () => {
+    setFilteredColors([]);
+    setFilteredFuels([]);
+    setFilteredYears([]);
+    setFilteredModels([]);
+    setFilteredBrands([]);
+    await getAnnoucements();
+  };
 
   return (
     <>
@@ -65,6 +93,9 @@ export const Home = () => {
 
         <div className="home_container_items">
           <div className="home_filter">
+            <div>
+              <ButtonCleanFilter onClick={cleanFilters}>Limpar Filtro</ButtonCleanFilter>
+            </div>
             <div className="home_brand">
               <h2>Marca</h2>
 
@@ -154,15 +185,16 @@ export const Home = () => {
             <div className="aditional_filters">
               <h2>KM</h2>
               <div className="aditional_filters_button">
-                <button>Mínima</button>
-                <button>Máxima</button>
-              </div>
+              <span>KM: {km}</span>
+              <InputFilter type="number" placeholder="ex: 1000" onChange={handleKmChange} />
+            </div>
 
-              <h2>Preço</h2>
-              <div className="aditional_filters_button">
-                <button>Mínimo</button>
-                <button>Máximo</button>
-              </div>
+            <h2>Preço</h2>
+
+            <div className="aditional_filters_button">
+              <InputFilter type="number" placeholder="ex: R$1000" onChange={handlePriceChange} />
+            </div>
+
             </div>
           </div>
           <div className="home_cards">

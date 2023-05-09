@@ -49,8 +49,10 @@ export const HomeStyle = styled.div`
 
   .aditional_filters_button {
     display: flex;
+    flex-direction: column;
     padding: 10px;
     gap: 20px;
+    
   }
   .filter_mobile {
     display: none;
@@ -159,4 +161,26 @@ export const HomeStyle = styled.div`
       border-radius: 4px;
     }
   }
+`;
+
+export const ButtonCleanFilter = styled.button`
+  text-decoration: underline;
+  border: none;
+  background-color: var(--grey-1);
+`;
+
+export const InputFilter = styled.input`
+  padding: 0px 16px;
+  font-size: 1rem;
+  border:1.5px solid var(--grey7);
+  background-color:transparent;
+  height:48px;
+  border-radius: 4px;
+  width: 50%;
+
+  &:focus {
+    border-color: #6c63ff;
+    outline: none;
+  }
+
 `;

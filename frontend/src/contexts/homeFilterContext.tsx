@@ -31,6 +31,7 @@ export interface IHomeFilterContext {
   setColors: React.Dispatch<React.SetStateAction<string[]>>;
   filteredColors: string[];
   setFilteredColors: React.Dispatch<React.SetStateAction<string[]>>;
+  km: number | undefined;
   getAnnoucements: () => Promise<void>;
   getAllBrands: () => Promise<void>;
   getAllModels: () => Promise<void>;
@@ -42,6 +43,8 @@ export interface IHomeFilterContext {
   filterColor: (filtered: any) => Promise<void>;
   filterYear: (filtered: any) => Promise<void>;
   filterFuel: (filtered: any) => Promise<void>;
+  filterKM: (filtered: any) => Promise<void>;
+  filterPrice: (filtered: any) => Promise<void>;
 }
 
 export interface IHomeFilter {
@@ -71,6 +74,8 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
 
   const [colors, setColors] = useState<string[]>([]);
   const [filteredColors, setFilteredColors] = useState<string[]>([]);
+
+  const [km, setKmFiltred] = useState<number | undefined>();
 
   const getAnnoucements = async (): Promise<void> => {
     try {
@@ -301,6 +306,77 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
     }
   };
 
+  const filterKM = async (filtered:number) => {
+    try {      
+      const { data } = await api.get("/announcement");
+      
+      const dataFiltered = await data.filter(
+        (el: IAnuncio) => el.mileage === filtered
+      );
+      setFilteredAnnouncements(dataFiltered);
+      
+      const dataBrands = dataFiltered.map((el: IAnuncio) => el.brand.brand);
+      const uniqueBrands: any = Array.from(new Set(dataBrands)).sort();
+      setFilteredBrands(uniqueBrands);
+  
+      const dataModels = dataFiltered.map((el: IAnuncio) => el.model.model);
+      const uniqueModels: any = Array.from(new Set(dataModels)).sort();
+      setFilteredModels(uniqueModels);
+  
+      const dataColors = dataFiltered.map((el: IAnuncio) => el.color);
+      const uniqueColors: any = Array.from(new Set(dataColors)).sort();
+      setFilteredColors(uniqueColors);
+  
+      const dataYears = dataFiltered.map((el: IAnuncio) => el.year.year);
+      const uniqueYears: any = Array.from(new Set(dataYears)).sort();
+      setFilteredYears(uniqueYears);
+  
+      const dataFuels = dataFiltered.map((el: IAnuncio) => el.fuel.fuel);
+      const uniqueFuels: any = Array.from(new Set(dataFuels)).sort();
+      setFilteredFuels(uniqueFuels);
+  
+    } catch (error) {
+      console.error(error)
+    }
+
+  };
+
+  const filterPrice = async (filtered:number) => {
+    try {      
+      const { data } = await api.get("/announcement");
+      const dataFiltered = await data.filter(
+        (el: IAnuncio) => el.price === filtered
+      );
+      setFilteredAnnouncements(dataFiltered);
+      console.log(dataFiltered, "data filtrado!");
+      
+      const dataBrands = dataFiltered.map((el: IAnuncio) => el.brand.brand);
+      const uniqueBrands: any = Array.from(new Set(dataBrands)).sort();
+      setFilteredBrands(uniqueBrands);
+  
+      const dataModels = dataFiltered.map((el: IAnuncio) => el.model.model);
+      const uniqueModels: any = Array.from(new Set(dataModels)).sort();
+      setFilteredModels(uniqueModels);
+  
+      const dataColors = dataFiltered.map((el: IAnuncio) => el.color);
+      const uniqueColors: any = Array.from(new Set(dataColors)).sort();
+      setFilteredColors(uniqueColors);
+  
+      const dataYears = dataFiltered.map((el: IAnuncio) => el.year.year);
+      const uniqueYears: any = Array.from(new Set(dataYears)).sort();
+      setFilteredYears(uniqueYears);
+  
+      const dataFuels = dataFiltered.map((el: IAnuncio) => el.fuel.fuel);
+      const uniqueFuels: any = Array.from(new Set(dataFuels)).sort();
+      setFilteredFuels(uniqueFuels);
+  
+    } catch (error) {
+      console.error(error)
+    }
+
+  };  
+
+
   return (
     <HomeFilterContext.Provider
       value={{
@@ -337,6 +413,9 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
         filterColor,
         filterYear,
         filterFuel,
+        filterKM,
+        km,
+        filterPrice
       }}
     >
       {children}
