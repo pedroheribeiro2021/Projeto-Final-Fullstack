@@ -1,7 +1,6 @@
 import { Header } from "../../components/Header";
 import { ProfileStyle } from "./style";
 import { Footer } from "../../components/Footer";
-import { Cards } from "../../components/Cards";
 import { useEffect } from "react";
 import { useLogin } from "../../contexts/loginContext";
 import { useProfile } from "../../contexts/profileContexts";
@@ -97,17 +96,6 @@ announcements.map((announcement) => setUser(announcement.user))
                       <h3>carregando</h3>
                     )}
             </div>
-
-          <div className="container_cards">
-            {announcementsAdmin.length === 0 ? (
-              <span id="noAnnoucements">
-                Não há anúncios cadastrados para esse usuário
-              </span>
-            ) : (
-              <Cards />
-            )}
-          </div>
-
         </div>
         <Footer />
       </ProfileStyle>

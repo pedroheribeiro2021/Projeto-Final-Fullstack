@@ -6,7 +6,7 @@ import { userResetRoutes, userRoutes } from "./routes/user.routes";
 import { sessionRoutes } from "./routes/session.routes";
 import { announcementRoutes } from './routes/announcement.routes';
 import { addressRoutes } from "./routes/address.routes";
-import { commentsRoutes } from "./routes/comments.routes";
+import { commentsRoutes, commentsUpateRoute } from "./routes/comments.routes";
 
 import swaggerUI from "swagger-ui-express";
 import swaggerDocument from "../swagger.json"
@@ -23,5 +23,7 @@ app.use("/resetPassword", userResetRoutes)
 app.use("/login", sessionRoutes)
 app.use("/announcement", announcementRoutes)
 app.use("/announcement/comments", commentsRoutes)
+app.use("/comments", commentsUpateRoute)
+
 
 app.use(handleError)

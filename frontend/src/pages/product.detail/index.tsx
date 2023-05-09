@@ -1,7 +1,7 @@
 import { Header } from "../../components/Header";
 import ellipse from "../../assets/Ellipse 3.svg";
 import { Footer } from "../../components/Footer";
-import { ModalImageStyled, ProductDetailStyle } from "./style";
+import { ModalCommentStyled, ModalImageStyled, ProductDetailStyle } from "./style";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useProfile } from "../../contexts/profileContexts";
@@ -9,15 +9,17 @@ import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../contexts/loginContext";
 import { AiOutlineClose } from "react-icons/ai";
+import {HiOutlinePencilAlt} from "react-icons/hi"
 import defaultUser from "../../assets/user1.png";
+import ReactModal from "react-modal";
 
 export const ProductDetail = () => {
   const { register, handleSubmit } = useForm();
 
-  const { announcementsAdmin, comments, setComments, createComment, timePastComment } =
-    useProfile();
+  const { announcementsAdmin, comments, setComments, createComment, updateComment, deleteComment, timePastComment } = useProfile();
   const { user } = useLogin();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalEditCommentIsOpen, setModalEditCommentIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const navigate = useNavigate();
 
@@ -39,7 +41,27 @@ export const ProductDetail = () => {
     createComment(data);
   };
 
-  const closeModal = () => setModalIsOpen(false);
+  
+  const onUpdate: SubmitHandler<any> = (data: any) => {
+    const commentId: string | null = localStorage.getItem("comment_id");
+    updateComment(data, commentId!)
+    closeModal()
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setModalEditCommentIsOpen(false)
+    localStorage.removeItem('comment_id')
+  }
+
+  const onDelete = () => {
+    const commentId: string | null = localStorage.getItem("comment_id");
+
+    deleteComment(commentId!)
+    closeModal()
+}
+
+const userId = localStorage.getItem('id')
 
   return (
     <>
@@ -147,7 +169,7 @@ export const ProductDetail = () => {
                         comments.map((announcement) =>
                           announcement.comments.map(
                             (comment: any, i: number) => (
-                              <li key={i}>
+                              <li key={comment.id}>
                                 <div className="header-coment">
                                   <img id="user" src={defaultUser} alt="" />
                                   <span className="body-2-500">
@@ -157,6 +179,50 @@ export const ProductDetail = () => {
                                   <span className="past_time">
                                     {timePastComment(comment.createdAt)}
                                   </span>
+                                  <img src={ellipse} alt="" />
+                                  {
+                                    comment.user.id === userId ? (
+                                      <HiOutlinePencilAlt
+                                      className="edit-pencil"
+                                      onClick={() => {
+                                        localStorage.setItem('comment_id', comment.id)
+                                        setSelectedImageIndex(i)
+                                        setModalEditCommentIsOpen(true)
+                                    }}
+                                    />
+                                    ) : (<></>)
+                                  }
+                                  <ModalCommentStyled
+                                    isOpen={modalEditCommentIsOpen}
+                                    onRequestClose={closeModal}
+                                    overlayClassName="modal-overlay"
+                                    className="modal-content"
+                                  >
+                                    <div className="container_modal_items">
+                                    <div className="close_modal">
+                                        <h3>Editar comentário</h3>
+                                        <button onClick={closeModal}>{<AiOutlineClose/>}</button>
+                                    </div>
+
+                                    <form onSubmit={handleSubmit(onUpdate)}>
+                                        <div className="submit_comment">
+                                            <textarea maxLength={255}
+                                              className="input-placeholder"
+                                              id="description"
+                                              placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
+                                              {...register("description")}/>
+                                        </div>
+                                        <button
+                                          className="brand1-btn"
+                                          id="comment"
+                                          type="submit"
+                                        >
+                                          Editar
+                                      </button>
+                                      <a className="alert1-btn" onClick={onDelete} id="exclude">Excluir Perfil</a>
+                                    </form>
+                                    </div>
+                                  </ModalCommentStyled>
                                 </div>
                                 <p className="body-2-400">
                                   {comment.description}
