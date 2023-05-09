@@ -4,7 +4,6 @@ import { listAnnouncementController } from "../controllers/announcement/listAnno
 import { deleteAnnouncementController } from "../controllers/announcement/deleteAnnouncement.controller";
 import {
   annoucementRequestSerializer,
-  annoucementSerializer,
 } from "../schemas/annoucement.serializer";
 import { ensureDataIsValidMiddleware } from "../middlewares/user.middlewares/ensureDataIsValid.middleware";
 import { createAnnouncementController } from "../controllers/announcement/createAnnouncement";

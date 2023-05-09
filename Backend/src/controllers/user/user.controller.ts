@@ -13,7 +13,6 @@ export const createUserController = async (req: Request, res: Response) => {
 
     const userData: IUserRequest = req.body
     const addressData: IAddressRequest = req.body.address
-
     const newUser = await createUserService(userData, addressData)
     return res.status(201).json(newUser)
 };

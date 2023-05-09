@@ -7,11 +7,7 @@ import { Model } from "../../entities/model.entity";
 import { Year } from "../../entities/year.entity";
 import { Fuel } from "../../entities/fuel.emtity";
 import { Image } from "../../entities/image.entity";
-import { User } from "../../entities/user.entity";
-import { IAnnouncementRequest } from "../../interfaces/announcement.interfaces";
-import { annoucementReturnedSerializer } from "../../schemas/annoucement.serializer";
-import { Console } from "console";
-// import { annoucementWhiteoutSerializer } from "../../schemas/annoucement.serializer";
+
 
 interface IImage {
     id: string

@@ -10,8 +10,8 @@ import { useContextFunction } from "../../contexts/homeContexts";
         
 
 export const Profile = () => {
-  const {getAllAnnoucements, getAnnoucementsByUserPublished, announcements}=useContextFunction()
-  const { listAnnouncementsAdmin, announcementsAdmin } = useProfile();
+  const { getAnnoucementsByUserPublished, announcements}=useContextFunction()
+  const { listAnnouncementsAdmin } = useProfile();
   const { user, setUser } = useLogin();
   const navigate = useNavigate()
 

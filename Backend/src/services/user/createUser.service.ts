@@ -54,10 +54,5 @@ export const createUserService = async (userData: IUserRequest, addressData: IAd
         stripUnknown: true
     })
 
-    // const respUser = {
-    //     ...user,
-    //     address: newAddress
-    // }
-
     return user
 }

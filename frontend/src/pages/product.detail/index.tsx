@@ -1,7 +1,7 @@
 import { Header } from "../../components/Header";
 import ellipse from "../../assets/Ellipse 3.svg";
 import { Footer } from "../../components/Footer";
-import { ModalCommentStyled, ModalImageStyled, ProductDetailStyle } from "./style";
+import { ModalCommentStyled, ModalImageStyled, ProductDetailStyle } from "./style"
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useProfile } from "../../contexts/profileContexts";
@@ -11,12 +11,11 @@ import { useLogin } from "../../contexts/loginContext";
 import { AiOutlineClose } from "react-icons/ai";
 import {HiOutlinePencilAlt} from "react-icons/hi"
 import defaultUser from "../../assets/user1.png";
-import ReactModal from "react-modal";
 
 export const ProductDetail = () => {
   const { register, handleSubmit } = useForm();
 
-  const { announcementsAdmin, comments, setComments, createComment, updateComment, deleteComment, timePastComment } = useProfile();
+  const { comments, setComments, createComment, updateComment, deleteComment, timePastComment } = useProfile();
   const { user } = useLogin();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalEditCommentIsOpen, setModalEditCommentIsOpen] = useState(false);

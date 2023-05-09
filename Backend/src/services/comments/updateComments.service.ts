@@ -4,8 +4,6 @@ import { Comment } from "../../entities/comment.entity";
 
 export const updateCommentsService = async (
     updateData: any, 
-    // userId: string,
-    // announcementId: string,
     commentId: string
 ): Promise<any> => {
 

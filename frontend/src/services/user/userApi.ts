@@ -2,7 +2,6 @@ import { toast } from 'react-toastify';
 import { ILoginData } from '../../types/login/loginInterface';
 import { UserRequest } from '../../types/register/registerInterface';
 import { api } from '../api';
-// import { useNavigate } from 'react-router-dom';
 import { IUserUpdate } from '../../types/editProfile/editProfileInterface';
 
 

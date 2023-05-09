@@ -498,7 +498,6 @@ export const ModalImageStyled = styled(ReactModal)`
     background-color: var(--whiteFixed);
     width: 100%;
     max-width: 520px;
-    /* height: 80%; */
     position:absolute;
     top: 50%;
     left: 50%;
@@ -507,7 +506,6 @@ export const ModalImageStyled = styled(ReactModal)`
     display:flex;
     flex-direction:column;
     margin-top:10px;
-    /* gap: 12px; */
 
     img {
         width: 95%;
@@ -572,11 +570,9 @@ export const ModalCommentStyled = styled(ReactModal)`
 
     .brand1-btn{
         padding: 12px 20px;
-        /* font-weight: 600; */
-        /* font-size: 14px; */
         position:relative;
-            left:78%;
-            margin-bottom:2%;
+        left:78%;
+        margin-bottom:2%;
     }
 
     .brand1-btn:hover{
