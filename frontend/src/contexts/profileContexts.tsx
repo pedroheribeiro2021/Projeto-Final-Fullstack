@@ -36,6 +36,8 @@ export interface IProfileContext {
   setAnnouncementModalEdit: React.Dispatch<React.SetStateAction<any>>;
   announcementModalEditFuel: any;
   setAnnouncementModalEditFuel: React.Dispatch<React.SetStateAction<any>>;
+  updateComment: (data: IComment, id: string) => Promise<void>;
+  deleteComment: (id: string) => Promise<void>;
   timePastComment: (time: any) => string | undefined;
 }
 
@@ -175,6 +177,42 @@ export const ProfileProvider = ({ children }: IProfile) => {
     }
   };
 
+  const updateComment = async (data: IComment, id: string) => {
+    const token = localStorage.getItem("token");
+    // const id = localStorage.getItem("announcement_id");
+
+    try {
+      const response = await api.patch(`comments/${id}`, data, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      getComments();
+      toast.success("Comentário editado!", { autoClose: 1000 });
+      localStorage.removeItem('comment_id')
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      toast.error("Falha ao editar o comentário", { autoClose: 1000 });
+    }
+  };
+
+  const deleteComment = async (id: string) => {
+    const token = localStorage.getItem("token");
+    // const id = localStorage.getItem("announcement_id");
+
+    try {
+      const response = await api.delete(`comments/${id}`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      getComments();
+      toast.success("Comentário deletado!", { autoClose: 1000 });
+      localStorage.removeItem('comment_id')
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      toast.error("Falha ao deletar o comentário", { autoClose: 1000 });
+    }
+  };
+
   const timePastComment = (time: any) => {
     const commentTime = new Date(time);
     const now = new Date();
@@ -231,6 +269,8 @@ export const ProfileProvider = ({ children }: IProfile) => {
         setAnnouncementModalEdit,
         announcementModalEditFuel,
         setAnnouncementModalEditFuel,
+        updateComment,
+        deleteComment,
         timePastComment,
       }}
     >

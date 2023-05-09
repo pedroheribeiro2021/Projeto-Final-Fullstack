@@ -423,6 +423,11 @@ export const ProductDetailStyle = styled.section`
         flex-wrap:wrap;
     }
 
+    .edit-pencil {
+        cursor: pointer;
+        color: var(--grey3);
+    }
+
     @media(max-width:768px){
         .vehicle-apresentation{
             display:flex;
@@ -539,4 +544,81 @@ export const ModalImageStyled = styled(ReactModal)`
         }
 }
 
+`
+
+export const ModalCommentStyled = styled(ReactModal)`
+    background-color: var(--whiteFixed);
+    width: 100%;
+    max-width: 520px;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius:8px;
+    display:flex;
+    flex-direction:column;
+    margin-top:10px;
+    /* gap: 12px; */
+
+    .input-placeholder{
+        width: 100%;
+        height: 128px;
+        resize:none;
+        border-radius:4px;
+        border: 1.5px solid var(--grey7);
+        padding:10px;
+        outline:none;
+    }
+
+    .brand1-btn{
+        padding: 12px 20px;
+        /* font-weight: 600; */
+        /* font-size: 14px; */
+        position:relative;
+            left:78%;
+            margin-bottom:2%;
+    }
+
+    .brand1-btn:hover{
+        opacity:0.7;
+        transition:0.5s;
+    }
+
+    .close_modal {
+        display:flex;
+        justify-content:space-between;
+        padding: 10px;
+
+        button{
+            font-size:20px;
+            background-color: transparent;
+            border:transparent;
+            color: var(--grey4);
+            }
+    }
+
+    a {
+        padding: 12px 20px;
+        font-weight: 600;
+        font-size: 16px;
+        border-radius:4px;
+        cursor: pointer;
+        }
+
+    @media (max-width:400px) {
+
+        width: 90%;
+
+        input {
+            max-width: 80%;
+        }
+
+        .aditional_inputs {
+            width: 150px;
+        }
+
+        .side {
+            gap: 0px;
+        }
+}
 `
