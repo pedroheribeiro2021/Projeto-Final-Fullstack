@@ -65,15 +65,21 @@ export const HeaderStyle = styled.header`
   }
 
   @media (max-width: 768px) {
-    display: none;
+    
     gap: 0.5rem;
     padding-left: 0.6rem;
-    margin-top: 0.7rem;
+   
     .login {
       display: none;
     }
     .register {
       display: none;
+    }
+    #profileImg{
+      display:none;
+    }
+    #user_name{
+      display:none
     }
   }
 `;
