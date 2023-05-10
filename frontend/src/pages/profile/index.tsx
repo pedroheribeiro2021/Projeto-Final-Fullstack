@@ -71,7 +71,7 @@ announcements.map((announcement) => setUser(announcement.user))
                                 <p>{announcement.description}</p>
                               </div>
                               <div className="list_cards_user">
-                                <img src={user} alt={announcement.model.model} />
+                                <img src={defaultUser} alt={announcement.model.model} />
                                 <span>{announcement.user.name}</span>
                               </div>
                               <div className="list_cards_info">

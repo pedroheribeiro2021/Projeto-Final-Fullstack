@@ -1,5 +1,5 @@
 import { CardStyle } from "./style";
-import user from "../../assets/user1.png";
+import defaultUser from "../../assets/user1.png";
 import { useContext } from "react";
 import { HomeFilterContext } from "../../contexts/homeFilterContext";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +40,7 @@ export const Cards = () => {
                     <p>{announcement.description}</p>
                   </div>
                   <div className="list_cards_user">
-                    <img src={user} alt={announcement.model.model} />
+                    <img src={defaultUser} alt={announcement.model.model} />
                     <span>{announcement.user.name}</span>
                   </div>
                   <div className="list_cards_info">

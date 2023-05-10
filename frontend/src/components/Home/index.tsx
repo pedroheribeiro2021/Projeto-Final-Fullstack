@@ -77,6 +77,17 @@ export const Home = () => {
     setFilteredBrands([]);
     await getAnnoucements();
   };
+  console.log(filteredBrands,
+    
+    filteredBrands,
+    
+    filteredModels,
+    
+    filteredYears,
+    
+    filteredFuels,
+    
+    filteredColors,)
 
   return (
     <>
@@ -93,9 +104,6 @@ export const Home = () => {
 
         <div className="home_container_items">
           <div className="home_filter">
-            <div>
-              <ButtonCleanFilter onClick={cleanFilters}>Limpar Filtro</ButtonCleanFilter>
-            </div>
             <div className="home_brand">
               <h2>Marca</h2>
 
@@ -194,7 +202,13 @@ export const Home = () => {
             <div className="aditional_filters_button">
               <InputFilter type="number" placeholder="ex: R$1000" onChange={handlePriceChange} />
             </div>
-
+            <div>
+              {filteredBrands.length || filteredBrands.length || filteredModels.length || filteredYears.length || filteredFuels.length ||filteredColors.length > 0 ? (
+                <ButtonCleanFilter onClick={cleanFilters}>Limpar Filtro</ButtonCleanFilter>
+              ) : (
+                <></>
+              )}
+            </div>
             </div>
           </div>
           <div className="home_cards">

@@ -218,7 +218,7 @@ const userId = localStorage.getItem('id')
                                         >
                                           Editar
                                       </button>
-                                      <a className="alert1-btn" onClick={onDelete} id="exclude">Excluir Perfil</a>
+                                      <a className="alert1-btn" onClick={onDelete} id="exclude">Excluir Cometário</a>
                                     </form>
                                     </div>
                                   </ModalCommentStyled>

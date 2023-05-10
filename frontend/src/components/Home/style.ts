@@ -164,9 +164,12 @@ export const HomeStyle = styled.div`
 `;
 
 export const ButtonCleanFilter = styled.button`
-  text-decoration: underline;
   border: none;
-  background-color: var(--grey-1);
+  color: white;
+  width: 279px;
+  height: 48px;
+  background-color: var(--brand2);
+  border-radius: 4px;
 `;
 
 export const InputFilter = styled.input`
