@@ -15,7 +15,7 @@ export const SessionUser = async (data:ILoginData) => {
         localStorage.setItem('id', id);
         toast.success('Login feito com sucesso', {autoClose: 1000});
         window.location.replace('/');
-        console.log(response.data)
+
         return response.data
     } catch (error) {
         console.error(error);
@@ -71,7 +71,7 @@ export const SearchUserId = async () => {
     const response = await api.get(`/user/${userId}`)
     .then((resp:any) => {
         localStorage.setItem('id_address', resp.data.address.id);
-        console.log(resp.data.address)
+        
     })
     return response;
 };

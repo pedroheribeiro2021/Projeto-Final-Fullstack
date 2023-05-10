@@ -356,7 +356,7 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
         (el: IAnuncio) => el.price === filtered
       );
       setFilteredAnnouncements(dataFiltered);
-      console.log(dataFiltered, "data filtrado!");
+    
       
       const dataBrands = dataFiltered.map((el: IAnuncio) => el.brand.brand);
       const uniqueBrands: any = Array.from(new Set(dataBrands)).sort();

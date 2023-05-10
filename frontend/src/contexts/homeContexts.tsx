@@ -70,7 +70,7 @@ export const HomeProvider = ({ children }: IHome) => {
       setIsModalOpen(false);
       listAnnouncementsAdmin(id!);
       toast.success("Anúncio criado com Sucesso");
-      console.log(data);
+
       return data;
     } catch (error) {
       toast.error("Falha ao criar Anúncio");
