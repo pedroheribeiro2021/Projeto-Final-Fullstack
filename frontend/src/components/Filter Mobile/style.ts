@@ -51,12 +51,14 @@ export const FilterStyle = styled.div<{ openFilter: boolean }>`
       display: flex;
       flex-direction: column;
       gap: 10px;
+      
     }
 
     .aditional_filters_button_mobile {
       display: flex;
       padding: 10px;
       gap: 20px;
+      flex-direction:column;
     }
 
     .aditional_filters_button_mobile button {
