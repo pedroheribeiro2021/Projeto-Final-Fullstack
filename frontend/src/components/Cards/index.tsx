@@ -6,8 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Cards = () => {
   const { filteredAnnouncements } = useContext(HomeFilterContext);
-  console.log(filteredAnnouncements, "LISTA DE CARROS");
-  
+
   const navigate = useNavigate();
 
   return (
