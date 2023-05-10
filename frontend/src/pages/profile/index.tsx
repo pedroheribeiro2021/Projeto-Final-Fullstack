@@ -45,7 +45,6 @@ export const Profile = () => {
               </div>
             </div>
           </div>
-
           <div className="container_cards">
             <h3>Anúncios</h3>
             {announcements ? (

@@ -32,6 +32,8 @@ export const HomeProvider = ({ children }: IHome) => {
 
   const [announcements, setAnnouncements] = useState<IAnuncio[]>([]);
 
+  
+
   const { listAnnouncementsAdmin }: IProfileContext =
     useContext(ProfileContext);
 

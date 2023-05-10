@@ -265,15 +265,9 @@ export const ProductDetail = () => {
                                           type="submit"
                                         >
                                           Editar
-                                        </button>
-                                        <a
-                                          className="alert1-btn"
-                                          onClick={onDelete}
-                                          id="exclude"
-                                        >
-                                          Excluir Perfil
-                                        </a>
-                                      </form>
+                                      </button>
+                                      <a className="alert1-btn" onClick={onDelete} id="exclude">Excluir Cometário</a>
+                                    </form>
                                     </div>
                                   </ModalCommentStyled>
                                 </div>

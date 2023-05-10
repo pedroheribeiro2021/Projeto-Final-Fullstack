@@ -87,6 +87,7 @@ export const CardStyle = styled.div`
     font-size: 16px;
     color: var(--grey1);
   }
+ 
   @media (max-width: 768px) {
     .container_list_cards {
       flex-wrap: nowrap;
