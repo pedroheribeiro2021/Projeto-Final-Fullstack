@@ -64,7 +64,7 @@ export const Home = () => {
 
   const itemsPerPage = 9;
   const totalPages = Math.ceil(filteredAnnouncements.length / itemsPerPage);
-
+  
   const handlePageClick = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
   };
@@ -89,17 +89,7 @@ export const Home = () => {
     setFilteredBrands([]);
     await getAnnoucements();
   };
-  console.log(filteredBrands,
-    
-    filteredBrands,
-    
-    filteredModels,
-    
-    filteredYears,
-    
-    filteredFuels,
-    
-    filteredColors,)
+
 
   return (
     <>
@@ -246,7 +236,7 @@ export const Home = () => {
             containerClassName={'pagination'}
             activeClassName={'active'}
             previousLabel={currentPage === 0?"" : '< Anterior'}
-            nextLabel={totalPages === 1?"" :'Próximo >'}
+            nextLabel={totalPages ===  currentPage + 1?"" :'Próximo >'}
         />
 
         </div>
