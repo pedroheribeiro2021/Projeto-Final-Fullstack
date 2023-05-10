@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 export const Cards = () => {
   const { filteredAnnouncements,currentPage } = useContext(HomeFilterContext);
-  console.log(filteredAnnouncements, "LISTA DE CARROS");
-  
   const navigate = useNavigate();
   
   const itemsPerPage = 9;

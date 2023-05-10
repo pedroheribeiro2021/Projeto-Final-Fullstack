@@ -51,16 +51,15 @@ export const HomeProvider = ({ children }: IHome) => {
   };
 
   const getAnnoucementsByUserPublished = async () => {
-  const id = localStorage.getItem("userPublished_id");
+    const id = localStorage.getItem("userPublished_id");
     try {
       const { data } = await api.get(`/announcement/user/${id}`);
       setAnnouncements(data);
-      console.log(data)
       return data;
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   const createAnnouncements = async (payload: any): Promise<any> => {
     try {
@@ -91,7 +90,7 @@ export const HomeProvider = ({ children }: IHome) => {
         setAnnouncements,
         getAllAnnoucements,
         createAnnouncements,
-        getAnnoucementsByUserPublished
+        getAnnoucementsByUserPublished,
       }}
     >
       {children}
