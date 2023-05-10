@@ -33,7 +33,7 @@ const Login = () => {
                     </BoxButtonSubmit>
                     <BoxButtonCadastro>
                         <span>Ainda não possui conta?</span>
-                        <span>clique aqui para chorar</span>
+                        <span>clique abaixo para cadastrar</span>
                         <SignupButton onClick={handleRegisterNavigate}>Cadastrar</SignupButton>
                     </BoxButtonCadastro>
                 </FormContainer>
