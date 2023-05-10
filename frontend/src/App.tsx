@@ -21,7 +21,7 @@ function App() {
         <Route path="/login" element={ <Login/>} />
         <Route path={`/resetPassword/${resetToken}`} element={ <ChangePassowrdPage/> } />
         <Route  path="/" element={<Home/>}/>
-        <Route path='/register' element={isAuthenticated() ? <Home/> : <RegisterUserPage/>}/>
+        <Route path='/register' element={ <RegisterUserPage/>}/>
         <Route path="/product-detail" element={ <ProductDetail/>} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/profile/admin" element={<ProfileAdmin/>}/>

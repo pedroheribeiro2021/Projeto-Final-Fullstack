@@ -9,9 +9,12 @@ import { ButtonCleanFilter, HomeStyle, InputFilter } from "./style";
 import { HomeFilterContext } from "../../contexts/homeFilterContext";
 import { ModalEditProfile } from "../ModalEditProfile";
 import { ModalEditAddress } from "../ModalEditAddress";
+import ReactPaginate from "react-paginate";
 
 export const Home = () => {
   const [km, setKm] = useState(0);
+
+ 
 
   const handleKmChange = async (event:any) => {
     setKm(event.target.value.split(",").map(Number));
@@ -53,9 +56,18 @@ export const Home = () => {
     setFilteredFuels,
     setFilteredModels,
     setFilteredYears,
-    filterPrice
+    filterPrice,
+    currentPage,
+    setCurrentPage
 
   } = useContext(HomeFilterContext);
+
+  const itemsPerPage = 9;
+  const totalPages = Math.ceil(filteredAnnouncements.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage: { selected: number }) => {
+    setCurrentPage(selectedPage.selected);
+  };
 
   useEffect(() => {
     (async () => {
@@ -225,8 +237,18 @@ export const Home = () => {
           </button>
         </div>
         <div className="next_page">
-          <p>1 de 2</p>
-          <button> Seguinte </button>
+  
+            <ReactPaginate
+            pageCount={totalPages}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={1}
+            onPageChange={handlePageClick}
+            containerClassName={'pagination'}
+            activeClassName={'active'}
+            previousLabel={currentPage === 0?"" : '< Anterior'}
+            nextLabel={totalPages === 1?"" :'Próximo >'}
+        />
+
         </div>
         <Filter />
         <Footer />

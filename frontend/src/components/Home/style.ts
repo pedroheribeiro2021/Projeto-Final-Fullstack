@@ -99,6 +99,24 @@ export const HomeStyle = styled.div`
     justify-content: center;
     gap: 50px;
     min-width: 320px;
+    width:100%;
+    .pagination{
+      display:flex;
+      gap:20px;
+
+      a{
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 20px;
+      background-color: transparent;
+      border: transparent;
+      color: var(--brand2);
+
+      &:hover{
+        text-decoration:underline;
+      }
+    }
+    }
   }
 
   .next_page p {
@@ -107,6 +125,7 @@ export const HomeStyle = styled.div`
     color: var(--grey3);
   }
 
+  
   .next_page button {
     font-weight: 600;
     font-size: 20px;

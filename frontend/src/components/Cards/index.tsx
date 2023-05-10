@@ -4,17 +4,23 @@ import { useContext } from "react";
 import { HomeFilterContext } from "../../contexts/homeFilterContext";
 import { useNavigate } from "react-router-dom";
 
+
+
 export const Cards = () => {
-  const { filteredAnnouncements } = useContext(HomeFilterContext);
+  const { filteredAnnouncements,currentPage } = useContext(HomeFilterContext);
   console.log(filteredAnnouncements, "LISTA DE CARROS");
   
   const navigate = useNavigate();
+  
+  const itemsPerPage = 9;
+ 
 
   return (
     <>
       <CardStyle>
         {filteredAnnouncements ? (
           <ul className="container_list_cards">
+         
             {filteredAnnouncements.map((announcement) => {
               const coverImage = announcement.images.find((image) => image);
               return (
@@ -59,11 +65,13 @@ export const Cards = () => {
                   </div>
                 </li>
               );
-            })}
+            }).slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)}
           </ul>
         ) : (
           <h3>carregando</h3>
         )}
+          
+        
       </CardStyle>
     </>
   );

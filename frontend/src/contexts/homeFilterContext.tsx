@@ -45,6 +45,9 @@ export interface IHomeFilterContext {
   filterFuel: (filtered: any) => Promise<void>;
   filterKM: (filtered: any) => Promise<void>;
   filterPrice: (filtered: any) => Promise<void>;
+  currentPage : number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+ 
 }
 
 export interface IHomeFilter {
@@ -76,6 +79,11 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
   const [filteredColors, setFilteredColors] = useState<string[]>([]);
 
   const [km, setKmFiltred] = useState<number | undefined>();
+
+
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  
+
 
   const getAnnoucements = async (): Promise<void> => {
     try {
@@ -415,7 +423,9 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
         filterFuel,
         filterKM,
         km,
-        filterPrice
+        filterPrice,
+        currentPage,
+        setCurrentPage
       }}
     >
       {children}
