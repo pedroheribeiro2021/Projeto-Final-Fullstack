@@ -210,11 +210,11 @@ export const Home = () => {
               </div>
               <div>
                 {filteredBrands.length ||
-                filteredBrands.length ||
                 filteredModels.length ||
+                filteredColors.length ||
                 filteredYears.length ||
-                filteredFuels.length ||
-                filteredColors.length > 0 ? (
+                filteredFuels.length
+                 > 0 ? (
                   <ButtonCleanFilter onClick={cleanFilters}>
                     Limpar Filtro
                   </ButtonCleanFilter>
