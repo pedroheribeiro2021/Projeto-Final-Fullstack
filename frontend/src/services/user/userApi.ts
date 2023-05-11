@@ -66,7 +66,6 @@ export const resetPassword = async (data: string) => {
 
 export const SearchUserId = async () => {
   const userId = localStorage.getItem("id");
-
   const response = await api.get(`/user/${userId}`).then((resp: any) => {
     localStorage.setItem("id_address", resp.data.address.id);
   });

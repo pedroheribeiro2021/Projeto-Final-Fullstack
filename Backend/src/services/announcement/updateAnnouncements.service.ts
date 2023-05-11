@@ -38,9 +38,7 @@ export const updateAnnouncementService = async (
     await imageRepository.delete({ id: In(imageIds) });
   }
 
-  console.log("ANUNCIO", announcement);
-  console.log("OLD", oldImages);
-  console.log("NEW", updateDataImages);
+  
 
   if (updateDataImages) {
     await Promise.all(

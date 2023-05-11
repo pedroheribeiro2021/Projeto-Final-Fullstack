@@ -61,7 +61,7 @@ export const Home = () => {
 
   const itemsPerPage = 9;
   const totalPages = Math.ceil(filteredAnnouncements.length / itemsPerPage);
-
+  
   const handlePageClick = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
   };
@@ -243,11 +243,11 @@ export const Home = () => {
             pageRangeDisplayed={2}
             marginPagesDisplayed={1}
             onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
-            previousLabel={currentPage === 0 ? "" : "< Anterior"}
-            nextLabel={totalPages === 1 ? "" : "Próximo >"}
-          />
+            containerClassName={'pagination'}
+            activeClassName={'active'}
+            previousLabel={currentPage === 0?"" : '< Anterior'}
+            nextLabel={totalPages ===  currentPage + 1?"" :'Próximo >'}
+        />
         </div>
         <Filter />
         <Footer />

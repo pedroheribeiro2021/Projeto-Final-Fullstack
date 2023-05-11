@@ -350,7 +350,6 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
         (el: IAnuncio) => el.price === filtered
       );
       setFilteredAnnouncements(dataFiltered);
-
       const dataBrands = dataFiltered.map((el: IAnuncio) => el.brand.brand);
       const uniqueBrands: any = Array.from(new Set(dataBrands)).sort();
       setFilteredBrands(uniqueBrands);

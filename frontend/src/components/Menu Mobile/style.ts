@@ -45,7 +45,7 @@ export const MenuStyle = styled.div<{ isOpen: boolean }>`
       display: flex;
       padding: 10px;
       white-space: nowrap;
-      font-size: 15px;
+      font-size: 10px;
       font-weight: 600;
       color: var(--grey3);
     }
