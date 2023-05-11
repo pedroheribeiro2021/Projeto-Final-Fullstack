@@ -31,7 +31,6 @@ export interface IHomeFilterContext {
   setColors: React.Dispatch<React.SetStateAction<string[]>>;
   filteredColors: string[];
   setFilteredColors: React.Dispatch<React.SetStateAction<string[]>>;
-  km: number | undefined;
   getAnnoucements: () => Promise<void>;
   getAllBrands: () => Promise<void>;
   getAllModels: () => Promise<void>;
@@ -127,7 +126,24 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
     try {
       const { data } = await api.get("/announcement/fuel");
       setFuels(data);
-      const fuelsList = data.map((el: IAnuncio) => el.fuel);
+  
+      const fuelsList = data.map((el: any) => {
+        const typeFuel = el.fuel;
+              
+        if(typeFuel === '1'){
+          el.fuel = 'Flex';
+          return el;
+        } else if(typeFuel === '2'){
+          el.fuel = 'Híbrido';
+          return el;
+        } else if(typeFuel === '3'){
+          el.fuel.fuel = 'Elétrico';
+          return el;
+        } else {
+          return el;
+        }
+      });
+      
       setFilteredFuels(fuelsList);
       return data;
     } catch (error) {
@@ -279,11 +295,22 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
   };
 
   const filterFuel = async (filtered: any): Promise<void> => {
-    try {
+    try {  
+       
+      let typeFuel:string;
+      if(filtered === 'Flex'){
+        typeFuel = '1'
+      }else if(filtered === 'Híbrido'){
+        typeFuel = '2'
+      }else if(filtered === 'Elétrico'){
+        typeFuel = '3'
+      }
+      
       const { data } = await api.get("/announcement");
       const dataFiltered = await data.filter(
-        (el: IAnuncio) => el.fuel.fuel === filtered
+        (el: IAnuncio) => el.fuel.fuel === typeFuel
       );
+
       setFilteredAnnouncements(dataFiltered);
 
       const dataBrands = dataFiltered.map((el: IAnuncio) => el.brand.brand);
@@ -411,6 +438,7 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
         filterYear,
         filterFuel,
         filterKM,
+        filterPrice,
         km,
         filterPrice,
         currentPage,

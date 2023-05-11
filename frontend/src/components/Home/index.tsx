@@ -180,9 +180,9 @@ export const Home = () => {
                         {fuel.fuel}
                       </li>
                     ))
-                  : filteredFuels.map((fuel, i) => (
-                      <li key={i} onClick={() => filterFuel(fuel)}>
-                        {fuel}
+                  : filteredFuels.map((fuel:any, i) => (
+                      <li key={i} onClick={() => filterFuel(fuel.fuel)}>
+                        {fuel.fuel}
                       </li>
                     ))}
               </ul>
