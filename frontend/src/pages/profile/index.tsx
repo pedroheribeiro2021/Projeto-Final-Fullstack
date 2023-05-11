@@ -1,32 +1,41 @@
 import { Header } from "../../components/Header";
 import { ProfileStyle } from "./style";
 import { Footer } from "../../components/Footer";
-import { useEffect } from "react";
-import { useLogin } from "../../contexts/loginContext";
+import { useEffect, useState } from "react";
 import { useProfile } from "../../contexts/profileContexts";
 import { useNavigate, Navigate } from "react-router-dom";
 import defaultUser from "../../assets/user1.png";
 import { useContextFunction } from "../../contexts/homeContexts";
+import { IUser } from "../../types/home/homeInterface";
+import { api } from "../../services/api";
 
 export const Profile = () => {
   const { getAnnoucementsByUserPublished, announcements } =
     useContextFunction();
   const { listAnnouncementsAdmin } = useProfile();
-  const { user, setUser } = useLogin();
+  const [userProfile, setUserProfile] = useState<IUser | null>();
   const navigate = useNavigate();
 
   const id = localStorage.getItem("id");
   const profileId = localStorage.getItem("userPublished_id");
 
+  const loadUserProfile = async (id: string) => {
+    try {
+      const { data } = await api.get(`/user/${id}`);
+      setUserProfile(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       await listAnnouncementsAdmin(id!);
       await getAnnoucementsByUserPublished();
+      await loadUserProfile(profileId!);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profileId]);
-
-  announcements.map((announcement) => setUser(announcement.user));
 
   return (
     <>
@@ -41,11 +50,11 @@ export const Profile = () => {
                 </div>
                 <div className="profile_text">
                   <div className="info_profile">
-                    <h3>{user?.name}</h3>
+                    <h3>{userProfile?.name}</h3>
                     <span>Comprador</span>
                   </div>
                   <div>
-                    <p>{user?.description}</p>
+                    <p>{userProfile?.description}</p>
                   </div>
                 </div>
               </div>
