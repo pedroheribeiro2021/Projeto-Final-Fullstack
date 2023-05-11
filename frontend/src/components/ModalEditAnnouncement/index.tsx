@@ -10,7 +10,6 @@ import {
   useProfile,
 } from "../../contexts/profileContexts";
 import { useContext, useEffect, useState } from "react";
-import { ErrorMessage } from "../../pages/register/style";
 import { deleteAnnouncement } from "../../services/annoucement/annoucementApi";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
