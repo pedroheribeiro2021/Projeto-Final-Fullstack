@@ -45,9 +45,8 @@ export interface IHomeFilterContext {
   filterFuel: (filtered: any) => Promise<void>;
   filterKM: (filtered: any) => Promise<void>;
   filterPrice: (filtered: any) => Promise<void>;
-  currentPage : number;
+  currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
- 
 }
 
 export interface IHomeFilter {
@@ -80,10 +79,7 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
 
   const [km, setKmFiltred] = useState<number | undefined>();
 
-
   const [currentPage, setCurrentPage] = useState<number>(0);
-  
-
 
   const getAnnoucements = async (): Promise<void> => {
     try {
@@ -314,76 +310,69 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
     }
   };
 
-  const filterKM = async (filtered:number) => {
-    try {      
+  const filterKM = async (filtered: number) => {
+    try {
       const { data } = await api.get("/announcement");
-      
+
       const dataFiltered = await data.filter(
         (el: IAnuncio) => el.mileage === filtered
       );
       setFilteredAnnouncements(dataFiltered);
-      
+
       const dataBrands = dataFiltered.map((el: IAnuncio) => el.brand.brand);
       const uniqueBrands: any = Array.from(new Set(dataBrands)).sort();
       setFilteredBrands(uniqueBrands);
-  
+
       const dataModels = dataFiltered.map((el: IAnuncio) => el.model.model);
       const uniqueModels: any = Array.from(new Set(dataModels)).sort();
       setFilteredModels(uniqueModels);
-  
+
       const dataColors = dataFiltered.map((el: IAnuncio) => el.color);
       const uniqueColors: any = Array.from(new Set(dataColors)).sort();
       setFilteredColors(uniqueColors);
-  
+
       const dataYears = dataFiltered.map((el: IAnuncio) => el.year.year);
       const uniqueYears: any = Array.from(new Set(dataYears)).sort();
       setFilteredYears(uniqueYears);
-  
+
       const dataFuels = dataFiltered.map((el: IAnuncio) => el.fuel.fuel);
       const uniqueFuels: any = Array.from(new Set(dataFuels)).sort();
       setFilteredFuels(uniqueFuels);
-  
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-
   };
 
-  const filterPrice = async (filtered:number) => {
-    try {      
+  const filterPrice = async (filtered: number) => {
+    try {
       const { data } = await api.get("/announcement");
       const dataFiltered = await data.filter(
         (el: IAnuncio) => el.price === filtered
       );
       setFilteredAnnouncements(dataFiltered);
-    
-      
       const dataBrands = dataFiltered.map((el: IAnuncio) => el.brand.brand);
       const uniqueBrands: any = Array.from(new Set(dataBrands)).sort();
       setFilteredBrands(uniqueBrands);
-  
+
       const dataModels = dataFiltered.map((el: IAnuncio) => el.model.model);
       const uniqueModels: any = Array.from(new Set(dataModels)).sort();
       setFilteredModels(uniqueModels);
-  
+
       const dataColors = dataFiltered.map((el: IAnuncio) => el.color);
       const uniqueColors: any = Array.from(new Set(dataColors)).sort();
       setFilteredColors(uniqueColors);
-  
+
       const dataYears = dataFiltered.map((el: IAnuncio) => el.year.year);
       const uniqueYears: any = Array.from(new Set(dataYears)).sort();
       setFilteredYears(uniqueYears);
-  
+
       const dataFuels = dataFiltered.map((el: IAnuncio) => el.fuel.fuel);
       const uniqueFuels: any = Array.from(new Set(dataFuels)).sort();
       setFilteredFuels(uniqueFuels);
-  
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-
-  };  
-
+  };
 
   return (
     <HomeFilterContext.Provider
@@ -425,7 +414,7 @@ export const HomeFilterProvider = ({ children }: IHomeFilter) => {
         km,
         filterPrice,
         currentPage,
-        setCurrentPage
+        setCurrentPage,
       }}
     >
       {children}

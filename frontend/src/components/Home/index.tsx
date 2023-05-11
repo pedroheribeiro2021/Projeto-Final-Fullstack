@@ -14,14 +14,12 @@ import ReactPaginate from "react-paginate";
 export const Home = () => {
   const [km, setKm] = useState(0);
 
- 
-
-  const handleKmChange = async (event:any) => {
+  const handleKmChange = async (event: any) => {
     setKm(event.target.value.split(",").map(Number));
     await filterKM(Number(event.target.value));
   };
 
-  const handlePriceChange = async(event:any) => {
+  const handlePriceChange = async (event: any) => {
     await filterPrice(Number(event.target.value));
   };
 
@@ -58,8 +56,7 @@ export const Home = () => {
     setFilteredYears,
     filterPrice,
     currentPage,
-    setCurrentPage
-
+    setCurrentPage,
   } = useContext(HomeFilterContext);
 
   const itemsPerPage = 9;
@@ -89,7 +86,6 @@ export const Home = () => {
     setFilteredBrands([]);
     await getAnnoucements();
   };
-
 
   return (
     <>
@@ -195,22 +191,37 @@ export const Home = () => {
             <div className="aditional_filters">
               <h2>KM</h2>
               <div className="aditional_filters_button">
-              <span>KM: {km}</span>
-              <InputFilter type="number" placeholder="ex: 1000" onChange={handleKmChange} />
-            </div>
+                <span>KM: {km}</span>
+                <InputFilter
+                  type="number"
+                  placeholder="ex: 1000"
+                  onChange={handleKmChange}
+                />
+              </div>
 
-            <h2>Preço</h2>
+              <h2>Preço</h2>
 
-            <div className="aditional_filters_button">
-              <InputFilter type="number" placeholder="ex: R$1000" onChange={handlePriceChange} />
-            </div>
-            <div>
-              {filteredBrands.length || filteredBrands.length || filteredModels.length || filteredYears.length || filteredFuels.length ||filteredColors.length > 0 ? (
-                <ButtonCleanFilter onClick={cleanFilters}>Limpar Filtro</ButtonCleanFilter>
-              ) : (
-                <></>
-              )}
-            </div>
+              <div className="aditional_filters_button">
+                <InputFilter
+                  type="number"
+                  placeholder="ex: R$1000"
+                  onChange={handlePriceChange}
+                />
+              </div>
+              <div>
+                {filteredBrands.length ||
+                filteredBrands.length ||
+                filteredModels.length ||
+                filteredYears.length ||
+                filteredFuels.length ||
+                filteredColors.length > 0 ? (
+                  <ButtonCleanFilter onClick={cleanFilters}>
+                    Limpar Filtro
+                  </ButtonCleanFilter>
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
           </div>
           <div className="home_cards">
@@ -227,8 +238,7 @@ export const Home = () => {
           </button>
         </div>
         <div className="next_page">
-  
-            <ReactPaginate
+          <ReactPaginate
             pageCount={totalPages}
             pageRangeDisplayed={2}
             marginPagesDisplayed={1}
@@ -238,7 +248,6 @@ export const Home = () => {
             previousLabel={currentPage === 0?"" : '< Anterior'}
             nextLabel={totalPages ===  currentPage + 1?"" :'Próximo >'}
         />
-
         </div>
         <Filter />
         <Footer />

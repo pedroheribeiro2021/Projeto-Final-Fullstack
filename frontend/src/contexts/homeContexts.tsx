@@ -32,8 +32,6 @@ export const HomeProvider = ({ children }: IHome) => {
 
   const [announcements, setAnnouncements] = useState<IAnuncio[]>([]);
 
-  
-
   const { listAnnouncementsAdmin }: IProfileContext =
     useContext(ProfileContext);
 
@@ -70,7 +68,6 @@ export const HomeProvider = ({ children }: IHome) => {
       setIsModalOpen(false);
       listAnnouncementsAdmin(id!);
       toast.success("Anúncio criado com Sucesso");
-
       return data;
     } catch (error) {
       toast.error("Falha ao criar Anúncio");
