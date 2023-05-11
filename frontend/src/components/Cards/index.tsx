@@ -1,19 +1,25 @@
 import { CardStyle } from "./style";
-import user from "../../assets/user1.png";
+import defaultUser from "../../assets/user1.png";
 import { useContext } from "react";
 import { HomeFilterContext } from "../../contexts/homeFilterContext";
 import { useNavigate } from "react-router-dom";
 
+
+
 export const Cards = () => {
-  const { filteredAnnouncements } = useContext(HomeFilterContext);
-  
+  const { filteredAnnouncements,currentPage } = useContext(HomeFilterContext);
+
   const navigate = useNavigate();
+  
+  const itemsPerPage = 9;
+ 
 
   return (
     <>
       <CardStyle>
         {filteredAnnouncements ? (
           <ul className="container_list_cards">
+         
             {filteredAnnouncements.map((announcement) => {
               const coverImage = announcement.images.find((image) => image);
               return (
@@ -39,7 +45,7 @@ export const Cards = () => {
                     <p>{announcement.description}</p>
                   </div>
                   <div className="list_cards_user">
-                    <img src={user} alt={announcement.model.model} />
+                    <img src={defaultUser} alt={announcement.model.model} />
                     <span>{announcement.user.name}</span>
                   </div>
                   <div className="list_cards_info">
@@ -58,11 +64,13 @@ export const Cards = () => {
                   </div>
                 </li>
               );
-            })}
+            }).slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)}
           </ul>
         ) : (
           <h3>carregando</h3>
         )}
+          
+        
       </CardStyle>
     </>
   );

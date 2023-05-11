@@ -81,7 +81,7 @@ export const Header = () => {
           {user ? (
             <ContainerUser onClick={handleMenuOpen} className="user-info">
               <img id="profileImg" src={defaultUser} alt="Foto do usuário" />
-              <span>{user.name}</span>
+              <span id="user_name">{user.name}</span>
               {menuOpen && (
                 <ContainerMenu>
                   <button
