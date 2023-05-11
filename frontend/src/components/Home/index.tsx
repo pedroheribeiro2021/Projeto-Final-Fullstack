@@ -77,17 +77,6 @@ export const Home = () => {
     setFilteredBrands([]);
     await getAnnoucements();
   };
-  console.log(filteredBrands,
-    
-    filteredBrands,
-    
-    filteredModels,
-    
-    filteredYears,
-    
-    filteredFuels,
-    
-    filteredColors,)
 
   return (
     <>
